@@ -7,9 +7,9 @@
 
 -Requerimientos:
 
-	* instalado gsutil
-	* path, row de landsat
-	* Año
+	* Tener instalado gsutil
+	* Path, row de tile de landsat
+	* Año a descargar imágenes
 	* Sensor: elegir entre landsat tm, etm+, oli-tirs
 
 -Ejemplo:
@@ -51,6 +51,26 @@ $preprocessingfromarchive_landsat.sh ./landsat_tile_021048/LC80210482015239LGN00
 
 ```
 $ls_classification_qsub.sh 2015-01-01 2015-12-31 10 21048 ./datos_entrenamiento.tif 1
+```
+
+###Postprocesamiento de clasificación
+
+-Requerimientos:
+
+	*Región de tiles clasificados
+	*Archivo ESRI de los tiles de la región
+	*Nombre de columna del archivo ESRI que contiene los tiles de la región
+
+-Ejemplo:
+
+	*En la carpeta /resultados_clasificacion tenemos los resultados del proceso de clasificación anterior
+	*Nuestro archivo ESRI se llama landsat_footprints_mexico.shp
+	*En el archivo ESRI tenemos la columna code que contiene los tiles de mexico
+	*En la carpeta /resultados_postprocesamiento tendremos los resultados que ayudan al postprocesamiento
+	*El archivo postprocesamiento.tif es el resultado del postprocesamiento y se guarda en la carpeta /resultado_postprocesamiento/
+
+```
+$ls_postprocessing_qsub /resultados_clasificacion ./landsat_footprints_mexico.shp code /resultados_postprocesamiento /resultado_postprocesamiento/postprocesamiento.tif
 ```
 
 ###Detección de cambios
