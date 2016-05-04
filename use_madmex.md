@@ -10,16 +10,16 @@
 	* Tener instalado gsutil
 	* Path, row de tile de landsat
 	* Año a descargar imágenes
-	* Sensor: elegir entre landsat tm, etm+, oli-tirs
+	* Instrumento a elegir entre tm, etm+, oli-tirs
 
 -Ejemplo:
 
 	* path: 021, row: 048
 	* año: 2015
-	* sensor: oli-tirs (L8)
+	* Instrumento: etm+ (L7)
 
 ```
-$descarga_landsat.sh L8 021 048 2015
+$descarga_landsat.sh L7 021 048 2015
 ```
 
 -En el directorio en el que se ejecutó el comando tendremos la carpeta: landsat_tile_021048
@@ -36,7 +36,7 @@ $descarga_landsat.sh L8 021 048 2015
 -Ejemplo para un archivo dentro de la carpeta: landsat_tile_021048
 
 ```
-$preprocessingfromarchive_landsat.sh ./landsat_tile_021048/LC80210482015239LGN00.tar.bz
+$preprocessingfromarchive_landsat.sh ./landsat_tile_021048/LE70210482000046EDC00.tar.bz
 ```
 
 ###Clasificación
