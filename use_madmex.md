@@ -43,6 +43,7 @@ $preprocessingfromarchive_landsat.sh ./landsat_tile_021048/LE70210482000046EDC00
 
 -Requerimientos:
 
+	* contenedor de docker para
 	* datos de entrenamiento registrados en la base de datos dentro del esquema products tabla product
 
 
