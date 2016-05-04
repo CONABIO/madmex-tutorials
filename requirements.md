@@ -28,7 +28,7 @@ $sudo docker run -h  $(hostname)-preproc -v /ledaps_anc/:/opt/ledaps -p 2223:22 
 
 
 ```
-sudo docker run -h $(hostname -f) -p 2221:22 -p 8800:8800 -d -t --name madmex_ws madmex_ws /bin/bash
+sudo docker run -h $(hostname -f) -p 2221:22 -p 8800:8800 -d -t --name madmex_ws madmex_ws /usr/sbin/sshd -D
 ```
 
 ##gsutil
