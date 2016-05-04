@@ -4,7 +4,7 @@
 
 ###Landsat
 
-*Descarga*
+####Descarga
 
 *descarga_landsat.sh*
 
@@ -27,7 +27,7 @@ mkdir -p $2
 
 ```
 
-*Preprocesamiento e ingestión*
+####Preprocesamiento e ingestión
 
 *preprocessingfromarchive_landsat.sh*
 
@@ -59,7 +59,8 @@ tar xvjf $new_filename
 rm $new_filename
 rm -R $MADMEX_TEMP/$newdir/
 ```
-*Clasificación*
+
+####Clasificación*
 
 ```
 #!/bin/bash
