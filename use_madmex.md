@@ -1,4 +1,4 @@
-#Esta documentación será para el uso del sistema madmex
+#Esta documentación muestra el uso del sistema madmex
 
 
 ##Landsat
@@ -12,7 +12,7 @@
 	* Año
 	* Sensor: elegir entre landsat tm, etm+, oli-tirs
 
--Uso desde la línea de comandos, tomando como ejemplo:
+-Ejemplo:
 
 	* path: 021, row: 048
 	* año: 2015
@@ -22,7 +22,7 @@
 $descarga_landsat.sh L8 021 048 2015
 ```
 
--Entonces en el directorio en el que se ejecutó el comando tendremos la carpeta: landsat_tile_021048
+-En el directorio en el que se ejecutó el comando tendremos la carpeta: landsat_tile_021048
 
 -En esta carpeta se encuentran archivos con extensión *.tar.bz
 
@@ -32,6 +32,9 @@ $descarga_landsat.sh L8 021 048 2015
 -Requerimientos:
 
 	* docker
+
+-Ejemplo para un archivo dentro de la carpeta: landsat_tile_021048
+
 ```
 $preprocessingfromarchive_landsat.sh ./landsat_tile_021048/LC80210482015239LGN00.tar.bz
 ```
@@ -44,6 +47,15 @@ $preprocessingfromarchive_landsat.sh ./landsat_tile_021048/LC80210482015239LGN00
 
 
 ##Rapideye
+
+###Descarga de imágenes
+
+###Ingestión de imágenes y preprocesamiento
+
+###Clasificación
+
+###Detección de cambios
+
 
 
 ###Técnico:
