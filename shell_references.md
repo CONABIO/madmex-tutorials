@@ -5,6 +5,7 @@
 *descarga_landsat.sh*
 
 ```
+#$1 is the sensor, $2 is the path, $3 is the row, $4 is the year
 gsutil ls gs://earthengine-public/landsat/$1/$2/$3/|grep $4 > lista_landsat_tile_$2$3.txt
 mkdir landsat_tile_$2$3
 for file in $(cat lista_landsat_tile_$2$3.txt);do
@@ -15,6 +16,7 @@ done;
 *gsutil_qsub.sh*
 
 ```
+# $1 is gsutil file url, $2 is target download folder
 mkdir -p $2
 
 /usr/local/bin/gsutil cp -n $1 $2
@@ -25,6 +27,8 @@ mkdir -p $2
 
 ```
 #!/bin/bash
+# $1 is the archive to preprocess and ingest
+
 source /LUSTRE/MADMEX/code/madmex/resources/gridengine/nodo_conabio.txt
 replace=""
 
