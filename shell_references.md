@@ -13,7 +13,7 @@
 gsutil ls gs://earthengine-public/landsat/$1/$2/$3/|grep $4 > lista_landsat_tile_$2$3.txt
 mkdir landsat_tile_$2$3
 for file in $(cat lista_landsat_tile_$2$3.txt);do
-qsub -S /bin/bash -cwd -q cluster_full_cpu /LUSTRE/MADMEX/code/madmex/resources/gridengine/scripts/gsutil_qsub.sh $file landsat_tile_$2$3/
+gsutil_qsub.sh $file landsat_tile_$2$3/
 done;
 ```
 
