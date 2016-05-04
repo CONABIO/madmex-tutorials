@@ -12,7 +12,7 @@ qsub -S /bin/bash -cwd -q cluster_full_cpu /LUSTRE/MADMEX/code/madmex/resources/
 done;
 ```
 
-*gsutil_qsub.sh
+*gsutil_qsub.sh*
 
 ```
 mkdir -p $2
