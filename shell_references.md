@@ -60,7 +60,7 @@ rm $new_filename
 rm -R $MADMEX_TEMP/$newdir/
 ```
 
-####Clasificación*
+####Clasificación
 
 ```
 #!/bin/bash
@@ -69,6 +69,15 @@ rm -R $MADMEX_TEMP/$newdir/
 source /LUSTRE/MADMEX/code/madmex/resources/gridengine/nodo_conabio.txt
 python $MADMEX/interfaces/cli/madmex_processing.py LandsatLccWorkflowV3 --start_date_string $1 --end_date_string $2 --max_cloud_percentage $3 --landsat_footprint $4 --training_url $5 --outlier $6
 ```
+####Postprocesamiento de clasificación
 
+```
+#!/bin/bash
+#$1 es el folder que contiene los resultados de clasificación, $2 es el archivo ESRI que contiene los tiles de la región
+#$3 es el nombre de la columna del archivo ESRI $2, $4 es el folder donde estarán los resultados que ayudan al postprocesamiento
+#$5 es el nombre del archivo resultado del postprocesamiento
+source /LUSTRE/MADMEX/code/madmex/resources/gridengine/nodo_conabio.txt
+python $MADMEX/interfaces/cli/madmex_processing.py LandsatLccPostWorkflow --lccresultfolder $1 --footprintshape $2 --tileidcolumnname $3 --workingdir $4 --outfile $5
+```
 
 
