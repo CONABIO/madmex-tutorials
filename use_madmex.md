@@ -31,7 +31,7 @@ $descarga_landsat.sh L8 021 048 2015
 
 -Requerimientos:
 
-	* docker
+	* contenedor de docker para preprocesamiento
 
 -Ejemplo para un archivo dentro de la carpeta: landsat_tile_021048
 
@@ -41,6 +41,17 @@ $preprocessingfromarchive_landsat.sh ./landsat_tile_021048/LC80210482015239LGN00
 
 ###Clasificación
 
+-Requerimientos:
+
+	* datos de entrenamiento registrados en la base de datos dentro del esquema products tabla product
+
+
+-Ejemplo para path,row 021048 con conjunto de entrenamiento datos_entrenamiento.tif y eliminación de datos atípicos (1)
+
+
+```
+$ls_classification_qsub.sh 2015-01-01 2015-12-31 10 21048 ./datos_entrenamiento.tif 1
+```
 
 ###Detección de cambios
 
