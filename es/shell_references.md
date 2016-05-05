@@ -28,8 +28,6 @@ mkdir /results/landsat_tile
 /usr/local/bin/gsutil cp -n $1 /results/landsat_tile/
 ```
 
-LE70210482012015ASN00.tar.bz
-
 ####Ingestión
 
 *preprocessingfromarchive_landsat.sh*
