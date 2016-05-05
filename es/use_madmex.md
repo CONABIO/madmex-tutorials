@@ -44,7 +44,7 @@ $docker run --rm -v $(pwd):/results  madmex_ws_imagen /bin/sh -c '/results/desca
 ####LEDAPS
 -Requerimientos:
 	
-	* Clonar el repositorio: https://github.com/CONABIO/LEDAPS y seguir instrucciones
+	* contenedor de docker para preprocesamiento de ledaps
 
 ####FMASK
 -Requerimientos:

@@ -35,3 +35,22 @@ Para el correcto funcionamiento del sistema, un conjunto de requerimientos míni
 - memoria: 50GB
 - ssh: 22/tcp
 
+
+##Contenedores de docker
+
+#Para ledaps de imágenes antes de 2012-2013 realizar:
+
+
+
+#Para ledaps de imágenes después de 2012-2013 realizar:
+
+```
+$docker load < ledaps_after_2013.tar
+```
+
+
+
+
+
+
+
