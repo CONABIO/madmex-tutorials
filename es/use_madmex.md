@@ -19,7 +19,7 @@ Es crucial una instalación de docker en su sistema: https://www.docker.com/ y d
 	* path: 021, row: 048
 	* año: 2015
 	* Instrumento: etm+ (L7)
-	* Con nombre de imagen madmex_ws
+	* Con nombre de imagen: madmex_ws
 
 ```
 $docker run --rm -v $(pwd):/results  madmex_ws /bin/sh -c '/results/descarga_landsat.sh L7 021 048 2015'
@@ -31,7 +31,7 @@ $docker run --rm -v $(pwd):/results  madmex_ws /bin/sh -c '/results/descarga_lan
 
 
 -Ejemplo descarga de un archivo: gs://earthengine-public/landsat/L7/021/048/LE70210482012015ASN00.tar.bz con nombre
-de imagen madmex_ws
+de imagen: madmex_ws
 
 
 ```
