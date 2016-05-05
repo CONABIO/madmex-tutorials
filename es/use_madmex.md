@@ -8,7 +8,7 @@ Es crucial una instalación de docker en su sistema: https://www.docker.com/ y d
 
 -Requerimientos:
 
-	* imagen de docker para procesos, ir a requirements.md -> imágenes de docker
+	* imagen de docker para procesos
 	* Path, row de tile de landsat
 	* Año a descargar imágenes
 	* Instrumento a elegir entre tm, etm+, oli-tirs
@@ -19,10 +19,10 @@ Es crucial una instalación de docker en su sistema: https://www.docker.com/ y d
 	* path: 021, row: 048
 	* año: 2015
 	* Instrumento: etm+ (L7)
-	* Con nombre de imagen: madmex_ws
+	* Con nombre de imagen: madmex/ws:latest
 
 ```
-$docker run --rm -v $(pwd):/results  madmex_ws /bin/sh -c '/results/descarga_landsat.sh L7 021 048 2015'
+$docker run --rm -v $(pwd):/results  madmex/ws:latest /bin/sh -c '/results/descarga_landsat.sh L7 021 048 2015'
 ```
 
 *En el directorio en el que se ejecutó el comando tendremos la carpeta: landsat_tile_021048*
@@ -31,11 +31,11 @@ $docker run --rm -v $(pwd):/results  madmex_ws /bin/sh -c '/results/descarga_lan
 
 
 -Ejemplo descarga de un archivo: gs://earthengine-public/landsat/L7/021/048/LE70210482012015ASN00.tar.bz con nombre
-de imagen: madmex_ws
+de imagen: madmex/ws:latest
 
 
 ```
-$docker run --rm -v $(pwd):/results  madmex_ws /bin/sh -c '/results/descarga_landsat_un_archivo.sh gs://earthengine-public/landsat/L7/021/048/LE70210482012015ASN00.tar.bz'
+$docker run --rm -v $(pwd):/results  madmex/ws:latest /bin/sh -c '/results/descarga_landsat_un_archivo.sh gs://earthengine-public/landsat/L7/021/048/LE70210482012015ASN00.tar.bz'
 ```
 
 *En el directorio en el que se ejecutó el comando tendremos la carpeta: landsat_un_archivo*
@@ -47,15 +47,15 @@ $docker run --rm -v $(pwd):/results  madmex_ws /bin/sh -c '/results/descarga_lan
 ####LEDAPS
 -Requerimientos:
 	
-	* imagen de docker para preprocesamiento de ledaps, ir a requirements.md -> imágenes de docker
+	* imagen de docker para preprocesamiento de ledaps
 	* ancilliary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
 
 -Ejemplo con el archivo LE70210482012015ASN00.tar.bz:
 
-	*En ruta: /datos_landsat tenemos el *.tar.bz
+	*En ruta: /datos_landsat tenemos el LE70210482012015ASN00.tar.bz
 	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
 	*En ruta: /ancilliary_data tenemos descomprimido el ancilliary data
-	*Con nombre de imagen: ledaps/ledaps:v1
+	*Con nombre de imagen: ledaps/ledaps:latest
 
 Entonces ejecutamos el siguiente comando:
 
@@ -63,8 +63,23 @@ Entonces ejecutamos el siguiente comando:
 ```
 docker run --rm -v /ancilliary_data:/opt/ledaps \
 -v /datos_landsat:/data -v /resultados_ledaps:/results \
-ledaps/ledaps:v1 /opt/ledaps /data/LE70210482012015ASN00.tar.bz /resultados_ledaps
+madmex/ledaps:latest /opt/ledaps /data/LE70210482012015ASN00.tar.bz /resultados_ledaps
 ```
+
+-Ejemplo con el archivo LE70210481999203AGS00.tar.bz:
+
+	*En ruta: /datos_landsat tenemos el LE70210481999203AGS00.tar.bz
+	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
+	*En ruta: /ancilliary_data tenemos descomprimido el ancilliary data
+	*Con nombre de imagen: madmex/ledaps-legacy:latest
+
+
+```
+docker run --rm -v /ancilliary_data:/opt/ledaps \
+-v /datos_landsat:/data -v /resultados_ledaps:/results \
+madmex/ledaps-legacy:latest /opt/ledaps /data/LE70210482012015ASN00.tar.bz /resultados_ledaps
+```
+
 
 ####FMASK
 -Requerimientos:
@@ -88,7 +103,7 @@ $data_ingestion.sh ./landsat_tile_021048/LE70210482000046EDC00.tar.bz
 
 -Requerimientos:
 
-	* imagen de docker para procesos, ir a requirements.md -> imágenes de docker
+	* imagen de docker para procesos
 	* datos de entrenamiento registrados en la base de datos dentro del esquema products tabla product
 
 
