@@ -76,7 +76,7 @@ Los resultados están en el path: /resultados_ledaps
 ```
 docker run --rm -v /ancilliary_data:/opt/ledaps \
 -v /datos_landsat:/data -v /resultados_ledaps:/results \
-madmex/lspreproc:latest do_ledaps.csh /data/LE70210481999203AGS00.tar.bz
+madmex/ledaps-legacy:latest /opt/ledaps /data/LE70210481999203AGS00.tar.bz /results
 ```
 
 Los resultados están en el path: /resultados_ledaps
