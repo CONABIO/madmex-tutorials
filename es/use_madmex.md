@@ -60,7 +60,7 @@ Entonces ejecutamos el siguiente comando:
 ```
 docker run --rm -v /ancilliary_data:/opt/ledaps \
 -v /datos_landsat:/data -v /resultados_ledaps:/results \
-madmex/ledaps:latest /opt/ledaps /data/LE70210482012015ASN00.tar.bz /resultados_ledaps
+madmex/ledaps:latest /opt/ledaps /data/LE70210482012015ASN00.tar.bz /results
 ```
 
 -Ejemplo con el archivo LE70210481999203AGS00.tar.bz:
