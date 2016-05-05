@@ -8,7 +8,6 @@ Es crucial una instalación de docker en su sistema: https://www.docker.com/
 
 -Requerimientos:
 
-	* imagen de docker para procesos
 	* Path, row de tile de landsat
 	* Año a descargar imágenes
 	* Instrumento a elegir entre tm, etm+, oli-tirs
@@ -47,7 +46,6 @@ $docker run --rm -v $(pwd):/results  madmex/ws:latest /bin/sh -c '/results/desca
 ####LEDAPS
 -Requerimientos:
 	
-	* imagen de docker para preprocesamiento de ledaps
 	* ancilliary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
 
 -Ejemplo con el archivo LE70210482012015ASN00.tar.bz:
