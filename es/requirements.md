@@ -19,6 +19,26 @@ A continuación se muestra un diagrama que representa la arquitectura del sistem
 
 ![Diagrama de componentes de MAD-Mex](../images/component_diagram.png)
 
+##Requerimientos del Sistema en Modo Cluster
+
+Para el correcto funcionamiento del sistema, un conjunto de requerimientos mínimos es necesario. A continuación se ofrece una breve descripción.
+
+###Hardware Nodo Maestro
+- mínimo: 2-4 vCPUs
+- mínimo: 4GB RAM
+- 50GB Memory
+- ssh: 22/tcp
+
+###Hardware Nodo Esclavo
+- mínimo: 16 vCPUs
+- mínimo: 64GB RAM
+- memoria: 50GB
+- ssh: 22/tcp
+
+
+
+
+
 ##Contenedores de docker
 
 *Imagen de docker para preprocesamiento: lspreproc_05_04_2016.tar*
