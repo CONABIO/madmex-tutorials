@@ -1,6 +1,6 @@
 #Esta documentación muestra el uso del sistema madmex
 
-Es crucial una instalación de docker en su sistema: (https://www.docker.com/) 
+Es crucial una instalación de docker en su sistema: https://www.docker.com/
 
 ##Landsat
 
