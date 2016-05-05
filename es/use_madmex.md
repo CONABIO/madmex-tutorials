@@ -8,7 +8,7 @@ Es crucial una instalación de docker en su sistema: https://www.docker.com/ y d
 
 -Requerimientos:
 
-	* contenedor de docker para procesos
+	* imagen de docker para procesos, ir a requirements.md -> imágenes de docker
 	* Path, row de tile de landsat
 	* Año a descargar imágenes
 	* Instrumento a elegir entre tm, etm+, oli-tirs
@@ -44,7 +44,7 @@ $docker run --rm -v $(pwd):/results  madmex_ws_imagen /bin/sh -c '/results/desca
 ####LEDAPS
 -Requerimientos:
 	
-	* contenedor de docker para preprocesamiento de ledaps
+	* imagen de docker para preprocesamiento de ledaps, ir a requirements.md -> imágenes de docker
 
 ####FMASK
 -Requerimientos:
@@ -56,7 +56,7 @@ $docker run --rm -v $(pwd):/results  madmex_ws_imagen /bin/sh -c '/results/desca
 
 -Requerimientos:
 
-	* contenedor de docker para procesos
+	* imagen de docker para procesos
 
 -Ejemplo para un archivo dentro de la carpeta: landsat_tile_021048
 
@@ -68,7 +68,7 @@ $data_ingestion.sh ./landsat_tile_021048/LE70210482000046EDC00.tar.bz
 
 -Requerimientos:
 
-	* contenedor de docker para procesos
+	* imagen de docker para procesos, ir a requirements.md -> imágenes de docker
 	* datos de entrenamiento registrados en la base de datos dentro del esquema products tabla product
 
 
