@@ -22,9 +22,9 @@
 $docker run --rm -v $(pwd):/results  madmex_ws_imagen /bin/sh -c '/results/descarga_landsat.sh L7 021 048 2015'
 ```
 
--En el directorio en el que se ejecutó el comando tendremos la carpeta: landsat_tile_021048
+*En el directorio en el que se ejecutó el comando tendremos la carpeta: landsat_tile_021048*
 
--En esta carpeta se encuentran archivos con extensión *.tar.bz
+*En esta carpeta se encuentran archivos con extensión *.tar.bz*
 
 
 -Ejemplo descarga de un archivo: gs://earthengine-public/landsat/L7/021/048/LE70210482012015ASN00.tar.bz
@@ -34,7 +34,7 @@ $docker run --rm -v $(pwd):/results  madmex_ws_imagen /bin/sh -c '/results/desca
 $docker run --rm -v $(pwd):/results  madmex_ws_imagen /bin/sh -c '/results/descarga_landsat_un_archivo.sh$ gs://earthengine-public/landsat/L7/021/048/LE70210482012015ASN00.tar.bz'
 ```
 
--En la carpeta con nombre landsat_un_archivo se encontrará el archivo con extensión *.tar.bz descargado
+*En la carpeta con nombre landsat_un_archivo se encontrará el archivo con extensión *.tar.bz descargado*
 
 ###Preprocesamiento
 
