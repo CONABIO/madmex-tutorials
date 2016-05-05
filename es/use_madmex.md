@@ -52,6 +52,7 @@ $docker run --rm -v $(pwd):/results  madmex_ws_imagen /bin/sh -c '/results/desca
 	*En ruta: /datos_landsat tenemos el *.tar.bz
 	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
 	*En ruta: /ancilliary_data tenemos descomprimido el ancilliary data
+	*Con nombre de imagen: ledaps/ledaps:v1
 
 Entonces ejecutamos el siguiente comando:
 
