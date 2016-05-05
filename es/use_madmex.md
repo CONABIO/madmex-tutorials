@@ -50,7 +50,7 @@ $docker run --rm -v $(pwd):/results  madmex_ws_imagen /bin/sh -c '/results/desca
 -Ejemplo con el archivo LE70210482012015ASN00.tar.bz:
 
 	*En ruta: /datos_landsat tenemos el *.tar.bz,
-	*En ruta: /resultados_ledaps, queremos los resultados del preprocesamiento
+	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
 	*En ruta: /ancilliary_data tenemos descomprimido el ancilliary data
 
 Entonces ejecutamos el siguiente comando:
