@@ -47,7 +47,7 @@ $docker run --rm -v $(pwd):/results  madmex/ws:latest gsutil cp gs://earthengine
 	
 	* ancilliary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
 
--Ejemplo con el archivo LE70210492015007EDC00.tar.bz:
+-Ejemplo para datos después del año 2012-2013 con el archivo LE70210492015007EDC00.tar.bz:
 
 	*En ruta: /datos_landsat tenemos el LE70210492015007EDC00.tar.bz
 	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
@@ -65,7 +65,7 @@ madmex/ledaps:latest /opt/ledaps /data/LE70210492015007EDC00.tar.bz /results
 
 Los resultados están en el path: /resultados_ledaps
 
--Ejemplo con el archivo LE70210481999203AGS00.tar.bz:
+-Ejemplo para datos antes del año 2012-2013 con el archivo LE70210481999203AGS00.tar.bz:
 
 	*En ruta: /datos_landsat tenemos el LE70210481999203AGS00.tar.bz
 	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
@@ -76,7 +76,7 @@ Los resultados están en el path: /resultados_ledaps
 ```
 docker run --rm -v /ancilliary_data:/opt/ledaps \
 -v /datos_landsat:/data -v /resultados_ledaps:/results \
-madmex/ledaps-legacy:latest /opt/ledaps /data/LE70210482012015ASN00.tar.bz /results
+madmex/ledaps-legacy:latest /opt/ledaps /data/LE70210481999203AGS00.tar.bz /results
 ```
 
 Los resultados están en el path: /resultados_ledaps
