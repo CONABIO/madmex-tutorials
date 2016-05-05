@@ -38,19 +38,19 @@ Para el correcto funcionamiento del sistema, un conjunto de requerimientos míni
 
 ##Imágenes de docker
 
-*Imagen de docker para los procesos realizar:*
+*Imagen de docker para los procesos*
 
 ```
 $cat madmex_ws_05_04_2016.tar|docker import - madmex\ws
 ```
 
-*Imagen de ledaps para el preprocesamiento de datos landsat antes 2012-2013 realizar:*
+*Imagen de ledaps para el preprocesamiento de datos landsat antes 2012-2013*
 
 ```
 $docker load < ledaps_before_2013.tar
 ```
 
-*Imagen de ledaps para el preprocesamiento de datos landsat después de 2012-2013 realizar:*
+*Imagen de ledaps para el preprocesamiento de datos landsat después de 2012-2013*
 
 ```
 $docker load < ledaps_after_2013.tar
