@@ -30,7 +30,7 @@ mkdir /results/landsat_tile
 
 ####Ingestión
 
-*preprocessingfromarchive_landsat.sh*
+*data_ingestion.sh*
 
 ```
 #!/bin/bash
