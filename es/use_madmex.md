@@ -1,6 +1,6 @@
 #Esta documentación muestra el uso del sistema madmex
 
-Es crucial una instalación de docker en su sistema: https://www.docker.com/ y descargar los contenedores para los procesos de: 
+Es crucial una instalación de docker en su sistema: https://www.docker.com/ y descargar las imágenes de docker desde la dirección: 
 
 ##Landsat
 
