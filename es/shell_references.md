@@ -18,16 +18,6 @@ for file in $(cat lista_landsat_tile_$2$3.txt);do
 done;
 ```
 
-*descarga_landsat_un_archivo.sh*
-
-```
-#!/bin/bash
-#$1 es el archivo de landsat a copiar
-mkdir /results/landsat_tile
-
-/usr/local/bin/gsutil cp -n $1 /results/landsat_tile/
-```
-
 ####Ingestión
 
 *data_ingestion.sh*
