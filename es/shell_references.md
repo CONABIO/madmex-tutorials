@@ -27,37 +27,16 @@ mkdir -p $2
 
 ```
 
-####Preprocesamiento e ingestión
+####Ingestión
 
 *preprocessingfromarchive_landsat.sh*
 
 ```
 #!/bin/bash
-# $1 es el archivo para preprocesar e ingestar
-#!/bin/bash
+#$1 es la ruta del archivo a ingestar
 source /LUSTRE/MADMEX/code/madmex/resources/gridengine/nodo_conabio.txt
-replace=""
 
-cp $1 $MADMEX_TEMP
-
-filename=$(basename $1)
-
-newdir=$(echo $filename | sed -e "s/.tar.bz/$replace/g")
-
-
-new_filename=$MADMEX_TEMP/$filename
-
-mkdir -p $MADMEX_TEMP/$newdir
-cd $MADMEX_TEMP/$newdir
-
-tar xvjf $new_filename
-
-/usr/bin/python $MADMEX/interfaces/cli/executer.py LedapsCommand --path $MADMEX_TEMP/$newdir/
-/usr/bin/python $MADMEX/interfaces/cli/executer.py FmaskCommand --path $MADMEX_TEMP/$newdir
-/usr/bin/python $MADMEX/interfaces/cli/executer.py IngestionShellCommand --path $MADMEX_TEMP/$newdir
-
-rm $new_filename
-rm -R $MADMEX_TEMP/$newdir/
+/usr/bin/python $MADMEX/interfaces/cli/executer.py IngestionShellCommand --path $1
 ```
 
 ####Clasificación
