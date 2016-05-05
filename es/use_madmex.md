@@ -7,6 +7,7 @@
 
 -Requerimientos:
 
+	* contenedor de docker para procesos
 	* Tener instalado gsutil
 	* Path, row de tile de landsat
 	* Año a descargar imágenes
@@ -26,17 +27,29 @@ $descarga_landsat.sh L7 021 048 2015
 
 -En esta carpeta se encuentran archivos con extensión *.tar.bz
 
+###Preprocesamiento
 
-###Ingestión de imágenes y preprocesamiento
+####LEDAPS
+-Requerimientos:
+	
+	* Clonar el repositorio: https://github.com/CONABIO/LEDAPS y seguir instrucciones
+
+####FMASK
+-Requerimientos:
+
+	* Clonar el repositorio: https://github.com/amaurs/docker-python-fmask.git y seguir instrucciones
+
+
+###Ingestión de imágenes
 
 -Requerimientos:
 
-	* contenedor de docker para preprocesamiento
+	* contenedor de docker para procesos
 
 -Ejemplo para un archivo dentro de la carpeta: landsat_tile_021048
 
 ```
-$preprocessingfromarchive_landsat.sh ./landsat_tile_021048/LE70210482000046EDC00.tar.bz
+$data_ingestion.sh ./landsat_tile_021048/LE70210482000046EDC00.tar.bz
 ```
 
 ###Clasificación
