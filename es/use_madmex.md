@@ -47,7 +47,14 @@ $docker run --rm -v $(pwd):/results  madmex_ws_imagen /bin/sh -c '/results/desca
 	* imagen de docker para preprocesamiento de ledaps, ir a requirements.md -> imágenes de docker
 	* ancilliary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
 
--Ejemplo con el archivo LE70210482012015ASN00.tar.bz en la ruta /datos_landsat, directorio de resultados del preprocesamiento: /resultados_ledaps y ruta en la que se encuentra descomprimido el ancilliary data: /ancilliary_data, 
+-Ejemplo con el archivo LE70210482012015ASN00.tar.bz:
+
+	*En ruta: /datos_landsat tenemos el *.tar.bz,
+	*En ruta: /resultados_ledaps, queremos los resultados del preprocesamiento
+	*En ruta: /ancilliary_data tenemos descomprimido el ancilliary data
+
+Entonces ejecutamos el siguiente comando:
+
 
 ```
 docker run --rm -v /ancilliary_data:/opt/ledaps \
