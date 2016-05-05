@@ -8,7 +8,6 @@
 -Requerimientos:
 
 	* contenedor de docker para procesos
-	* Tener instalado gsutil
 	* Path, row de tile de landsat
 	* Año a descargar imágenes
 	* Instrumento a elegir entre tm, etm+, oli-tirs
