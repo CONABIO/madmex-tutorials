@@ -22,7 +22,7 @@ done;
 
 ```
 #!/bin/bash
-#
+#$1 es el archivo de landsat a copiar
 mkdir /results/landsat_tile
 
 /usr/local/bin/gsutil cp -n $1 /results/landsat_tile/
