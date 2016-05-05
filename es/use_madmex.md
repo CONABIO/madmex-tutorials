@@ -45,13 +45,14 @@ $docker run --rm -v $(pwd):/results  madmex_ws_imagen /bin/sh -c '/results/desca
 -Requerimientos:
 	
 	* imagen de docker para preprocesamiento de ledaps, ir a requirements.md -> imágenes de docker
+	* ancilliary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
 
--Ejemplo con el archivo LE70210482012015ASN00.tar.bz
+-Ejemplo con el archivo LE70210482012015ASN00.tar.bz en la ruta /datos_landsat, directorio de resultados del preprocesamiento: /resultados_ledaps y ruta en la que se encuentra descomprimido el ancilliary data: /ancilliary_data, 
 
 ```
-docker run --rm -v <path to directory with ancilliary data>:/opt/ledaps \
--v <path to local directory with data>:/data -v <path to directory for results>:/results \
-ledaps/ledaps:v1 <path to ancilliary data in docker> <path to source data in docker/L*.*.tar.bz> <path to destiny results in docker>
+docker run --rm -v /ancilliary_data:/opt/ledaps \
+-v /datos_landsat:/data -v /resultados_ledaps:/results \
+ledaps/ledaps:v1 /opt/ledaps /data/LE70210482012015ASN00.tar.bz /resultados_ledaps
 ```
 
 ####FMASK
