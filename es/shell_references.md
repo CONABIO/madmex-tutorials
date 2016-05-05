@@ -9,23 +9,26 @@
 *descarga_landsat.sh*
 
 ```
+#!/bin/bash
 #$1 es el sensor, $2 es el path, $3 es el row, $4 es el año
 gsutil ls gs://earthengine-public/landsat/$1/$2/$3/|grep $4 > lista_landsat_tile_$2$3.txt
-mkdir landsat_tile_$2$3
+mkdir /results/landsat_tile_$2$3
 for file in $(cat lista_landsat_tile_$2$3.txt);do
-gsutil_qsub.sh $file landsat_tile_$2$3/
+/usr/local/bin/gsutil cp -n $file /results/landsat_tile_$2$3/
 done;
 ```
 
-*gsutil_qsub.sh*
+*descarga_landsat_un_archivo.sh*
 
 ```
-# $1 es la url del archivo de gsutil, $2 es el folder objetivo
-mkdir -p $2
+#!/bin/bash
+#
+mkdir /results/landsat_tile
 
-/usr/local/bin/gsutil cp -n $1 $2
-
+/usr/local/bin/gsutil cp -n $1 /results/landsat_tile/
 ```
+
+LE70210482012015ASN00.tar.bz
 
 ####Ingestión
 
