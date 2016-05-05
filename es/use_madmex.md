@@ -13,12 +13,11 @@ Es crucial una instalación de docker en su sistema: https://www.docker.com/
 	* Instrumento a elegir entre tm, etm+, oli-tirs
 	* shells de descarga
 
--Ejemplo:
+-Ejemplo: descarga todas las imágenes landsat del año 2015
 
 	* path: 021, row: 048
 	* año: 2015
 	* Instrumento: etm+ (L7)
-	* Con nombre de imagen: madmex/ws:latest
 
 ```
 $docker run --rm -v $(pwd):/results  madmex/ws:latest /bin/sh -c '/results/descarga_landsat.sh L7 021 048 2015'
@@ -29,9 +28,9 @@ $docker run --rm -v $(pwd):/results  madmex/ws:latest /bin/sh -c '/results/desca
 *En esta carpeta se encuentran archivos con extensión *.tar.bz*
 
 
--Ejemplo descarga de un archivo: gs://earthengine-public/landsat/L7/021/048/LE70210482012015ASN00.tar.bz con nombre
-de imagen: madmex/ws:latest
+-Ejemplo descarga de un archivo: 
 
+	* Archivo a descargar gs://earthengine-public/landsat/L7/021/048/LE70210482012015ASN00.tar.bz 
 
 ```
 $docker run --rm -v $(pwd):/results  madmex/ws:latest /bin/sh -c '/results/descarga_landsat_un_archivo.sh gs://earthengine-public/landsat/L7/021/048/LE70210482012015ASN00.tar.bz'
