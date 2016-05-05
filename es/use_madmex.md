@@ -46,6 +46,14 @@ $docker run --rm -v $(pwd):/results  madmex_ws_imagen /bin/sh -c '/results/desca
 	
 	* imagen de docker para preprocesamiento de ledaps, ir a requirements.md -> imágenes de docker
 
+-Ejemplo con el archivo LE70210482012015ASN00.tar.bz
+
+```
+docker run --rm -v <path to directory with ancilliary data>:/opt/ledaps \
+-v <path to local directory with data>:/data -v <path to directory for results>:/results \
+ledaps/ledaps:v1 <path to ancilliary data in docker> <path to source data in docker/L*.*.tar.bz> <path to destiny results in docker>
+```
+
 ####FMASK
 -Requerimientos:
 
