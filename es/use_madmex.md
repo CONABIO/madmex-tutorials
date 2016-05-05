@@ -93,7 +93,7 @@ $ls_classification_qsub.sh 2015-01-01 2015-12-31 10 21048 ./datos_entrenamiento.
 	*El archivo postprocesamiento.tif es el resultado del postprocesamiento y se guarda en la carpeta /resultado_postprocesamiento/
 
 ```
-$ls_postprocessing_qsub /resultados_clasificacion ./landsat_footprints_mexico.shp code /resultados_postprocesamiento /resultado_postprocesamiento/postprocesamiento.tif
+$ls_postprocessing_qsub.sh /resultados_clasificacion ./landsat_footprints_mexico.shp code /resultados_postprocesamiento /resultado_postprocesamiento/postprocesamiento.tif
 ```
 
 ###Detección de cambios
