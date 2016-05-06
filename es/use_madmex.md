@@ -11,7 +11,7 @@ Es crucial una instalación de docker en su sistema: https://www.docker.com/
 	* Path, row de tile de landsat
 	* Año a descargar imágenes
 	* Instrumento a elegir entre tm, etm+, oli-tirs
-	* shells de descarga
+	* shell de descarga
 
 -Ejemplo: descarga todas las imágenes landsat del año 2015
 
@@ -19,6 +19,7 @@ Es crucial una instalación de docker en su sistema: https://www.docker.com/
 	* año: 2015
 	* Instrumento: etm+ (L7)
 
+Para la siguiente línea usar el shell *descarga_landsat.sh* que se encuentra en *shell_references.md* de este repositorio.
 ```
 $docker run --rm -v $(pwd):/results  madmex/ws:latest /bin/sh -c '/results/descarga_landsat.sh L7 021 048 2015'
 ```
