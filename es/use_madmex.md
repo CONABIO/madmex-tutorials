@@ -85,6 +85,8 @@ Los resultados están en el path: /resultados_ledaps
 
 -Ejemplo para LE70210492015007EDC00.tar.bz, el cual debe de estar descomprimido
 
+Ejecutar los siguientes comandos en la carpeta donde se descomprimió
+
 ```
 $docker run -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L*_B[1,2,3,4,5,7].TIF
 $docker run -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img L*_B6_VCID_?.TIF
@@ -94,7 +96,9 @@ $docker run -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatStacked.py -t t
 $docker run -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.img LE70210492015007EDC00_MTLFmask
 ```
 
--Ejemplo para L8
+-Ejemplo para L8: LC80210482015015LGN00.tar.bz, el cual debe de estar descomprimido
+
+Ejecutar los siguientes comandos en la carpeta donde se descomprimió
 
 ```
 $docker run -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img LC8*_B[1-7,9].TIF
