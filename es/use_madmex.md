@@ -127,6 +127,7 @@ $data_ingestion.sh ./landsat_tile_021048/LE70210482000046EDC00.tar.bz
 -Requerimientos:
 
 	* imagen de docker para procesos
+	* imágenes descargadas de todo un año
 	* datos de entrenamiento registrados en la base de datos dentro del esquema products tabla product
 
 
