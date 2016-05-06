@@ -107,7 +107,7 @@ $docker run -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA 
 $docker run -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatSaturationMask.py -i ref.img -m *_MTL.txt -o saturationmask.img
 $docker run -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatTOA.py -i ref.img -m *_MTL.txt -o toa.img
 $docker run -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
-$docker run -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.img LE70210492015007EDC00_MTLFmask
+$docker run -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.img LC80210482015015LGN00_MTLFmask
 ```
 
 
