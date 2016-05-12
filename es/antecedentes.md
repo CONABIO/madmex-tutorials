@@ -10,6 +10,10 @@ Es en este contexto que surge el sistema MAD-Mex (Monitoring Activity Data for t
 
 Siendo un sistema automatizado, los productos MAD-Mex estan sujetos a la disponibilidad y calidad de los datos de insumo. Las condiciones climatológicas condicionan el comportamiento de los algoritmos de clasificación. La presencia de nubes, bruma, nieve reduce la cantidad de información útil que se puede extrar de las imágenes, y en ciertas zonas del país es casi imposible obtener imágenes limpias.
 
-Por otro lado, los algoritmos requieren datos de entrenamiento de buena calidad. Al día de hoy, el volumen de datos de entrenamiento con los que se cuenta es subóptimo. La generación de datos de entrenamiento para un país con el tamaño y la complejidad de México requiere una cantidad importante de recursos.
+Así mismo, los algoritmos requieren datos de entrenamiento de buena calidad. Al día de hoy, el volumen de datos de entrenamiento con los que se cuenta es subóptimo. La generación de datos de entrenamiento para un país con el tamaño y la complejidad de México requiere una cantidad importante de recursos.
+
+Por otro lado, las técnicas estadísticas ofrecen un sinnúmero de alternativas para el estudio y obtención de productos. El sistema MAD-Mex explora apenas unos cuantos métodos. El estudio de otras alternativas permitiría la mejora de la calidad de los productos, sin embargo, esto está nuevamente sujeto a restricciones de tiempo y de recursos.
 
 ##Aclaraciones
+
+Los productos MAD-Mex son preliminares, el sistema se encuentra en constante mejora y los comentarios y sugerencias se toman en cuenta. 
