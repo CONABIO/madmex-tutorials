@@ -6,7 +6,7 @@ En el marco del programa REDD+ (Reduce Emissions from Deforestation and forest D
 
 Es en este contexto que surge el sistema MAD-Mex (Monitoring Activity Data for the Mexican REDD+ program). El propósito es brindar la posibilidad de procesar las grandes cantidades de datos involucrados en un lapso de tiempo razonable.
 
-##Alances
+##Alcances
 
 
 ##Aclaraciones
