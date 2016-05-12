@@ -32,6 +32,53 @@ Para el correcto funcionamiento del sistema, un conjunto de requerimientos míni
 
 ###Sofware
 
+####Python
+
+El lenguaje de programación en el que MADMex está implementado es Python. La version de Python recomendada es la 2.7.10, con las siguientes librerías:
+
+- aniso8601 versión 0.82
+- astroid versión 1.3.6
+- boto versión 2.38.0
+- coverage versión 3.7.1
+- crcmod versión 1.7
+- cryptography versión 1.2.2
+- decorator versión 4.0.9
+- drmaa versión 0.7.6
+- ecdsa versión 0.13
+- enum34 versión 1.1.2
+- ephem versión 3.7.5.3
+- Flask versión 0.10.1
+- Flask-RESTful versión 0.2.12
+- GDAL versión 1.11.2
+- GeoAlchemy versión 0.7.2
+- GeoAlchemy2 versión 0.2.3
+- google-api-python-client versión 1.4.2
+- google-apitools versión 0.4.12
+- gsutil versión 4.16
+- httplib2 versión 0.9.2
+- mahotas versión 1.1.0
+- MarkupSafe versión 0.21
+- matplotlib versión 1.4.3
+- numpy versión 1.8.0
+- pandas versión 0.13.1
+- paramiko versión 1.15.2
+- psycopg2 versión 2.5.1
+- pyephem versión 3.7.5.3
+- pyparsing versión 2.0.3
+- pysql versión 0.16
+- pystache versión 0.5.4
+- python-fmask versión 0.2.1
+- python-gflags versión 2.0
+- pytz versión 2013.9
+- requests versión 2.2.1
+- scikit-image versión 0.11.3
+- scikit-learn versión 0.14.1
+- scipy versión 0.12.0
+- six versión 1.5.2
+- SQLAlchemy versión 0.8.2
+
+Así mismo, se recomienda el uso de los métodos más comunes para aislar un ambiente de Python, por ejemplo [virtual environment](https://virtualenv.pypa.io/en/latest/installation.html).
+
 ####Docker
 
 El sistema MAD-Mex hace uso de contenedores Docker para virtualizar ambientes y hacerlos disponibles en las distintas plataformas sin las dificultades usuales. Algunos de los procesos dentro de MAD-Mex solo pueden ser ejecutados en sistemas operativos específicos. Con el fin de no requerir que los usuarios cuenten con dichas distribuciones, esos procesos corren dentro de los contenedores Docker. Esta guia no prende enseñar al usuario el uso y desarrollo de dichos contenedores, para una guia de como instalar y usar Docker, se pueden consultar las siguientes ligas:
