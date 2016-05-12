@@ -32,7 +32,7 @@ Para el correcto funcionamiento del sistema, un conjunto de requerimientos míni
 
 ###Sofware
 
-####Docker es tu Amigo
+####Docker
 
 El sistema MAD-Mex hace uso de contenedores Docker para virtualizar ambientes y hacerlos disponibles en las distintas plataformas sin las dificultades usuales. Algunos de los procesos dentro de MAD-Mex solo pueden ser ejecutados en sistemas operativos específicos. Con el fin de no requerir que los usuarios cuenten con dichas distribuciones, esos procesos corren dentro de los contenedores Docker. Esta guia no prende enseñar al usuario el uso y desarrollo de dichos contenedores, para una guia de como instalar y usar Docker, se pueden consultar las siguientes ligas:
 
@@ -61,7 +61,9 @@ Para poder visualizar la información de la base de datos de una manera sencilla
 
 ####QGIS
 
+El sistema MAD-Mex produce imagenes multi banda de alta resolución. Estás imágenes no pueden ser visualizadas por métodos tradicionales. Para hacer uso de las mismas, se recomienda la instalación del sistema de información geográfica QGIS. Al igual que con los requisitos anteriores, el aprendizaje sobre el uso del sistema queda como ejercicio para el lector:
 
+-[Instalación QGIS](http://www.qgis.org/en/site/forusers/download.html)
 
 
 
