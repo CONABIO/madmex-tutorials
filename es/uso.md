@@ -46,20 +46,20 @@ $docker run --rm -v $(pwd):/results  madmex/ws:latest gsutil cp gs://earthengine
 ####LEDAPS
 -Requerimientos:
 	
-	* ancilliary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
+	* ancillary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
 
 -Ejemplo para datos después del año 2012-2013 con el archivo LE70210492015007EDC00.tar.bz:
 
 	*En ruta: /datos_landsat tenemos el LE70210492015007EDC00.tar.bz
 	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
-	*En ruta: /ancilliary_data tenemos descomprimido el ancilliary data
+	*En ruta: /ancillary_data tenemos descomprimido el ancillary data
 	*Con nombre de imagen: ledaps/ledaps:latest
 
 Entonces ejecutamos el siguiente comando:
 
 
 ```
-docker run --rm -v /ancilliary_data:/opt/ledaps \
+docker run --rm -v /ancillary_data:/opt/ledaps \
 -v /datos_landsat:/data -v /resultados_ledaps:/results \
 madmex/ledaps:latest /opt/ledaps /data/LE70210492015007EDC00.tar.bz /results
 ```
@@ -70,12 +70,12 @@ Los resultados están en el path: /resultados_ledaps
 
 	*En ruta: /datos_landsat tenemos el LE70210481999203AGS00.tar.bz
 	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
-	*En ruta: /ancilliary_data tenemos descomprimido el ancilliary data
+	*En ruta: /ancillary_data tenemos descomprimido el ancillary data
 	*Con nombre de imagen: madmex/ledaps-legacy:latest
 
 
 ```
-docker run --rm -v /ancilliary_data:/opt/ledaps \
+docker run --rm -v /ancillary_data:/opt/ledaps \
 -v /datos_landsat:/data -v /resultados_ledaps:/results \
 madmex/ledaps-legacy:latest /opt/ledaps /data/LE70210481999203AGS00.tar.bz /results
 ```
