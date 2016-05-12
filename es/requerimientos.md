@@ -30,6 +30,8 @@ Para el correcto funcionamiento del sistema, un conjunto de requerimientos míni
 - ssh: 22/tcp
 
 
+###Sofware
+
 
 
 
