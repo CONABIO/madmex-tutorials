@@ -43,7 +43,7 @@ $docker run --rm -v $(pwd):/results  madmex/ws:latest gsutil cp gs://earthengine
 
 ###Preprocesamiento
 
-####LEDAPS
+####LEDAPS, sensor tm o etm+
 -Requerimientos:
 	
 	* ancillary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
@@ -86,24 +86,21 @@ Los resultados están en el path: /resultados_ledaps
 
 -Requerimientos:
 
+	* Para un archivo de Landsat tm o etm+: shell de fmask.sh
 	* Para un archivo de Landsat 8: shell de fmask_ls8.sh
-	
--Ejemplo para LE70210492015007EDC00.tar.bz, el cual debe de estar descomprimido
 
-Ejecutar los siguientes comandos en la carpeta donde se descomprimió
+-Ejemplo para LE70210492015007EDC00.tar.bz
+
+
+Ejecutar el siguiente comando en el directorio que contiene el *.tar.bz
 
 ```
-$docker run -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L*_B[1,2,3,4,5,7].TIF
-$docker run -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img L*_B6_VCID_?.TIF
-$docker run -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatSaturationMask.py -i ref.img -m *_MTL.txt -o saturationmask.img
-$docker run -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatTOA.py -i ref.img -m *_MTL.txt -o toa.img
-$docker run -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
-$docker run -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.img LE70210492015007EDC00_MTLFmask
+$./fmask.sh LE70210492015007EDC00.tar.bz
 ```
 
--Ejemplo para L8: LC80210482015015LGN00.tar.bz:
+-Ejemplo para archivo de Landsat 8: LC80210482015015LGN00.tar.bz:
 
-
+Ejecutar el siguiente comando en el directorio que contiene el *.tar.bz
 
 ```
 $./fmask_ls8.sh LC80210482015015LGN00.tar.bz
