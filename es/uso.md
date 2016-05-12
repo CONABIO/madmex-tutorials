@@ -84,6 +84,10 @@ Los resultados están en el path: /resultados_ledaps
 
 ####FMASK
 
+-Requerimientos:
+
+	* Para un archivo de Landsat 8: shell de fmask_ls8.sh
+	
 -Ejemplo para LE70210492015007EDC00.tar.bz, el cual debe de estar descomprimido
 
 Ejecutar los siguientes comandos en la carpeta donde se descomprimió
@@ -99,9 +103,7 @@ $docker run -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.im
 
 -Ejemplo para L8: LC80210482015015LGN00.tar.bz:
 
--Requerimientos:
 
-	* shell de fmask_ls8.sh
 
 ```
 $./fmask_ls8.sh LC80210482015015LGN00.tar.bz
