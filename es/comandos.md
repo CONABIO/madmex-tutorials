@@ -48,7 +48,7 @@ docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-f
 
 docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
 
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.img $(echo $new_filename)_MTLFmask
+docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
 ```
 
 *fmask_ls8.sh*
@@ -78,7 +78,7 @@ docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-f
 
 docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
 
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.img $(echo $new_filename)_MTLFmask
+docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
 ```
 
 ####Ingestión
