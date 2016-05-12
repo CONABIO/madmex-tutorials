@@ -18,7 +18,7 @@ for file in $(cat lista_landsat_tile_$2$3.txt);do
 done;
 ```
 
-#####Preprocesamiento
+####Preprocesamiento
 
 *fmask.sh*
 
