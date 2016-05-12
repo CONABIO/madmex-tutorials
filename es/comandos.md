@@ -78,7 +78,7 @@ docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-f
 
 docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
 
-docker $(docker-machine config default) run -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.img $newfilename_MTLFmask
+docker $(docker-machine config default) run -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.img $(echo $newfilename)_MTLFmask
 ```
 
 ####Ingestión
