@@ -6,6 +6,7 @@
 - [Landsat](http://landsat.gsfc.nasa.gov/)
 - [RapidEye](http://www.inegi.org.mx/geo/contenidos/imgpercepcion/imgsatelite/rapideye.aspx)
 - [FMask](http://www.harrisgeospatial.com/Company/PressRoom/Blogs/ImagerySpeaksDetail/TabId/901/ArtMID/2927/ArticleID/14679/Automated-Cloud-and-Cloud-Shadow-Detection.aspx)
+- [REDD+](http://redd.unfccc.int/)
 
 
 
