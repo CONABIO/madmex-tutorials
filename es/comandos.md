@@ -36,7 +36,7 @@ new_filename=$MADMEX_TEMP/$filename
 mkdir -p $MADMEX_TEMP/$newdir
 cd $MADMEX_TEMP/$newdir
 
-#tar xvjf $new_filename
+tar xvjf $new_filename
 
 docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L[C-O]8*_B[1-7,9].TIF
 docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img L[C-O]8*_B1[0,1].TIF
