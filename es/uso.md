@@ -99,6 +99,10 @@ $docker run -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.im
 
 -Ejemplo para L8: LC80210482015015LGN00.tar.bz:
 
+-Requerimientos:
+
+* shell de fmask_ls8.sh
+
 ```
 $./fmask_ls8.sh LC80210482015015LGN00.tar.bz
 ```
