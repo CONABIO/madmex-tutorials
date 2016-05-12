@@ -43,7 +43,7 @@ $docker run --rm -v $(pwd):/results  madmex/ws:latest gsutil cp gs://earthengine
 
 ###Preprocesamiento
 
-####LEDAPS
+####LEDAPS sensor tm o etm+
 -Requerimientos:
 	
 	* ancillary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
