@@ -10,6 +10,10 @@ El Sistema de clasificación de cobertura de suelo ([LCCS](http://www.fao.org/do
 La clasificación es una representación abstracta de la situación real en campo utilizando
 criterios de diagnóstico bien definidos llamados clasificadores. Se definen según Sokal (1974), como "el arreglo u ordenamiento de objetos en grupos o conjuntos sobre la base de sus relaciones". Una clasificación describe el esquema sistemático con los nombres de las clases y los criterios utilizados para distinguirlos, y la relación entre clases. Por lo que la clasificación requiere la definición de limites de clase, los cuales deben ser claros, precisos, en lo posible cuantitativos, y basados en criterios objetivos.
 
-##Detección de Cambios de Clasificación de Cobertura de Suelo
+##Detección de Cambios en Clasificación de Cobertura de Suelo
 
 La detección de cambios consiste en identificar diferencias en el estado de una característica o fenómeno por observaciones que se hacen en diferentes épocas. La detección de cambios en el sistema MADMex está basada en la comparación bitemporal de imágenes, tanto para los periodos de referencia en el procesamiento Landsat como para el procesamiento anual de RapidEye. La detección de cambios bitemporal se realiza mediante el algoritmo iMAD (Multivariate Alteration Detection transformation) y un postprocesamiento basado en el algoritmo MAF (Maximum Autocorrelation Factor transformation).
+
+## Flujo de trabajo del proceso de clasificación
+
+![Flujo de trabajo MAD-Mex](../images/work_flow.png)
