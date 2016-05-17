@@ -18,12 +18,13 @@ La detección de cambios consiste en identificar diferencias en el estado de una
 
 ![Flujo de trabajo MAD-Mex](../images/work_flow.png)
 
- ##Transformada MAF
 
- La tranformada MAF (Maximum Autocorrelation Factor) busca maximizar la congurencia espacial que tiene un pixel respecto de sus vecinos. Esta transformación se utiliza para post-procesar imágenes de cambio obtenidos con el algoritmo MAD de forma iterativa. 
+##Transformada MAD
 
- ##Transformada MAD
+La transformación (MAD, Multivariate Alteration Detection) esta basada en un análisis multivariante que establece la correlación canónica de los cambios entre las bandas. Este esquema transforma dos series de observaciones multivariantes en una diferencia entre dos combinaciones lineales de las varibales originales, estas diferencias cuantifican el cambio máximo en todas las variables simultáneamente. 
+La transformación MAD es invariante a escala lineal y puede ser usada de forma iterativa. En primera instancia, se puede utilizar para detectar valores atípicos o el ruido y en una segunda iteración, se puede utilizar para realizar la detección de cambio real después de la acción apropiada en los valores atípicos o de ruido.
+Debido a su capacidad para detectar cambios en los canales de manera simultánea, la transformación y el post-procesamiento MAD/MAF es aún más útil cuando se aplica a un mayor número de bandas en las que se aprecien los cambios.
 
- La transformación (MAD, Multivariate Alteration Detection) esta basada en un análisis multivariante que establece la correlación canónica de los cambios entre las bandas. Este esquema transforma dos series de observaciones multivariantes en una diferencia entre dos combinaciones lineales de las varibales originales, estas diferencias cuantifican el cambio máximo en todas las variables simultáneamente. 
- La transformación MAD es invariante a escala lineal y puede ser usada de forma iterativa. En primera instancia, se puede utilizar para detectar valores atípicos o el ruido y en una segunda iteración, se puede utilizar para realizar la detección de cambio real después de la acción apropiada en los valores atípicos o de ruido.
- Debido a su capacidad para detectar cambios en los canales de manera simultánea, la transformación y el post-procesamiento MAD/MAF es aún más útil cuando se aplica a un mayor número de bandas en las que se aprecien los cambios.
+##Transformada MAF
+
+La tranformada MAF (Maximum Autocorrelation Factor) busca maximizar la congurencia espacial que tiene un pixel respecto de sus vecinos. Esta transformación se utiliza para post-procesar imágenes de cambio obtenidos con el algoritmo MAD de forma iterativa. 
