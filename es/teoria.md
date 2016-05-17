@@ -14,6 +14,12 @@ criterios de diagnóstico bien definidos llamados clasificadores. Se definen seg
 
 La detección de cambios consiste en identificar diferencias en el estado de una característica o fenómeno por observaciones que se hacen en diferentes épocas. La detección de cambios en el sistema MADMex está basada en la comparación bitemporal de imágenes, tanto para los periodos de referencia en el procesamiento Landsat como para el procesamiento anual de RapidEye. La detección de cambios bitemporal se realiza mediante el algoritmo iMAD (Multivariate Alteration Detection transformation) y un postprocesamiento basado en el algoritmo MAF (Maximum Autocorrelation Factor transformation).
 
-## Flujo de trabajo del proceso de clasificación
+## Flujo de trabajo del proceso de clasificación (LANDSAT)
 
 ![Flujo de trabajo MAD-Mex](../images/work_flow.png)
+
+## Transformada MAD
+
+ La transformación (MAD, Multivariate Alteration Detection) esta basada en un análisis multivariante que establece la correlación canónica de los cambios entre las bandas. Este esquema transforma dos series de observaciones multivariantes en una diferencia entre dos combinaciones lineales de las varibales originales, estas diferencias cuantifican el cambio máximo en todas las variables simultáneamente. 
+ La transformación MAD es invariante a escala lineal. Puede ser usada de forma iterativa. En primer lugar, se puede utilizar para detectar valores atípicos o el ruido y en una segunda iteración, se puede utilizar para realizar la detección de cambio real después de la acción apropiada en los valores atípicos o de ruido.
+ Debido a su capacidad para detectar cambios en los canales de manera simultánea, la transformación y el post-procesamiento MAD/MAF es aún más útil cuando se aplica a un mayor número de bandas en las que se aprecien los cambios. (A. Moya, 2011)
