@@ -28,3 +28,30 @@ Debido a su capacidad para detectar cambios en los canales de manera simultánea
 ##Transformada MAF
 
 La tranformada MAF (Maximum Autocorrelation Factor) busca maximizar la congurencia espacial que tiene un pixel respecto de sus vecinos. Esta transformación se utiliza para post-procesar imágenes de cambio obtenidos con el algoritmo MAD de forma iterativa. 
+
+## Algortimo fmask
+
+El algoritmo fmask relaciona las nubes con sus sombras basado en mediciones de similitud. Este algoritmo itera desde una altura mínima posible hasta una altura máxima y calcula la similitud entre la nube y la sombra de la nube, esto lo hace para nubes a diferentes alturas. En el algoritmo original fmask, la prueba de altura de las nubes continúa si la similitud continua incrementando o no disminuye por debajo del 98% de la similitud máxima medida; de lo contrario, la búsqueda de altura de nubes se detiene y la sombra de nube se asocia a la máxima similitud. Sin embargo, a veces la iteración puede parar antes de lo que debería, como por ejemplo que la similitud no alcance su valor máximo; este puede deberse a que existan máximos locales que son 2% más grandes que la similitud medida para la altura de las nubes vecinas. En el algoritmo fMask mejorado, la relación entre la sombra de nube y la nube, no se detendrá a menos que el valor de similitud se reduzca al 95% del valor máximo de similitud.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
