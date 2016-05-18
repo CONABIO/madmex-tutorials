@@ -21,10 +21,10 @@ $docker run --name postgres-server-madmex -v $(pwd):/results -p 32852:22 -p 3285
 	*shell madmex_database_install.sh
 
 -Ejemplo: 
-	*Dirección IP del host: 192.168.99.101
+	*Dirección IP del host: 192.168.99.100
 
 ```
-$docker exec -u=postgres -it postgres-server-madmex /bin/bash /results/madmex_database_install.sh 192.168.99.101 32855
+$docker exec -u=postgres -it postgres-server-madmex /bin/bash /results/madmex_database_install.sh 192.168.99.100 32851
 ```
 
 ##Landsat

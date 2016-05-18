@@ -19,8 +19,8 @@ Para el correcto funcionamiento del sistema, un conjunto de requerimientos míni
 
 ###Hardware Nodo Maestro
 - mínimo: 2-4 vCPUs
-- mínimo: 4GB RAM
-- 50GB Memory
+- mínimo: 4 GB RAM
+- 50 GB Memory
 - ssh: 22/tcp
 
 ###Hardware Nodo Esclavo
@@ -29,6 +29,16 @@ Para el correcto funcionamiento del sistema, un conjunto de requerimientos míni
 - memoria: 50GB
 - ssh: 22/tcp
 
+En la CONABIO, el cluster que se usa para albergar el sistema MAD-Mex cuenta con las siguientes características:
+
+
+
+- 1 Nodo maestro de 64 GB de memoria RAM
+- 4 Nodos de procesamiento de 128GB de memoria RAM
+- 1 Nodo de procesamiento de 256 GB de memoria RAM
+- 1 Nodo de servicios de 256 GB de memoria RAM
+
+Y cada nodo se comunica vía infiniband con un sistema de archivos distribuido LUSTRE.
 
 ###Sofware
 
