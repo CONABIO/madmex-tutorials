@@ -30,7 +30,6 @@ filename=$(basename $1)
 newdir=$(echo $filename | sed -e "s/.tar.bz/$replace/g")
 
 MADMEX_TEMP=$(echo $PWD)
-echo $MADMEX_TEMP
 new_filename=$MADMEX_TEMP/$filename
 
 mkdir -p $MADMEX_TEMP/$newdir
@@ -61,7 +60,6 @@ filename=$(basename $1)
 newdir=$(echo $filename | sed -e "s/.tar.bz/$replace/g")
 
 MADMEX_TEMP=$(echo $PWD)
-echo $MADMEX_TEMP
 new_filename=$MADMEX_TEMP/$filename
 
 mkdir -p $MADMEX_TEMP/$newdir
