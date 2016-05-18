@@ -1,5 +1,5 @@
 psql -h $1 -p $2 -f /results/01_database/2014-05-27_madmex_database_create_database.sql
-psql -d madmex_database -h $1 -p $2 -f /results/01_database/2014-05-27_madmex_database_install_postgis.sql
+psql  -h $1 -d madmex_database -p $2 -f /results/01_database/2014-05-27_madmex_database_install_postgis.sql
 psql -h $1 -U madmex_user -d madmex_database -p $2 -f /results/02_tables/2014-05-27_madmex_database_create.sql
 psql -h $1 -U madmex_user -d madmex_database -p $2 -f /results/02_tables/2013-07-24_madmex_products_scheme_create.sql
 psql -h $1 -U madmex_user -d madmex_database -p $2 -f /results/03_inserts/2014-05-27_madmex_database_insert.sql
