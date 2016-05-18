@@ -86,11 +86,23 @@ docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-f
 *data_ingestion.sh*
 
 ```
-#!/bin/bash
+!/bin/bash
 #$1 es la ruta del archivo a ingestar
-source /LUSTRE/MADMEX/code/madmex/resources/gridengine/nodo_conabio.txt
 
-/usr/bin/python $MADMEX/interfaces/cli/executer.py IngestionShellCommand --path $1
+filename=$(basename $1)
+
+newdir=$(echo $filename | sed -e "s/.tar.bz/$replace/g")
+
+folder=/results
+new_filename=$folder/$filename
+
+mkdir -p $folder/$newdir
+cd $folder/$newdir
+
+#tar xvjf $new_filename
+source /results/variables.txt
+/usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $folder/$newdir
+
 ```
 
 ####Clasificación

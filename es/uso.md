@@ -136,13 +136,162 @@ Los resultados están en el directorio donde se ejecutó el comando.
 
 -Requerimientos:
 
-	* imagen de docker para procesos
+	* Imagen de docker para procesos: madmex/ws
+	* Shell de data_ingestion.sh
+	* Clonar repositorio de CONABIO/madmex-v2
+	* Archivo de configuración con el nombre "configuration.ini"
+	* Crear carpetas "resources/config" y colocar ahí el archivo de configuración
+	* Crear carpeta "eodata"
+	* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt"
 
--Ejemplo para un archivo dentro de la carpeta: landsat_tile_021048
+-Ejemplo para el archivo: LC80210482015015LGN00.tar.bz:
+
+	* Dentro del directorio de trabajo tenemos el directorio madmex-v2 el cual fue clonado del repositorio CONABIO/madmex-v2
+	* Creamos dentro del directorio de trabajo el directorio resources
+	* Dentro de resources creamos el directorio config
+	* Colocamos en el directorio config el archivo siguiente con nombre "configuration.ini":
 
 ```
-$data_ingestion.sh ./landsat_tile_021048/LE70210482000046EDC00.tar.bz
+
+[aux-data]
+dem = /LUSTRE/MADMEX/products/dem/inegi-cem_v3/CEM3.0_R15m_dem.tif
+aspect = /LUSTRE/MADMEX/products/dem/inegi-cem_v3/CEM3.0_R15m_aspect.tif
+slope = /LUSTRE/MADMEX/products/dem/inegi-cem_v3/CEM3.0_R15m_slope.tif
+training_raster_landsat = /LUSTRE/MADMEX/products/training/inegi-usv250k_persistentes_mrv-conabio_125m.tif
+training_raster_rapideye = /LUSTRE/MADMEX/products/training/malla_morelos_utm14_05km_training_level2.tif
+dem_aspect_url = /LUSTRE/MADMEX/products/dem/inegi-cem_v3/CEM3.0_R15m_aspect.tif
+dem_slope_url = /LUSTRE/MADMEX/products/dem/inegi-cem_v3/CEM3.0_R15m_slope.tif
+
+
+[folders]
+tmpfolder = /services/localtemp/temp/
+eodatafolder = /LUSTRE/MADMEX/eodata/
+productfolder = /LUSTRE/MADMEX/products/
+resultfolder = /LUSTRE/MADMEX/processes/madmex_processing_results/
+eodatastagingfolder = /LUSTRE/MADMEX/staging/eodata/
+trainingstagingfolder = /LUSTRE/MADMEX/staging/training/
+trainingfolder = /LUSTRE/MADMEX/products/training/
+
+[database]
+name = database-madmex
+debug=False
+
+
+[database-madmex]
+schema_landmask = vectordata
+table_landmask = country_mexico
+landsat_footprint_table = vectordata.landsat_footprints_mexico
+hostname = 172.17.0.1
+port = 32851
+dbname = madmex_database
+username = madmex_user
+password = madmex_user.
+tablename = events
+eoschema = eodata
+datasettable = dataset
+productschema = products
+producttable = product
+
+[database-classification]
+schema_landmask = vectordata
+table_landmask = mexcontinental_buffer
+landsat_footprint_table = vectordata.landsat_footprints_mexico
+landsat_overlap_table = vectordata.landsat_etm_mx_footprints_overlaps
+hostname = 172.17.0.1
+port = 32851
+dbname = madmex_classification
+username = postgres
+password = postgres.
+tablename = events
+
+[columns]
+landsat_overlap_table_fp1 = fp_id
+landsat_overlap_table_fp2 = fp_id_1
+landsat_overlap_table_gid= gid
+the_geom = the_geom
+gid = gid
+id = id
+given = given
+predicted = predicted
+confidence = confidence
+reference = reference
+classcode = predicted
+features = features
+ia_id = ia_id
+fp_id = fp_id
+ac_date = ac_date
+image_url = image_url
+metadata_url = metadata_url
+s_id = s_id
+cloud_cover = cloud_cover
+l_id = l_id
+
+[sql-statements]
+select_image_acquisitions = select id, gridid, acq_date, folder_url, sensor, clouds, product from eodata.find_datasets
+remove_outsider = select * from classification.remove_outside_polygons
+
+[development]
+project_name = madmex
+placeholder = #PREFIX#
+
+[raster-processing]
+gdal_cache = 512000000
+number_of_threads = 3
+nodata = -999
+
+[executables]
+cmd_c5 = /usr/local/bin/c5.0
+cmd_c5_predict = /usr/local/bin/predict
+cmd_ledaps = /services/processes/apps/LEDAPS_preprocessing_tool/ledapsSrc_20111121/bin/do_ledaps.csh
+cmd_ledaps_ancpath =  /services/localtemp/ledaps_anc/
+cmd_fmask = /services/processes/apps/MATLAB/FMASK/src/run_FMASK.sh
+matlab_runtime = /services/processes/apps/MATLAB/MATLAB_Compiler_Runtime/
+gdal_merge = /usr/local/bin/gdal_merge.py
+
+[fileextensions]
+c5result = .result
+
+[logging]
+func_log_string = %(levelname)s - %(asctime)s - %(name)s - %(message)s
+func_log_level = INFO
+
+adapter_log_string = %(asctime)s: %(message)s
+adapter_log_level = INFO
+
+command_log_level = INFO
+web_log_level = INFO
+
+use_logstash = True
+logstash_host = madmexservices.conabio.gob.mx
+logstash_port = 5959
+logstash_log_level = INFO
+
 ```
+
+	* En el directorio de trabajo creamos el directorio eodata
+	* En el directorio de trabajo tenemos el archivo a ingestar: LC80210482015015LGN00.tar.bz
+	* En el directorio de trabajo tenemos el archivo de variables.txt y su contenido es el siguiente, de acuerdo a las variables de entorno que se usarán:
+
+```
+export MADMEX=/LUSTRE/MADMEX/code/
+export MRV_CONFIG=$MADMEX/resources/config/configuration.ini
+export PYTHONPATH=$PYTHONPATH:$MADMEX
+export MADMEX_DEBUG=True
+export MADMEX_TEMP=/services/localtemp/temp`
+
+```
+
+Ejecutamos la siguiente línea
+
+```
+docker run --rm -v $(pwd)/madmex-v2:/LUSTRE/MADMEX/code \
+-v $(pwd)/resources/config:/LUSTRE/MADMEX/code/resources/config \
+-v $(pwd)/eodata:/LUSTRE/MADMEX/eodata -v $(pwd):/results madmex/ws \
+/results/data_ingestion.sh /results/LC80210482015015LGN00.tar.bz
+```
+
+Los resultados están en el directorio de trabajo bajo el directorio eodata y en la base de datos
+
 
 ###Clasificación
 
