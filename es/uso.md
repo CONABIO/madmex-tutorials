@@ -139,20 +139,8 @@ Los resultados están en el directorio donde se ejecutó el comando.
 	* Imagen de docker para procesos: madmex/ws
 	* Shell de data_ingestion.sh
 	* Clonar repositorio de CONABIO/madmex-v2
-	* Archivo de configuración con el nombre "configuration.ini"
-	* Crear carpetas "resources/config" y colocar ahí el archivo de configuración
-	* Crear carpeta "eodata"
-	* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt"
-
--Ejemplo para el archivo: LC80210482015015LGN00.tar.bz:
-
-	* Dentro del directorio de trabajo tenemos el directorio madmex-v2 el cual fue clonado del repositorio CONABIO/madmex-v2
-	* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh
-	* Creamos dentro del directorio de trabajo el directorio resources
-	* Dentro de resources creamos el directorio config
-	* Colocamos en el directorio config el archivo siguiente con nombre "configuration.ini":
-
-```
+	* Archivo de configuración con el nombre "configuration.ini":
+	```
 
 [aux-data]
 dem = /LUSTRE/MADMEX/products/dem/inegi-cem_v3/CEM3.0_R15m_dem.tif
@@ -268,11 +256,9 @@ logstash_port = 5959
 logstash_log_level = INFO
 
 ```
-
-	* En el directorio de trabajo creamos el directorio eodata
-	* En el directorio de trabajo tenemos el archivo a ingestar: LC80210482015015LGN00.tar.bz
-	* En el directorio de trabajo tenemos el archivo de variables.txt y su contenido es el siguiente, de acuerdo a las variables de entorno que se usarán:
-
+	* Crear carpetas "resources/config" y colocar ahí el archivo de configuración
+	* Crear carpeta "eodata"
+	* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt":
 ```
 export MADMEX=/LUSTRE/MADMEX/code/
 export MRV_CONFIG=$MADMEX/resources/config/configuration.ini
@@ -281,6 +267,18 @@ export MADMEX_DEBUG=True
 export MADMEX_TEMP=/services/localtemp/temp`
 
 ```
+
+-Ejemplo para el archivo: LC80210482015015LGN00.tar.bz:
+
+	* Dentro del directorio de trabajo tenemos el directorio madmex-v2 el cual fue clonado del repositorio CONABIO/madmex-v2
+	* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh
+	* Creamos dentro del directorio de trabajo el directorio resources
+	* Dentro de resources creamos el directorio config
+	* Colocamos en el directorio config el archivo siguiente con nombre "configuration.ini"
+	* En el directorio de trabajo creamos el directorio eodata
+	* En el directorio de trabajo tenemos el archivo a ingestar: LC80210482015015LGN00.tar.bz
+	* En el directorio de trabajo tenemos el archivo de variables.txt
+
 
 Ejecutamos la siguiente línea
 
