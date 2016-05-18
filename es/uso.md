@@ -147,6 +147,7 @@ Los resultados están en el directorio donde se ejecutó el comando.
 -Ejemplo para el archivo: LC80210482015015LGN00.tar.bz:
 
 	* Dentro del directorio de trabajo tenemos el directorio madmex-v2 el cual fue clonado del repositorio CONABIO/madmex-v2
+	* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh
 	* Creamos dentro del directorio de trabajo el directorio resources
 	* Dentro de resources creamos el directorio config
 	* Colocamos en el directorio config el archivo siguiente con nombre "configuration.ini":
