@@ -183,7 +183,7 @@ echo "export MADMEX_DEBUG=True" >> variables.txt
 echo "export MADMEX_TEMP=/services/localtemp/temp" >> variables.txt
 mkdir eodata
 git clone https://github.com/CONABIO/madmex-v2.git repo_code_madmex-v2
-docker run --rm -v $(pwd)/repo_code_madmex-v2:/LUSTRE/MADMEX/code -v $(pwd)/resources/config:/LUSTRE/MADMEX/code/resources/config -v $(pwd)/eodata:/LUSTRE/MADMEX/eodata -v $(pwd):/results madmex/ws /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory /results/$basename
+docker run --rm -v $(pwd)/repo_code_madmex-v2:/LUSTRE/MADMEX/code -v $3:/LUSTRE/MADMEX/code/resources/config -v $(pwd)/eodata:/LUSTRE/MADMEX/eodata -v $(pwd):/results madmex/ws /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory /results/$basename
 rm -r repo_code_madmex-v2
 
 
