@@ -27,7 +27,7 @@ done;
 
 filename=$(basename $1)
 
-newdir=$(echo $filename | sed -e "s/.tar.bz/$replace/g")
+newdir=$(echo $filename | sed -e "s/.tar.bz//g")
 
 MADMEX_TEMP=$(echo $PWD)
 new_filename=$MADMEX_TEMP/$filename
@@ -57,7 +57,7 @@ gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
 
 filename=$(basename $1)
 
-newdir=$(echo $filename | sed -e "s/.tar.bz/$replace/g")
+newdir=$(echo $filename | sed -e "s/.tar.bz//g")
 
 MADMEX_TEMP=$(echo $PWD)
 new_filename=$MADMEX_TEMP/$filename
@@ -89,7 +89,7 @@ gdal_translate -of ENVI cloud.img $(echo $newfilename)_MTLFmask
 
 filename=$(basename $1)
 
-newdir=$(echo $filename | sed -e "s/.tar.bz/$replace/g")
+newdir=$(echo $filename | sed -e "s/.tar.bz//g")
 
 folder=/results
 new_filename=$folder/$filename
