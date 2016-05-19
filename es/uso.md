@@ -73,9 +73,8 @@ $docker run --rm -v $(pwd):/results  madmex/ws:latest gsutil \
 cp gs://earthengine-public/landsat/L7/021/049/LE70210492015007EDC00.tar.bz /results
 ```
 
-*En el directorio en el que se ejecutó el comando tendremos la carpeta: landsat_un_archivo*
+En el directorio en el que se ejecutó el comando tendremos el archivo descargado
 
-*En esta carpeta se encontrará el archivo con extensión *.tar.bz descargado*
 
 ###Preprocesamiento
 
