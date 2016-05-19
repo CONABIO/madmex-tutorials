@@ -275,9 +275,9 @@ export MADMEX_TEMP=/services/localtemp/temp
 
 ```
 
--Ejemplo para el archivo: LC80210482015015LGN00.tar.bz:
+-Ejemplo para el archivo: LC80210482015015LGN00.tar.bz. En este ejemplo:
 
-	* En este ejemplo tenemos dentro del directorio de trabajo el directorio madmex-v2 el cual \
+	* Tenemos dentro del directorio de trabajo el directorio madmex-v2 el cual \
 		fue clonado del repositorio CONABIO/madmex-v2
 	* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh
 	* En el directorio de trabajo creamos el directorio eodata
