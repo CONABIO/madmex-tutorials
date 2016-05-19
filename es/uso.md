@@ -80,6 +80,7 @@ cp gs://earthengine-public/landsat/L7/021/049/LE70210492015007EDC00.tar.bz /resu
 ###Preprocesamiento
 
 ####LEDAPS, sensor tm o etm+
+
 -Requerimientos:
 	
 	* ancillary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
@@ -193,7 +194,7 @@ docker run --rm -v $(pwd)/madmex-v2:/LUSTRE/MADMEX/code \
 
 Los resultados están en el directorio de trabajo bajo el directorio eodata y en la base de datos
 
-Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el shell: data_ingestion_folder.sh al folder que se descomprimió con estos procesos. En la base de datos y en el folder eodata se ingestarán y copiarán tanto las imágenes como los resultados de estos procesos.
+Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el shell: data_ingestion_folder.sh al folder que se descomprimió con estos procesos. En la base de datos y en el folder eodata se ingestarán y copiarán tanto las imágenes que se descargaron como archivo .tar.bz como los resultados de estos procesos.
 
 ###Clasificación
 
