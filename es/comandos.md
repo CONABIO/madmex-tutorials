@@ -97,7 +97,7 @@ new_filename=$folder/$filename
 mkdir -p $folder/$newdir
 cd $folder/$newdir
 
-#tar xvjf $new_filename
+tar xvjf $new_filename
 source /results/variables.txt
 /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $folder/$newdir
 
