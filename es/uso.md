@@ -265,7 +265,7 @@ export MADMEX=/LUSTRE/MADMEX/code/
 export MRV_CONFIG=$MADMEX/resources/config/configuration.ini
 export PYTHONPATH=$PYTHONPATH:$MADMEX
 export MADMEX_DEBUG=True
-export MADMEX_TEMP=/services/localtemp/temp`
+export MADMEX_TEMP=/services/localtemp/temp
 
 ```
 
