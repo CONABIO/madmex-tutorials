@@ -9,7 +9,7 @@ Es crucial una instalación de docker en su sistema: https://www.docker.com/
 Ejecutar el siguiente comando después de clonar este repositorio dentro de la carpeta "comandos_base_de_datos_madmex" de manera local:
 
 ```
-$docker run --name postgres-server-madmex -v $(pwd):/results -p 32852:22 -p 32851:5432 -dt madmex/postgres-server
+$docker run --name postgres-server-madmex -v $(pwd):/commands -p 32852:22 -p 32851:5432 -dt madmex/postgres-server
 ```
 
 ###Creación de la base de datos madmex
@@ -25,7 +25,7 @@ $docker run --name postgres-server-madmex -v $(pwd):/results -p 32852:22 -p 3285
 	*Dirección IP del host: 192.168.99.100
 
 ```
-$docker exec -u=postgres -it postgres-server-madmex /bin/bash /results/madmex_database_install.sh 192.168.99.100 32851
+$docker exec -u=postgres -it postgres-server-madmex /bin/bash /commands/madmex_database_install.sh 192.168.99.100 32851
 ```
 
 ##Landsat
