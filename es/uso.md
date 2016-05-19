@@ -96,7 +96,7 @@ Entonces ejecutamos el siguiente comando:
 
 
 ```
-docker run --rm -v $(pwd):/opt/ledaps \
+docker run --rm -v /ancillary_data:/opt/ledaps \
 -v /datos_landsat:/data -v /resultados_ledaps:/results \
 madmex/ledaps:latest /results/ledaps.sh /opt/ledaps /data/LE70210492015007EDC00.tar.bz /results
 ```
