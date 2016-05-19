@@ -85,7 +85,7 @@ docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-f
 
 ```
 !/bin/bash
-#$1 es la ruta del archivo a ingestar
+#$1 es la ruta del archivo .tar.bz a ingestar
 
 filename=$(basename $1)
 
@@ -102,6 +102,19 @@ source /results/variables.txt
 /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $folder/$newdir
 
 ```
+
+*data_ingestion_folder.sh*
+
+```
+!/bin/bash
+#$1 es la ruta del archivo a ingestar
+
+source /results/variables.txt
+/usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $folder/$newdir
+
+```
+
+
 
 ####Clasificación
 
