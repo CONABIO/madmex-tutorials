@@ -58,6 +58,13 @@ $docker run --rm -v $(pwd):/results  madmex/ws:latest /bin/sh -c '/results/desca
 
 -Ejemplo descarga de un archivo: 
 
+Podemos listar la lista de archivos disponibles de landsat con el siguiente comando, por ejemplo para Landsat 7 path 021, row 048:
+
+
+```
+$docker run --rm -v $(pwd):/results  madmex/ws:latest gsutil ls gs://earthengine-public/landsat/L7/021/048/
+```
+
 	* Archivo a descargar gs://earthengine-public/landsat/L7/021/049/LE70210492015007EDC00.tar.bz
 
 ```
@@ -138,6 +145,8 @@ $./fmask_ls8.sh LC80210482015015LGN00.tar.bz
 Los resultados están en el directorio donde se ejecutó el comando.
 
 ###Ingestión de imágenes
+
+El proceso de ingestión de imágenes se realiza con el shell *data_ingestion.sh* al archivo .tar.bz o con el shell *data_ingestion_folder.sh* al folder descomprimido.
 
 -Requerimientos:
 
