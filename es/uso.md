@@ -65,7 +65,7 @@ Podemos listar los archivos disponibles de landsat con el siguiente comando, por
 $docker run --rm -v $(pwd):/results  madmex/ws:latest gsutil ls gs://earthengine-public/landsat/L7/021/048/
 ```
 
-	* Archivo a descargar gs://earthengine-public/landsat/L7/021/049/LE70210492015007EDC00.tar.bz
+Archivo a descargar gs://earthengine-public/landsat/L7/021/049/LE70210492015007EDC00.tar.bz
 
 ```
 $docker run --rm -v $(pwd):/results  madmex/ws:latest gsutil \ 
