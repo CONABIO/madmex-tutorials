@@ -20,6 +20,41 @@ done;
 
 ####Preprocesamiento
 
+*ledaps.sh*
+
+```
+#!/bin/bash
+#This shell_script must be executable, if not do a chmod
+if [ "$#" -ne 3 ]; then
+echo "Usage: bash shell_script <path to ancilliary data in docker> <path to source data in docker/L*.*> <path to destiny results in docker>"
+	exit
+else
+	name=$(basename $2)
+	#basename=$(echo $name|sed -n 's/\(L*.*\).tar.bz/\1/;p')
+	basename=$(echo $name|sed -n 's/\(L*.*\)/\1/;p')
+	dir=$3/$basename
+	#mkdir $dir
+	#cp $2 $dir
+#	year=$(echo $name|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*.tar.bz/\1/p')
+	year=$(echo $name|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
+
+	cp $1/CMGDEM.hdf $dir
+	mkdir $dir/EP_TOMS && cp -r $1/EP_TOMS/ozone_$year $dir/EP_TOMS
+	mkdir $dir/REANALYSIS && cp -r $1/REANALYSIS/RE_$year $dir/REANALYSIS
+	cd $dir #&& tar xvf $name 
+	metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
+	metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
+	cd $dir && $BIN/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml
+	cd $dir && $BIN/do_ledaps.csh $metadataxml
+	cd $dir && $BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif 
+	cd $dir && $BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf --del_src_files
+	rm $dir/$name
+	rm -r $dir/CMGDEM.hdf
+	rm -r $dir/EP_TOMS/
+	rm -r $dir/REANALYSIS/
+fi
+```
+
 *fmask.sh*
 
 ```

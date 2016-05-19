@@ -84,6 +84,7 @@ cp gs://earthengine-public/landsat/L7/021/049/LE70210492015007EDC00.tar.bz /resu
 -Requerimientos:
 	
 	* ancillary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
+	* shell de ledaps.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
 -Ejemplo para datos después del año 2012-2013 con el archivo LE70210492015007EDC00.tar.bz:
 
@@ -98,7 +99,7 @@ Entonces ejecutamos el siguiente comando:
 ```
 docker run --rm -v /ancillary_data:/opt/ledaps \
 -v /datos_landsat:/data -v /resultados_ledaps:/results \
-madmex/ledaps:latest /opt/ledaps /data/LE70210492015007EDC00.tar.bz /results
+madmex/ledaps:latest /results/ledaps.sh /opt/ledaps /data/LE70210492015007EDC00.tar.bz /results
 ```
 
 Los resultados están en el path: /resultados_ledaps
