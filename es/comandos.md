@@ -84,7 +84,7 @@ docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-f
 *data_ingestion.sh*
 
 ```
-!/bin/bash
+#!/bin/bash
 #$1 es la ruta del archivo .tar.bz a ingestar
 
 filename=$(basename $1)
@@ -106,7 +106,7 @@ source /results/variables.txt
 *data_ingestion_folder.sh*
 
 ```
-!/bin/bash
+#!/bin/bash
 #$1 es la ruta del archivo a ingestar
 
 source /results/variables.txt
