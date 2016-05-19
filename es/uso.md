@@ -21,6 +21,7 @@ $docker run --name postgres-server-madmex -v $(pwd):/results -p 32852:22 -p 3285
 	*shell madmex_database_install.sh
 
 -Ejemplo: 
+
 	*Dirección IP del host: 192.168.99.100
 
 ```
