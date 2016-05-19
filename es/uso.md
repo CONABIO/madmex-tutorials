@@ -197,9 +197,10 @@ Los resultados están en el directorio de trabajo bajo el directorio eodata y en
 
 Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el shell: data_ingestion_folder.sh al folder que se descomprimió con estos procesos. En la base de datos y en el folder eodata se ingestarán y copiarán tanto las imágenes que se descargaron como archivo .tar.bz como los resultados de estos procesos.
 
-###Preprocesamiento e ingestión TM y ETM+ datos después del año 2013
+###Preprocesamiento e ingestión TM y ETM+ para datos después del año 2013
 
 -Requerimientos:
+
 	* Shell preprocessing_and_ingestion_not_landsat_8.sh
 	* Ancillary data para LEDAPS
 	* Usar el archivo configuration.ini
