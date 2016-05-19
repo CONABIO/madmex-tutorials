@@ -37,17 +37,17 @@ cd $MADMEX_TEMP/$newdir
 
 tar xvjf $new_filename
 
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L*_B[1,2,3,4,5,7].TIF
+gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L*_B[1,2,3,4,5,7].TIF
 
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img L*_B6_VCID_?.TIF
+gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img L*_B6_VCID_?.TIF
 
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatSaturationMask.py -i ref.img -m *_MTL.txt -o saturationmask.img
+fmask_usgsLandsatSaturationMask.py -i ref.img -m *_MTL.txt -o saturationmask.img
 
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatTOA.py -i ref.img -m *_MTL.txt -o toa.img
+fmask_usgsLandsatTOA.py -i ref.img -m *_MTL.txt -o toa.img
 
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
+fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
 
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
+gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
 ```
 
 *fmask_ls8.sh*
@@ -60,6 +60,7 @@ filename=$(basename $1)
 newdir=$(echo $filename | sed -e "s/.tar.bz/$replace/g")
 
 MADMEX_TEMP=$(echo $PWD)
+echo $MADMEX_TEMP
 new_filename=$MADMEX_TEMP/$filename
 
 mkdir -p $MADMEX_TEMP/$newdir
@@ -67,16 +68,16 @@ cd $MADMEX_TEMP/$newdir
 
 tar xvjf $new_filename
 
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L[C-O]8*_B[1-7,9].TIF
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img L[C-O]8*_B1[0,1].TIF
+gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L[C-O]8*_B[1-7,9].TIF
+gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img L[C-O]8*_B1[0,1].TIF
 
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatSaturationMask.py -i ref.img -m *_MTL.txt -o saturationmask.img
+fmask_usgsLandsatSaturationMask.py -i ref.img -m *_MTL.txt -o saturationmask.img
 
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatTOA.py -i ref.img -m *_MTL.txt -o toa.img
+fmask_usgsLandsatTOA.py -i ref.img -m *_MTL.txt -o toa.img
 
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
+fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
 
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
+gdal_translate -of ENVI cloud.img $(echo $newfilename)_MTLFmask
 ```
 
 ####Ingestión
