@@ -37,7 +37,7 @@ $docker exec -u=postgres -it postgres-server-madmex /bin/bash /commands/madmex_d
 	* Path, row de tile de landsat
 	* Año a descargar imágenes
 	* Instrumento a elegir entre tm, etm+, oli-tirs
-	* shell de descarga que debe de ser ejecutable
+	* shell de descarga que debe de ser ejecutable, ir a comandos.md de este repositorio
 
 -Ejemplo: descarga todas las imágenes landsat del año 2015
 
@@ -115,8 +115,8 @@ Los resultados están en el path: /resultados_ledaps
 
 -Requerimientos:
 
-	* Para un archivo de Landsat tm o etm+: shell de fmask.sh que debe de ser ejecutable
-	* Para un archivo de Landsat 8: shell de fmask_ls8.sh que debe de ser ejecutable
+	* Para un archivo de Landsat tm o etm+: shell de fmask.sh que debe de ser ejecutable, ir a comandos.md de este repositorio
+	* Para un archivo de Landsat 8: shell de fmask_ls8.sh que debe de ser ejecutable, ir a comandos.md de este repositorio
 
 -Ejemplo para LE70210492015007EDC00.tar.bz
 
