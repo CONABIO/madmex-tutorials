@@ -118,7 +118,7 @@ Los resultados están en el path: /resultados_ledaps
 	* Para un archivo de Landsat tm o etm+: shell de fmask.sh que debe de ser ejecutable, ir a comandos.md de este repositorio
 	* Para un archivo de Landsat 8: shell de fmask_ls8.sh que debe de ser ejecutable, ir a comandos.md de este repositorio
 
--Ejemplo para LE70210492015007EDC00.tar.bz
+-Ejemplo para Landsat 7: LE70210492015007EDC00.tar.bz
 
 
 Ejecutar el siguiente comando en el directorio que contiene el *.tar.bz
