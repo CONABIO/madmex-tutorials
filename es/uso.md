@@ -258,7 +258,7 @@ logstash_log_level = INFO
 ```
 	* Crear carpetas "resources/config" y colocar ahí el archivo de configuración
 	* Crear carpeta "eodata" en el directorio en donde está el shell
-	* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt":
+	* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt" en el directorio en donde está el shell:
 
 ```
 export MADMEX=/LUSTRE/MADMEX/code/
