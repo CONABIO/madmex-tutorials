@@ -18,7 +18,7 @@ $docker run --name postgres-server-madmex -v $(pwd):/commands -p 32852:22 -p 328
 
 	*Dirección IP del host en el que está levantado el servidor de postgres
 	*shells de creación de base de datos, ir a la carpeta comandos_base_de_datos_madmex de este repositorio
-	*shell madmex_database_install.sh que debe ser ejecutable, ir a comandos.md de este repositorio
+	*shell madmex_database_install.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
 -Ejemplo: 
 
@@ -37,7 +37,7 @@ $docker exec -u=postgres -it postgres-server-madmex /bin/bash /commands/madmex_d
 	* Path, row de tile de landsat
 	* Año a descargar imágenes
 	* Instrumento a elegir entre tm, etm+, oli-tirs
-	* shell de descarga que debe de ser ejecutable, ir a comandos.md de este repositorio
+	* shell de descarga que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
 -Ejemplo: descarga todas las imágenes landsat del año 2015
 
@@ -115,8 +115,8 @@ Los resultados están en el path: /resultados_ledaps
 
 -Requerimientos:
 
-	* Para un archivo de Landsat tm o etm+: shell de fmask.sh que debe de ser ejecutable, ir a comandos.md de este repositorio
-	* Para un archivo de Landsat 8: shell de fmask_ls8.sh que debe de ser ejecutable, ir a comandos.md de este repositorio
+	* Para un archivo de Landsat tm o etm+: shell de fmask.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+	* Para un archivo de Landsat 8: shell de fmask_ls8.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
 -Ejemplo para Landsat 7: LE70210492015007EDC00.tar.bz
 
@@ -142,7 +142,7 @@ Los resultados están en el directorio donde se ejecutó el comando.
 -Requerimientos:
 
 	* Imagen de docker para procesos: madmex/ws
-	* Shell de data_ingestion.sh que debe tener permisos de ejecución
+	* Shell de data_ingestion.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 	* Clonar repositorio de CONABIO/madmex-v2
 	* Archivo de configuración con el nombre "configuration.ini" en el directorio donde se ejecutará el shell:
 
