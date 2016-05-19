@@ -139,7 +139,7 @@ Los resultados están en el directorio donde se ejecutó el comando.
 	* Imagen de docker para procesos: madmex/ws
 	* Shell de data_ingestion.sh
 	* Clonar repositorio de CONABIO/madmex-v2
-	* Archivo de configuración con el nombre "configuration.ini":
+	* Archivo de configuración con el nombre "configuration.ini" en el directorio donde se ejecutará el shell:
 
 ```
 [aux-data]
