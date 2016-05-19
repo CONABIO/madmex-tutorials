@@ -18,7 +18,7 @@ $docker run --name postgres-server-madmex -v $(pwd):/results -p 32852:22 -p 3285
 
 	*Dirección IP del host en el que está levantado el servidor de postgres
 	*shells de creación de base de datos: ir a la carpeta comandos_base_de_datos_madmex de este repositorio
-	*shell madmex_database_install.sh
+	*shell madmex_database_install.sh que debe ser ejecutable
 
 -Ejemplo: 
 
