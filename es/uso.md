@@ -280,7 +280,6 @@ export MADMEX_TEMP=/services/localtemp/temp
 	* En este ejemplo tenemos dentro del directorio de trabajo el directorio madmex-v2 el cual \
 		fue clonado del repositorio CONABIO/madmex-v2
 	* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh
-	* Colocamos en el directorio config el archivo siguiente con nombre "configuration.ini"
 	* En el directorio de trabajo creamos el directorio eodata
 	* En el directorio de trabajo tenemos el archivo a ingestar: LC80210482015015LGN00.tar.bz
 	* En el directorio de trabajo tenemos el archivo de variables.txt
