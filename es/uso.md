@@ -88,7 +88,7 @@ cp gs://earthengine-public/landsat/L7/021/049/LE70210492015007EDC00.tar.bz /resu
 
 -Ejemplo para datos después del año 2012-2013 con el archivo LE70210492015007EDC00.tar.bz:
 
-	*En ruta: /datos_landsat tenemos el LE70210492015007EDC00.tar.bz
+	*En ruta: /datos_landsat tenemos descomprimido el LE70210492015007EDC00.tar.bz
 	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
 	*En ruta: /ancillary_data tenemos descomprimido el ancillary data
 	*Usamos la imagen: ledaps/ledaps:latest
@@ -99,7 +99,7 @@ Entonces ejecutamos el siguiente comando:
 ```
 docker run --rm -v /ancillary_data:/opt/ledaps \
 -v /datos_landsat:/data -v /resultados_ledaps:/results \
-madmex/ledaps:latest /results/ledaps.sh /opt/ledaps /data/LE70210492015007EDC00.tar.bz /results
+madmex/ledaps:latest /results/ledaps.sh /opt/ledaps /data/LE70210492015007EDC00 /results
 ```
 
 Los resultados están en el path: /resultados_ledaps
