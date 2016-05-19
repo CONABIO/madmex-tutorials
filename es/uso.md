@@ -193,7 +193,7 @@ docker run --rm -v $(pwd)/madmex-v2:/LUSTRE/MADMEX/code \
 
 Los resultados están en el directorio de trabajo bajo el directorio eodata y en la base de datos
 
-Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el shell: data_ingestion_folder.sh
+Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el shell: data_ingestion_folder.sh al folder que se descomprimió con estos procesos. En la base de datos y en el folder eodata se ingestarán y copiarán tanto las imágenes como los resultados de estos procesos.
 
 ###Clasificación
 
