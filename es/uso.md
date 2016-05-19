@@ -140,8 +140,8 @@ Los resultados están en el directorio donde se ejecutó el comando.
 	* Shell de data_ingestion.sh
 	* Clonar repositorio de CONABIO/madmex-v2
 	* Archivo de configuración con el nombre "configuration.ini":
-	```
 
+```
 [aux-data]
 dem = /LUSTRE/MADMEX/products/dem/inegi-cem_v3/CEM3.0_R15m_dem.tif
 aspect = /LUSTRE/MADMEX/products/dem/inegi-cem_v3/CEM3.0_R15m_aspect.tif
@@ -259,6 +259,7 @@ logstash_log_level = INFO
 	* Crear carpetas "resources/config" y colocar ahí el archivo de configuración
 	* Crear carpeta "eodata"
 	* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt":
+
 ```
 export MADMEX=/LUSTRE/MADMEX/code/
 export MRV_CONFIG=$MADMEX/resources/config/configuration.ini
