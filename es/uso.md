@@ -58,7 +58,7 @@ $docker run --rm -v $(pwd):/results  madmex/ws:latest /bin/sh -c '/results/desca
 
 -Ejemplo descarga de un archivo: 
 
-Podemos listar la lista de archivos disponibles de landsat con el siguiente comando, por ejemplo para Landsat 7 path 021, row 048:
+Podemos listar los archivos disponibles de landsat con el siguiente comando, por ejemplo para Landsat 7 path 021, row 048:
 
 
 ```
