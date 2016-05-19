@@ -61,7 +61,8 @@ $docker run --rm -v $(pwd):/results  madmex/ws:latest /bin/sh -c '/results/desca
 	* Archivo a descargar gs://earthengine-public/landsat/L7/021/049/LE70210492015007EDC00.tar.bz
 
 ```
-$docker run --rm -v $(pwd):/results  madmex/ws:latest gsutil cp gs://earthengine-public/landsat/L7/021/049/LE70210492015007EDC00.tar.bz /results
+$docker run --rm -v $(pwd):/results  madmex/ws:latest gsutil \
+cp gs://earthengine-public/landsat/L7/021/049/LE70210492015007EDC00.tar.bz /results
 ```
 
 *En el directorio en el que se ejecutó el comando tendremos la carpeta: landsat_un_archivo*
