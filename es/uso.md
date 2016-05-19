@@ -88,7 +88,7 @@ cp gs://earthengine-public/landsat/L7/021/049/LE70210492015007EDC00.tar.bz /resu
 
 -Ejemplo para datos después del año 2012-2013 con el archivo LE70210492015007EDC00.tar.bz:
 
-	*En ruta: /datos_landsat tenemos descomprimido el LE70210492015007EDC00.tar.bz
+	*En ruta: /datos_landsat tenemos el LE70210492015007EDC00.tar.bz
 	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
 	*En ruta: /ancillary_data tenemos descomprimido el ancillary data
 	*Usamos la imagen: ledaps/ledaps:latest
@@ -97,9 +97,9 @@ Entonces ejecutamos el siguiente comando:
 
 
 ```
-docker run --rm -v /ancillary_data:/opt/ledaps \
+docker run --rm -v $(pwd):/opt/ledaps \
 -v /datos_landsat:/data -v /resultados_ledaps:/results \
-madmex/ledaps:latest /results/ledaps.sh /opt/ledaps /data/LE70210492015007EDC00 /results
+madmex/ledaps:latest /results/ledaps.sh /opt/ledaps /data/LE70210492015007EDC00.tar.bz /results
 ```
 
 Los resultados están en el path: /resultados_ledaps
@@ -196,6 +196,25 @@ docker run --rm -v $(pwd)/madmex-v2:/LUSTRE/MADMEX/code \
 Los resultados están en el directorio de trabajo bajo el directorio eodata y en la base de datos
 
 Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el shell: data_ingestion_folder.sh al folder que se descomprimió con estos procesos. En la base de datos y en el folder eodata se ingestarán y copiarán tanto las imágenes que se descargaron como archivo .tar.bz como los resultados de estos procesos.
+
+###Preprocesamiento e ingestión TM y ETM+ datos después del año 2013
+
+-Requerimientos:
+	* Shell preprocessing_and_ingestion_not_landsat_8.sh
+	* Ancillary data para LEDAPS
+	* Usar el archivo configuration.ini
+
+-Ejemplo para el archivo: LE70210482015055EDC00.tar.bz
+
+	*En ruta: /ancillary_data tenemos descomprimido el ancillary data
+	*En ruta: /resources/config tenemos el archivo configuration.ini
+
+Ejecutamos la siguiente línea:
+
+```
+$preprocess_and_ingest_landsat_not_8.sh LE70210482015055EDC00.tar.bz /ancillary_data /resources/config
+
+```
 
 ###Clasificación
 
