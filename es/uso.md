@@ -17,8 +17,8 @@ $docker run --name postgres-server-madmex -v $(pwd):/commands -p 32852:22 -p 328
 -Requerimientos:
 
 	*Dirección IP del host en el que está levantado el servidor de postgres
-	*shells de creación de base de datos: ir a la carpeta comandos_base_de_datos_madmex de este repositorio
-	*shell madmex_database_install.sh que debe ser ejecutable
+	*shells de creación de base de datos, ir a la carpeta comandos_base_de_datos_madmex de este repositorio
+	*shell madmex_database_install.sh que debe ser ejecutable, ir a comandos.md de este repositorio
 
 -Ejemplo: 
 
@@ -45,7 +45,8 @@ $docker exec -u=postgres -it postgres-server-madmex /bin/bash /commands/madmex_d
 	* año: 2015
 	* Instrumento: etm+ (L7)
 
-Para la siguiente línea usar el shell *descarga_landsat.sh* que se encuentra en *shell_references.md* de este repositorio.
+Para la siguiente línea usar el shell *descarga_landsat.sh*
+
 ```
 $docker run --rm -v $(pwd):/results  madmex/ws:latest /bin/sh -c '/results/descarga_landsat.sh L7 021 048 2015'
 ```
@@ -79,7 +80,7 @@ $docker run --rm -v $(pwd):/results  madmex/ws:latest gsutil cp gs://earthengine
 	*En ruta: /datos_landsat tenemos el LE70210492015007EDC00.tar.bz
 	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
 	*En ruta: /ancillary_data tenemos descomprimido el ancillary data
-	*Con nombre de imagen: ledaps/ledaps:latest
+	*Usamos la imagen: ledaps/ledaps:latest
 
 Entonces ejecutamos el siguiente comando:
 
@@ -97,7 +98,7 @@ Los resultados están en el path: /resultados_ledaps
 	*En ruta: /datos_landsat tenemos el LE70210481999203AGS00.tar.bz
 	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
 	*En ruta: /ancillary_data tenemos descomprimido el ancillary data
-	*Con nombre de imagen: madmex/ledaps-legacy:latest
+	*Usamos la imagen: madmex/ledaps-legacy:latest
 
 
 ```
@@ -131,6 +132,7 @@ Ejecutar el siguiente comando en el directorio que contiene el *.tar.bz
 ```
 $./fmask_ls8.sh LC80210482015015LGN00.tar.bz
 ```
+
 Los resultados están en el directorio donde se ejecutó el comando.
 
 ###Ingestión de imágenes
