@@ -18,7 +18,7 @@ A continuación se muestra un diagrama que representa la arquitectura del sistem
 
 ![Diagrama relacional de la base de datos](../images/eodata.png)
 
-![Diagrama2 relacional de la base de datos](/Users/rmartinez/Development/madmex/madmex_tutorials/images/product.png)
+![Diagrama2 relacional de la base de datos](../images/product.png)
 
 ##Requerimientos del Sistema en Modo Cluster
 
