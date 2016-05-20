@@ -38,3 +38,20 @@ El algoritmo fmask relaciona las nubes con sus sombras basado en mediciones de s
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -13,6 +13,13 @@ A continuación se muestra un diagrama que representa la arquitectura del sistem
 
 ![Diagrama de componentes de MAD-Mex](../images/component_diagram.png)
 
+
+## Base de Datos
+
+![Diagrama relacional de la base de datos](/Users/rmartinez/Development/madmex/madmex_tutorials/images/eodata.png)
+
+![Diagrama2 relacional de la base de datos](/Users/rmartinez/Development/madmex/madmex_tutorials/images/product.png)
+
 ##Requerimientos del Sistema en Modo Cluster
 
 Para el correcto funcionamiento del sistema, un conjunto de requerimientos mínimos es necesario. A continuación se ofrece una breve descripción.
