@@ -174,7 +174,7 @@ export MADMEX_TEMP=/services/localtemp/temp
 
 -Ejemplo para el archivo: LC80210482015015LGN00.tar.bz. En este ejemplo:
 
-	* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh
+	* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 	* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
 	* En ruta: /resources/config tenemos el archivo configuration.ini
 	* En el directorio de trabajo tenemos el archivo a ingestar: LC80210482015015LGN00.tar.bz
