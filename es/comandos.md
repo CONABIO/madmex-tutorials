@@ -152,11 +152,13 @@ echo $(pwd)
 docker $(docker-machine config default) run --rm -e metadata=$metadata -e metadataxml=$metadataxml -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml'
 docker $(docker-machine config default) run --rm -e metadataxml=$metadataxml -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/do_ledaps.csh $metadataxml'
 docker $(docker-machine config default) run --rm -e metadataxml=$metadataxml -e basename=$basename -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif'
-docker $(docker-machine config default) run --rm -e metadataxml=$metadataxml -e basename=$basename -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf --del_src_files'
+docker $(docker-machine config default) run --rm -e metadataxml=$metadataxml -e basename=$basename -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf'
+mv lndsr.$(echo $basename)_MTL.txt lndsr.$(echo $basename)_metadata.txt 
+mv lndcal.$(echo $basename)_MTL.txt lndcal.$(echo $basename)_metadata.txt 
 rm $name
-rm CMGDEM.hdf
-rm -r EP_TOMS
-rm -r REANALYSIS
+rm -rf CMGDEM.hdf
+rm -rf EP_TOMS
+rm -rf REANALYSIS
 
 #Fmask:
 docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L*_B[1,2,3,4,5,7].TIF
@@ -168,7 +170,6 @@ docker $(docker-machine config default) run -v $(pwd):/data madmex/python-fmask 
 
 #Ingest
 cd $path
-
 MADMEX=/LUSTRE/MADMEX/code 
 MRV_CONFIG=$MADMEX/resources/config/configuration.ini
 PYTHONPATH=$PYTHONPATH:$MADMEX
