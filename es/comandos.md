@@ -24,21 +24,22 @@ done;
 
 ```
 #!/bin/bash
-#This shell_script must be executable, if not do a chmod
+#$1 es la ruta con los datos en forma .tar.bz
 if [ "$#" -ne 3 ]; then
-echo "Usage: bash shell_script <path to ancilliary data in docker> <path to source data in docker/L*.tar.bz> <path to destiny results in docker>"
+echo "Usage: bash shell_script <path to source data in docker/L*.tar.bz> <path to destiny results in docker>"
 	exit
 else
-	name=$(basename $2)
+	destiny=/results
+	name=$(basename $1)
 	basename=$(echo $name|sed -n 's/\(L*.*\).tar.bz/\1/;p')
-	dir=$3/$basename
+	dir=$destiny/$basename
 	mkdir $dir
-	cp $2 $dir
+	cp $1 $dir
 	year=$(echo $name|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*.tar.bz/\1/p')
-
-	cp $1/CMGDEM.hdf $dir
-	mkdir $dir/EP_TOMS && cp -r $1/EP_TOMS/ozone_$year $dir/EP_TOMS
-	mkdir $dir/REANALYSIS && cp -r $1/REANALYSIS/RE_$year $dir/REANALYSIS
+	dir_ledaps=/opt/ledaps
+	cp $dir_ledaps/CMGDEM.hdf $dir
+	mkdir $dir/EP_TOMS && cp -r $dir_ledaps/EP_TOMS/ozone_$year $dir/EP_TOMS
+	mkdir $dir/REANALYSIS && cp -r $dir_ledaps/REANALYSIS/RE_$year $dir/REANALYSIS
 	cd $dir && tar xvf $name 
 	metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
 	metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
@@ -57,6 +58,7 @@ fi
 
 ```
 #!/bin/bash
+#$1 es la ruta con los datos en forma .tar.bz
 filename=$(basename $1)
 newdir=$(echo $filename | sed -e "s/.tar.bz//g")
 path=$(echo $PWD)
@@ -76,6 +78,7 @@ gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
 
 ```
 #!/bin/bash
+#$1 es la ruta con los datos en forma .tar.bz
 filename=$(basename $1)
 newdir=$(echo $filename | sed -e "s/.tar.bz//g")
 path=$(echo $PWD)
@@ -123,13 +126,15 @@ source /results/variables.txt
 
 ####Preprocesamiento e ingestión
 
-*preprocessing_and_ingestion_landsat_not_8.sh*
+*preprocesamiento_e_ingestion_landsat_no_8.sh*
 
 ```
 #!/bin/bash
 #$1 es la ruta a los datos de landsat .tar.bz
 #$2 es la ruta al ancillary data de LEDAPS
-#$3 es el path al archivo de configuración
+#$3 es la ruta al repositorio CONABIO/madmex-v2
+#$4 es la ruta al archivo configuration.ini
+#$5 es la ruta a la carpeta eodata
 
 name=$(basename $1)
 basename=$(echo $name|sed -n 's/\(L*.*\).tar.bz/\1/;p')
@@ -157,35 +162,18 @@ rm CMGDEM.hdf
 rm -r EP_TOMS
 rm -r REANALYSIS
 
-
-
 #Fmask:
 docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L*_B[1,2,3,4,5,7].TIF
-
 docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img L*_B6_VCID_?.TIF
-
 docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatSaturationMask.py -i ref.img -m *_MTL.txt -o saturationmask.img
-
 docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatTOA.py -i ref.img -m *_MTL.txt -o toa.img
-
 docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
-
 docker $(docker-machine config default) run -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.img $(echo $basename)_MTLFmask
 
 #Ingest
-
 cd $path
 
-echo "export MADMEX=/LUSTRE/MADMEX/code/" >> variables.txt
-echo "export MRV_CONFIG=$MADMEX/resources/config/configuration.ini" >> variables.txt
-echo "export PYTHONPATH=$PYTHONPATH:$MADMEX" >> variables.txt
-echo "export MADMEX_DEBUG=True" >> variables.txt
-echo "export MADMEX_TEMP=/services/localtemp/temp" >> variables.txt
-mkdir eodata
-git clone https://github.com/CONABIO/madmex-v2.git repo_code_madmex-v2
-docker run --rm -v $(pwd)/repo_code_madmex-v2:/LUSTRE/MADMEX/code -v $3:/LUSTRE/MADMEX/code/resources/config -v $(pwd)/eodata:/LUSTRE/MADMEX/eodata -v $(pwd):/results madmex/ws /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory /results/$basename
-rm -r repo_code_madmex-v2
-
+docker $(docker-machine config default) run -e MADMEX=/LUSTRE/MADMEX/code -e MRV_CONFIG=$MADMEX/resources/config/configuration.ini -e PYTHONPATH=$PYTHONPATH:$MADMEX -e MADMEX_DEBUG=True -e MADMEX_TEMP=/services/localtemp/temp --rm -v $3:/LUSTRE/MADMEX/code -v $4:/LUSTRE/MADMEX/code/resources/config -v $5:/LUSTRE/MADMEX/eodata -v $(pwd):/results madmex/ws /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory /results/$basename
 
 ```
 
