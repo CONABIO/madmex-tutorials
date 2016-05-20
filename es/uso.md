@@ -193,13 +193,13 @@ docker run --rm -v $(pwd)/madmex-v2:/LUSTRE/MADMEX/code \
 
 Los resultados están en el directorio de trabajo bajo el directorio eodata y en la base de datos
 
-Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el shell: data_ingestion_folder.sh al folder que se descomprimió con estos procesos. En la base de datos y en el folder eodata se ingestarán y copiarán tanto las imágenes que se descargaron como archivo .tar.bz como los resultados de estos procesos.
+Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el shell: data_ingestion_folder.sh al folder que se descomprimió con estos procesos. En la base de datos y en el folder eodata, se ingestarán y copiarán tanto las imágenes que se descargaron y descomprimieron del archivo .tar.bz, como los resultados del preprocesamiento.
 
 ###Preprocesamiento e ingestión TM y ETM+ para datos después del año 2013
 
 -Requerimientos:
 
-	* Shell preprocesamiento_e_ingestion_no_landsat_8.sh
+	* Shell preprocesamiento_e_ingestion_no_landsat_8.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 	* Datos en formato .tar.bz
 	* Ancillary data para LEDAPS
 	* Archivo de configuración con el nombre "configuration.ini" ir a configuraciones.md de este respositorio.
