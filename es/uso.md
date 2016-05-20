@@ -210,7 +210,7 @@ Ejecutamos la siguiente línea
 docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
 -v /resources/config:/LUSTRE/MADMEX/code/resources/config \
 -v /datos/eodata:/LUSTRE/MADMEX/eodata -v $(pwd):/results madmex/ws \
-/results/data_ingestion.sh /results/LC80210482015015LGN00
+/results/data_ingestion_folder.sh /results/LC80210482015015LGN00
 ```
 
 
