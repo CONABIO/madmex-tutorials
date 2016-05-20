@@ -51,9 +51,9 @@ Para la siguiente línea usar el shell *descarga_landsat.sh*
 $docker run --rm -v $(pwd):/results  madmex/ws:latest /bin/sh -c '/results/descarga_landsat.sh L7 021 048 2015'
 ```
 
-*En el directorio en el que se ejecutó el comando tendremos la carpeta: landsat_tile_021048*
+En el directorio en el que se ejecutó el comando tendremos la carpeta: *landsat_tile_021048*
 
-*En esta carpeta se encuentran archivos con extensión *.tar.bz*
+En esta carpeta se encuentran archivos con extensión *.tar.bz
 
 
 -Ejemplo descarga de un archivo: 
