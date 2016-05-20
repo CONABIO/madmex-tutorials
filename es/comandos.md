@@ -169,7 +169,12 @@ docker $(docker-machine config default) run -v $(pwd):/data madmex/python-fmask 
 #Ingest
 cd $path
 
-docker $(docker-machine config default) run -e MADMEX=/LUSTRE/MADMEX/code -e MRV_CONFIG=$MADMEX/resources/config/configuration.ini -e PYTHONPATH=$PYTHONPATH:$MADMEX -e MADMEX_DEBUG=True -e MADMEX_TEMP=/services/localtemp/temp --rm -v $3:/LUSTRE/MADMEX/code -v $4:/LUSTRE/MADMEX/code/resources/config -v $5:/LUSTRE/MADMEX/eodata -v $(pwd):/results madmex/ws /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory /results/$basename
+MADMEX=/LUSTRE/MADMEX/code 
+MRV_CONFIG=$MADMEX/resources/config/configuration.ini
+PYTHONPATH=$PYTHONPATH:$MADMEX
+MADMEX_DEBUG=True
+MADMEX_TEMP=/services/localtemp/temp
+docker $(docker-machine config default) run -e MADMEX=$MADMEX -e MRV_CONFIG=$MRV_CONFIG -e PYTHONPATH=$PYTHONPATH -e MADMEX_DEBUG=$MADMEX_DEBUG -e MADMEX_TEMP=$MADMEX_TEMP --rm -v $3:/LUSTRE/MADMEX/code -v $4:/LUSTRE/MADMEX/code/resources/config -v $5:/LUSTRE/MADMEX/eodata -v $(pwd):/results madmex/ws /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory /results/$basename
 
 ```
 
