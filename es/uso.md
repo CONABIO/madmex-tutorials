@@ -194,7 +194,7 @@ Los resultados están en el directorio de trabajo bajo el directorio eodata y en
 
 Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el shell: data_ingestion_folder.sh al folder que se descomprimió con estos procesos. En la base de datos y en el folder eodata, se ingestarán y copiarán tanto las imágenes que se descargaron y descomprimieron del archivo .tar.bz, como los resultados del preprocesamiento.
 
-- Ejemplo para el folder: LC80210482015015LGN00. En este ejemplo:
+-Ejemplo para el folder: LC80210482015015LGN00. En este ejemplo:
 
 
 	* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
