@@ -43,6 +43,8 @@ cd $dir && $BIN/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml
 cd $dir && $BIN/do_ledaps.csh $metadataxml
 cd $dir && $BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif 
 cd $dir && $BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf --del_src_files
+mv lndsr.$(echo $basename)_MTL.txt lndsr.$(echo $basename)_metadata.txt 
+mv lndcal.$(echo $basename)_MTL.txt lndcal.$(echo $basename)_metadata.txt 
 rm $dir/$name
 rm -r $dir/CMGDEM.hdf
 rm -r $dir/EP_TOMS/
