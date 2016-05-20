@@ -194,6 +194,26 @@ Los resultados están en el directorio de trabajo bajo el directorio eodata y en
 
 Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el shell: data_ingestion_folder.sh al folder que se descomprimió con estos procesos. En la base de datos y en el folder eodata, se ingestarán y copiarán tanto las imágenes que se descargaron y descomprimieron del archivo .tar.bz, como los resultados del preprocesamiento.
 
+- Ejemplo para el folder: LC80210482015015LGN00. En este ejemplo:
+
+
+	* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+	* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
+	* En ruta: /resources/config tenemos el archivo configuration.ini
+	* En el directorio de trabajo tenemos el folder a ingestar: LC80210482015015LGN00
+	* En el directorio de trabajo tenemos el archivo de variables.txt
+	* En ruta: /datos/eodata queremos que se copien los archivos
+
+Ejecutamos la siguiente línea
+
+```
+docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
+-v /resources/config:/LUSTRE/MADMEX/code/resources/config \
+-v /datos/eodata:/LUSTRE/MADMEX/eodata -v $(pwd):/results madmex/ws \
+/results/data_ingestion.sh /results/LC80210482015015LGN00
+```
+
+
 ###Preprocesamiento e ingestión TM y ETM+ para datos después del año 2013
 
 -Requerimientos:
