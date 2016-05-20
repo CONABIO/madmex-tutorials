@@ -16,7 +16,7 @@ A continuación se muestra un diagrama que representa la arquitectura del sistem
 
 ## Base de Datos
 
-![Diagrama relacional de la base de datos](/Users/rmartinez/Development/madmex/madmex_tutorials/images/eodata.png)
+![Diagrama relacional de la base de datos](../images/eodata.png)
 
 ![Diagrama2 relacional de la base de datos](/Users/rmartinez/Development/madmex/madmex_tutorials/images/product.png)
 
