@@ -103,7 +103,7 @@ madmex/ledaps:latest /results/ledaps.sh /data/LE70210492015007EDC00.tar.bz
 
 Los resultados están en el path: /resultados_ledaps
 
--Ejemplo para datos antes del año 2012-2013 con el archivo LE70210481999203AGS00.tar.bz:
+-Ejemplo para datos antes del año 2012-2013 con el archivo LE70210481999203AGS00.tar.bz: (advertencia, debemos utilizar para este ejemplo ancillary data antiguo)
 
 	*En ruta: /datos_landsat tenemos el LE70210481999203AGS00.tar.bz
 	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
