@@ -25,33 +25,29 @@ done;
 ```
 #!/bin/bash
 #$1 es la ruta con los datos en forma .tar.bz
-if [ "$#" -ne 3 ]; then
-echo "Usage: bash shell_script <path to source data in docker/L*.tar.bz> <path to destiny results in docker>"
-	exit
-else
-	destiny=/results
-	name=$(basename $1)
-	basename=$(echo $name|sed -n 's/\(L*.*\).tar.bz/\1/;p')
-	dir=$destiny/$basename
-	mkdir $dir
-	cp $1 $dir
-	year=$(echo $name|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*.tar.bz/\1/p')
-	dir_ledaps=/opt/ledaps
-	cp $dir_ledaps/CMGDEM.hdf $dir
-	mkdir $dir/EP_TOMS && cp -r $dir_ledaps/EP_TOMS/ozone_$year $dir/EP_TOMS
-	mkdir $dir/REANALYSIS && cp -r $dir_ledaps/REANALYSIS/RE_$year $dir/REANALYSIS
-	cd $dir && tar xvf $name 
-	metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
-	metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
-	cd $dir && $BIN/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml
-	cd $dir && $BIN/do_ledaps.csh $metadataxml
-	cd $dir && $BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif 
-	cd $dir && $BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf --del_src_files
-	rm $dir/$name
-	rm -r $dir/CMGDEM.hdf
-	rm -r $dir/EP_TOMS/
-	rm -r $dir/REANALYSIS/
-fi
+destiny=/results
+name=$(basename $1)
+basename=$(echo $name|sed -n 's/\(L*.*\).tar.bz/\1/;p')
+dir=$destiny/$basename
+mkdir $dir
+cp $1 $dir
+year=$(echo $name|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*.tar.bz/\1/p')
+dir_ledaps=/opt/ledaps
+cp $dir_ledaps/CMGDEM.hdf $dir
+mkdir $dir/EP_TOMS && cp -r $dir_ledaps/EP_TOMS/ozone_$year $dir/EP_TOMS
+mkdir $dir/REANALYSIS && cp -r $dir_ledaps/REANALYSIS/RE_$year $dir/REANALYSIS
+cd $dir && tar xvf $name 
+metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
+metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
+cd $dir && $BIN/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml
+cd $dir && $BIN/do_ledaps.csh $metadataxml
+cd $dir && $BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif 
+cd $dir && $BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf --del_src_files
+rm $dir/$name
+rm -r $dir/CMGDEM.hdf
+rm -r $dir/EP_TOMS/
+rm -r $dir/REANALYSIS/
+
 ```
 
 *fmask.sh*
