@@ -202,8 +202,8 @@ Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el
 
 	* Shell preprocessing_and_ingestion_not_landsat_8.sh
 	* Ancillary data para LEDAPS
-	* Usar el archivo configuration.ini
-
+	* Archivo de configuración con el nombre "configuration.ini" en el directorio donde se ejecutará el shell, \
+		ir a configuraciones.md de este respositorio
 -Ejemplo para el archivo: LE70210482015055EDC00.tar.bz
 
 	*En ruta: /ancillary_data tenemos descomprimido el ancillary data
