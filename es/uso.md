@@ -239,7 +239,7 @@ docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
 Ejecutamos la siguiente línea:
 
 ```
-$preprocess_and_ingest_landsat_not_8.sh LE70210482015055EDC00.tar.bz /ancillary_data /madmex-v2 /resources/config /datos/eodata
+$preprocesamiento_e_ingestion_landsat_no_8.sh LE70210482015055EDC00.tar.bz /ancillary_data /madmex-v2 /resources/config /datos/eodata
 
 ```
 
