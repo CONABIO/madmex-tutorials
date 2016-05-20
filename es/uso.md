@@ -98,7 +98,7 @@ Entonces ejecutamos el siguiente comando:
 ```
 docker run --rm -v /ancillary_data:/opt/ledaps \
 -v /datos_landsat:/data -v /resultados_ledaps:/results \
-madmex/ledaps:latest /results/ledaps.sh /opt/ledaps /data/LE70210492015007EDC00.tar.bz /results
+madmex/ledaps:latest /results/ledaps.sh /data/LE70210492015007EDC00.tar.bz
 ```
 
 Los resultados están en el path: /resultados_ledaps
@@ -157,8 +157,7 @@ El proceso de ingestión de imágenes se realiza con el shell *data_ingestion.sh
 	* Imagen de docker para procesos: madmex/ws
 	* Shell de data_ingestion.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 	* Clonar repositorio de CONABIO/madmex-v2
-	* Archivo de configuración con el nombre "configuration.ini" en el directorio donde se ejecutará el shell, \
-		ir a configuraciones.md de este respositorio
+	* Archivo de configuración con el nombre "configuration.ini" ir a configuraciones.md de este respositorio
 	* Crear carpetas "resources/config" y colocar ahí el archivo de configuración
 	* Crear carpeta "eodata", aquí se copiaran las imágenes.
 	* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt" \
@@ -200,19 +199,28 @@ Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el
 
 -Requerimientos:
 
-	* Shell preprocessing_and_ingestion_not_landsat_8.sh
+	* Shell preprocesamiento_e_ingestion_no_landsat_8.sh
+	* Datos en formato .tar.bz
 	* Ancillary data para LEDAPS
-	* Archivo de configuración con el nombre "configuration.ini" en el directorio donde se ejecutará el shell, \
-		ir a configuraciones.md de este respositorio
+	* Archivo de configuración con el nombre "configuration.ini" ir a configuraciones.md de este respositorio.
+	* Crear carpetas "resources/config" y colocar ahí el archivo de configuración
+	* Clonar repositorio de CONABIO/madmex-v2
+	* Crear carpeta "eodata", aquí se copiaran las imágenes.
+
+
 -Ejemplo para el archivo: LE70210482015055EDC00.tar.bz
 
-	*En ruta: /ancillary_data tenemos descomprimido el ancillary data
-	*En ruta: /resources/config tenemos el archivo configuration.ini
+	* En el directorio de trabajo tenemos los datos .tar.bz
+	* En ruta: /ancillary_data tenemos descomprimido el ancillary data
+	* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
+	* En ruta: /resources/config tenemos el archivo configuration.ini
+	* En ruta: /datos/eodata queremos que se copien los archivos
+
 
 Ejecutamos la siguiente línea:
 
 ```
-$preprocess_and_ingest_landsat_not_8.sh LE70210482015055EDC00.tar.bz /ancillary_data /resources/config
+$preprocess_and_ingest_landsat_not_8.sh LE70210482015055EDC00.tar.bz /ancillary_data /madmex-v2 /resources/config /datos/eodata
 
 ```
 
