@@ -174,20 +174,19 @@ export MADMEX_TEMP=/services/localtemp/temp
 
 -Ejemplo para el archivo: LC80210482015015LGN00.tar.bz. En este ejemplo:
 
-	* Tenemos dentro del directorio de trabajo el directorio madmex-v2 el cual \
-		fue clonado del repositorio CONABIO/madmex-v2
 	* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh
-	* En el directorio de trabajo creamos el directorio eodata
+	* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
+	* En ruta: /resources/config tenemos el archivo configuration.ini
 	* En el directorio de trabajo tenemos el archivo a ingestar: LC80210482015015LGN00.tar.bz
 	* En el directorio de trabajo tenemos el archivo de variables.txt
-
+	* En ruta: /datos/eodata queremos que se copien los archivos
 
 Ejecutamos la siguiente línea
 
 ```
-docker run --rm -v $(pwd)/madmex-v2:/LUSTRE/MADMEX/code \
--v $(pwd)/resources/config:/LUSTRE/MADMEX/code/resources/config \
--v $(pwd)/eodata:/LUSTRE/MADMEX/eodata -v $(pwd):/results madmex/ws \
+docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
+-v /resources/config:/LUSTRE/MADMEX/code/resources/config \
+-v /datos/eodata:/LUSTRE/MADMEX/eodata -v $(pwd):/results madmex/ws \
 /results/data_ingestion.sh /results/LC80210482015015LGN00.tar.bz
 ```
 
@@ -202,7 +201,7 @@ Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el
 	* Shell preprocesamiento_e_ingestion_no_landsat_8.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 	* Datos en formato .tar.bz
 	* Ancillary data para LEDAPS
-	* Archivo de configuración con el nombre "configuration.ini" ir a configuraciones.md de este respositorio.
+	* Archivo de configuración con el nombre "configuration.ini", ir a configuraciones.md de este respositorio.
 	* Crear carpetas "resources/config" y colocar ahí el archivo de configuración
 	* Clonar repositorio de CONABIO/madmex-v2
 	* Crear carpeta "eodata", aquí se copiaran las imágenes.
