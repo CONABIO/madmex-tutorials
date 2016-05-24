@@ -250,12 +250,16 @@ $preprocesamiento_e_ingestion_landsat_no_8.sh LE70210482015055EDC00.tar.bz /anci
 	* imagen de docker para procesos
 	* imágenes descargadas de todo un año, preprocesadas y registradas en la base de datos.
 	* datos de entrenamiento registrados en la base de datos dentro del esquema products tabla product
+	* Shell clasificacion_landsat.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
 -Ejemplo:
+
 	* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
 	* En ruta: /resources/config tenemos el archivo configuration.ini
-	* En ruta: /datos/eodata tenemos los datos copiados
+	* En ruta: /datos/eodata tenemos los datos copiados con el proceso de ingest
 	* En ruta: /products/inegiusvpersii-v tenemos los datos de entrenamiento
+	* En ruta: /temporal será un folder temporal
+	* En rutas: /madmex_processing_results y /lsclassificationcommand se tendrán resultados de clasificación
 
 
 Para registrar los datos de entrenamiento:
@@ -275,7 +279,7 @@ $docker run --rm -v /products/inegiusvpersii-v:/LUSTRE/MADMEX/products/inegiusvp
 -v /resources/config:/LUSTRE/MADMEX/code/resources/config \
 -v /madmex_processing_results:/LUSTRE/MADMEX/processes/madmex_processing_results/ \
 -v /lsclassificationcommand://LUSTRE/MADMEX/products/lsclassificationcommand/2015_2015/training_1/ \
- -v $(pwd)/tmp:/services/localtemp/temp -v $(pwd):/results 2015-01-01 2015-12-31 10 21048 /results/training_areas_persistentes_32_clases_125m.tif 1
+ -v /temporal:/services/localtemp/temp -v $(pwd):/results/clasificacion_landsat.sh 2015-01-01 2015-12-31 10 21048 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
 ```
 
 ###Postprocesamiento de clasificación
