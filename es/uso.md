@@ -249,6 +249,7 @@ $preprocesamiento_e_ingestion_landsat_no_8.sh LE70210482015055EDC00.tar.bz /anci
 
 	* imagen de docker para procesos
 	* imágenes descargadas de todo un año, preprocesadas y registradas en la base de datos.
+	* Registrar algoritmo y leyenda.
 	* datos de entrenamiento registrados en la base de datos dentro del esquema products tabla product
 	* Shell clasificacion_landsat.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
@@ -270,6 +271,20 @@ $preprocesamiento_e_ingestion_landsat_no_8.sh LE70210482015055EDC00.tar.bz /anci
 	* Máximo porcentaje de nubes para cada imagen: 10%
 	* Eliminación de datos atípicos (1)
 
+Para registrar la leyenda:
+
+```
+insert into "products"."legend"("id", "name", "description", "sld") values(0, 'dummy_legend', 'empty dummy legend', '<?xml version="1.0" ?>')
+
+``
+
+
+Para registrar el algoritmo:
+
+```
+insert into "products"."algorithm"("id", "description", "command", "supervised") values (1, 'MAD-MEX Landsat Landcover Classification Workflow', 'LSClassificationCommand', 'true');
+
+```
 
 
 Para registrar los datos de entrenamiento dentro del esquema products tabla product:
