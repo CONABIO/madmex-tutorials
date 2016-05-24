@@ -262,7 +262,13 @@ $preprocesamiento_e_ingestion_landsat_no_8.sh LE70210482015055EDC00.tar.bz /anci
 	* En rutas: /madmex_processing_results y /lsclassificationcommand se tendrán resultados de clasificación
 
 
--Ejemplo para path,row 021048 con conjunto de entrenamiento training_areas_persistentes_32_clases_125m.tif y eliminación de datos atípicos (1)
+-Ejemplo:
+
+	* Path: 021, row:048
+	* Año: 2015
+	* Conjunto de entrenamiento: training_areas_persistentes_32_clases_125m.tif
+	* Máximo porcentaje de nubes para cada imagen: 10%
+	* Eliminación de datos atípicos (1)
 
 
 
