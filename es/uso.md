@@ -252,6 +252,19 @@ $preprocesamiento_e_ingestion_landsat_no_8.sh LE70210482015055EDC00.tar.bz /anci
 	* Registrar algoritmo y leyenda.
 	* datos de entrenamiento registrados en la base de datos dentro del esquema products tabla product
 	* Shell clasificacion_landsat.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+	* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt" \
+	 en el directorio en donde está el shell:
+
+```
+export MADMEX=/LUSTRE/MADMEX/code/
+export MRV_CONFIG=$MADMEX/resources/config/configuration.ini
+export PYTHONPATH=$PYTHONPATH:$MADMEX
+export MADMEX_DEBUG=True
+export MADMEX_TEMP=/services/localtemp/temp
+
+```
+
+
 
 -Ejemplo:
 
@@ -261,6 +274,7 @@ $preprocesamiento_e_ingestion_landsat_no_8.sh LE70210482015055EDC00.tar.bz /anci
 	* En ruta: /products/inegiusvpersii-v tenemos los datos de entrenamiento
 	* En ruta: /temporal será un folder temporal
 	* En rutas: /madmex_processing_results y /lsclassificationcommand se tendrán resultados de clasificación
+	* En el directorio de trabajo tenemos el archivo de variables.txt
 
 
 -Ejemplo:
@@ -301,7 +315,7 @@ $docker run --rm -v /products/inegiusvpersii-v:/LUSTRE/MADMEX/products/inegiusvp
 -v /resources/config:/LUSTRE/MADMEX/code/resources/config \
 -v /madmex_processing_results:/LUSTRE/MADMEX/processes/madmex_processing_results/ \
 -v /lsclassificationcommand:/LUSTRE/MADMEX/products/lsclassificationcommand/2015_2015/training_1/ \
- -v /temporal:/services/localtemp/temp -v $(pwd):/results/clasificacion_landsat.sh 2015-01-01 2015-12-31 10 21048 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
+ -v /temporal:/services/localtemp/temp -v $(pwd):/results madmex/ws:latest /results/clasificacion_landsat.sh 2015-01-01 2015-12-31 10 21048 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
 ```
 
 ###Postprocesamiento de clasificación
