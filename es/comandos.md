@@ -189,8 +189,8 @@ docker $(docker-machine config default) run -e MADMEX=$MADMEX -e MRV_CONFIG=$MRV
 #!/bin/bash
 #$1 es la fecha de inicio, $2 es la fecha de fin, $3 es el máximo porcentaje de nubes permitido, $4 es el pathrow,
 #$5 es la ruta al conjunto de entrenamiento, $6 es 1 si se quiere hacer eliminación de datos atípicos, 0 en caso contrario
-source /LUSTRE/MADMEX/code/madmex/resources/gridengine/nodo_conabio.txt
-python $MADMEX/interfaces/cli/madmex_processing.py LandsatLccWorkflowV3 --start_date_string $1 --end_date_string $2 --max_cloud_percentage $3 --landsat_footprint $4 --training_url $5 --outlier $6
+source /results/variables.txt
+/usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py LandsatLccWorkflowV3 --start_date_string $1 --end_date_string $2 --max_cloud_percentage $3 --landsat_footprint $4 --training_url $5 --outlier $6
 ```
 ####Postprocesamiento de clasificación
 
