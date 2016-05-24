@@ -276,7 +276,7 @@ Para registrar la leyenda:
 ```
 insert into "products"."legend"("id", "name", "description", "sld") values(0, 'dummy_legend', 'empty dummy legend', '<?xml version="1.0" ?>')
 
-``
+```
 
 
 Para registrar el algoritmo:
