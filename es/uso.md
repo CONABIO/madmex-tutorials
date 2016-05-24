@@ -300,7 +300,7 @@ $docker run --rm -v /products/inegiusvpersii-v:/LUSTRE/MADMEX/products/inegiusvp
 -v /datos/eodata:/LUSTRE/MADMEX/eodata -v /madmex-v2:/LUSTRE/MADMEX/code \
 -v /resources/config:/LUSTRE/MADMEX/code/resources/config \
 -v /madmex_processing_results:/LUSTRE/MADMEX/processes/madmex_processing_results/ \
--v /lsclassificationcommand://LUSTRE/MADMEX/products/lsclassificationcommand/2015_2015/training_1/ \
+-v /lsclassificationcommand:/LUSTRE/MADMEX/products/lsclassificationcommand/2015_2015/training_1/ \
  -v /temporal:/services/localtemp/temp -v $(pwd):/results/clasificacion_landsat.sh 2015-01-01 2015-12-31 10 21048 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
 ```
 
