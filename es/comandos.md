@@ -192,7 +192,7 @@ docker $(docker-machine config default) run -e MADMEX=$MADMEX -e MRV_CONFIG=$MRV
 #$6 es 1 si se quiere hacer eliminación de datos atípicos, 0 en caso contrario
 
 source /results/variables.txt
-/usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py LandsatLccWorkflowV3 --start_date_string $1 --end_date_string $2 --max_cloud_percentage $3 --landsat_footprint $4 --training_url $5 --outlier $6
+/usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py LandsatLccWorkflowV3FilesAfter2012 --start_date_string $1 --end_date_string $2 --max_cloud_percentage $3 --landsat_footprint $4 --training_url $5 --outlier $6
 ```
 ####Postprocesamiento de clasificación
 
