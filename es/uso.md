@@ -253,6 +253,7 @@ $preprocesamiento_e_ingestion_landsat_no_8.sh LE70210482015055EDC00.tar.bz /anci
 	* datos de entrenamiento y que estén registrados en la base de datos dentro del esquema products tabla product.
 	* datos auxiliares: dem, aspect, slope.
 	* Shell clasificacion_landsat.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+	* Folder temporal donde se guardarán archivos de procesamiento.
 	* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt" \
 	 en el directorio en donde está el shell:
 
