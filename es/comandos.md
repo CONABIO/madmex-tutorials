@@ -41,7 +41,7 @@ metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
 metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
 cd $dir && $BIN/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml
 cd $dir && $BIN/do_ledaps.csh $metadataxml
-cd $dir && $BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif 
+#cd $dir && $BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif 
 cd $dir && $BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf --del_src_files
 mv lndsr.$(echo $basename)_MTL.txt lndsr.$(echo $basename)_metadata.txt 
 mv lndcal.$(echo $basename)_MTL.txt lndcal.$(echo $basename)_metadata.txt 
@@ -153,8 +153,8 @@ echo "Working directory:"
 echo $(pwd)
 docker $(docker-machine config default) run --rm -e metadata=$metadata -e metadataxml=$metadataxml -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml'
 docker $(docker-machine config default) run --rm -e metadataxml=$metadataxml -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/do_ledaps.csh $metadataxml'
-docker $(docker-machine config default) run --rm -e metadataxml=$metadataxml -e basename=$basename -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif'
-docker $(docker-machine config default) run --rm -e metadataxml=$metadataxml -e basename=$basename -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf'
+#docker $(docker-machine config default) run --rm -e metadataxml=$metadataxml -e basename=$basename -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif'
+docker $(docker-machine config default) run --rm -e metadataxml=$metadataxml -e basename=$basename -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf --del_src_files'
 mv lndsr.$(echo $basename)_MTL.txt lndsr.$(echo $basename)_metadata.txt 
 mv lndcal.$(echo $basename)_MTL.txt lndcal.$(echo $basename)_metadata.txt 
 rm $name
