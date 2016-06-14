@@ -250,7 +250,8 @@ $preprocesamiento_e_ingestion_landsat_no_8.sh LE70210482015055EDC00.tar.bz /anci
 	* imagen de docker para procesos
 	* imágenes descargadas de todo un año, preprocesadas y registradas en la base de datos.
 	* Registrar algoritmo y leyenda.
-	* datos de entrenamiento registrados en la base de datos dentro del esquema products tabla product
+	* datos de entrenamiento y que estén registrados en la base de datos dentro del esquema products tabla product.
+	* datos auxiliares: dem, aspect, slope.
 	* Shell clasificacion_landsat.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 	* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt" \
 	 en el directorio en donde está el shell:
@@ -272,8 +273,9 @@ export MADMEX_TEMP=/services/localtemp/temp
 	* En ruta: /resources/config tenemos el archivo configuration.ini
 	* En ruta: /datos/eodata tenemos los datos copiados con el proceso de ingest
 	* En ruta: /products/inegiusvpersii-v tenemos los datos de entrenamiento
+	* En ruta: /products/dem/inegi tenemos los datos auxiliares: dem, aspect, slope
 	* En ruta: /temporal será un folder temporal
-	* En rutas: /madmex_processing_results y /lsclassificationcommand se tendrán resultados de clasificación
+	* En rutas: /madmex_processing_results, /products y /lsclassificationcommand se tendrán resultados de clasificación
 	* En el directorio de trabajo tenemos el archivo de variables.txt
 
 
@@ -310,12 +312,9 @@ insert into "products"."product" ("id", "uuid", "date_from", "date_to", "algorit
 
 
 ```
-$docker run --rm -v /products/inegiusvpersii-v:/LUSTRE/MADMEX/products/inegiusvpersii-v/ \
--v /datos/eodata:/LUSTRE/MADMEX/eodata -v /madmex-v2:/LUSTRE/MADMEX/code \
--v /resources/config:/LUSTRE/MADMEX/code/resources/config \
--v /madmex_processing_results:/LUSTRE/MADMEX/processes/madmex_processing_results/ \
--v /lsclassificationcommand:/LUSTRE/MADMEX/products/lsclassificationcommand/ \
- -v /temporal:/services/localtemp/temp -v $(pwd):/results madmex/ws:latest /results/clasificacion_landsat.sh 2015-01-01 2015-12-31 10 21048 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
+$docker run --rm -v $(pwd)/products:/LUSTRE/MADMEX/products -v /LUSTRE/MADMEX/products/dem:/LUSTRE/MADMEX/products/dem -v /LUSTRE/MADMEX/products/inegiusvpersii-v:/LUSTRE/MADMEX/products/inegiusvpersii-v/ -v $(pwd)/datos/eodata:/LUSTRE/MADMEX/eodata -v /madmex-v2:/LUSTRE/MADMEX/code -v /resources/config:/LUSTRE/MADMEX/code/resources/config -v /madmex_processing_results:/LUSTRE/MADMEX/processes/madmex_processing_results/ -v $(pwd)/lsclassificationcommand:/LUSTRE/MADMEX/products/lsclassificationcommand/ -v /temporal:/services/localtemp/temp -v $(pwd):/results madmex/ws:latest /results/clasificacion_landsat.sh 2014-01-01 2014-12-31 10 21048 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
+
+
 ```
 
 ###Postprocesamiento de clasificación
