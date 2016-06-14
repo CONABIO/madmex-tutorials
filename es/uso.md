@@ -6,7 +6,7 @@ Es crucial una instalación de docker en su sistema: https://www.docker.com/
 
 ###Levantamiento del servidor de postgres
 
-Ejecutar el siguiente comando después de clonar este repositorio dentro de la carpeta "comandos_base_de_datos_madmex" de manera local:
+Ejecutar el siguiente comando después de clonar este repositorio dentro de la carpeta "es/comandos_base_de_datos_madmex" de manera local:
 
 ```
 $docker run --name postgres-server-madmex -v $(pwd):/results -p 32852:22 -p 32851:5432 -dt madmex/postgres-server
