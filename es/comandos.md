@@ -203,8 +203,8 @@ source /results/variables.txt
 #$1 es el folder que contiene los resultados de clasificación, $2 es el archivo ESRI que contiene los tiles de la región
 #$3 es el nombre de la columna del archivo ESRI $2, $4 es el folder donde estarán los resultados que ayudan al postprocesamiento
 #$5 es el nombre del archivo resultado del postprocesamiento
-source /LUSTRE/MADMEX/code/madmex/resources/gridengine/nodo_conabio.txt
-python $MADMEX/interfaces/cli/madmex_processing.py LandsatLccPostWorkflow --lccresultfolder $1 --footprintshape $2 --tileidcolumnname $3 --workingdir $4 --outfile $5
+source /results/variables.txt
+/usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py LandsatLccPostWorkflow --lccresultfolder $1 --footprintshape $2 --tileidcolumnname $3 --workingdir $4 --outfile $5
 ```
 
 
