@@ -329,6 +329,7 @@ $docker run --rm -v $(pwd)/products:/LUSTRE/MADMEX/products \
 ###Postprocesamiento de clasificación
 
 -Requerimientos:
+
 	*Archivo ESRI de los tiles de la región
 	*Nombre de columna del archivo ESRI que contiene los tiles de la región
 
