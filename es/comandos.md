@@ -196,7 +196,7 @@ source /results/variables.txt
 ```
 ####Postprocesamiento de clasificación
 
-*ls_postprocessing_qsub.sh*
+*postprocesamiento_clasificacion_landsat.sh*
 
 ```
 #!/bin/bash
