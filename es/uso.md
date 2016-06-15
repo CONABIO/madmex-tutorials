@@ -341,8 +341,13 @@ $docker run --rm -v $(pwd)/products:/LUSTRE/MADMEX/products \
 
 
 ```
-$docker run --rm -v $(pwd):/results -it madmex/postgres-client pgsql2shp -f /results/landsat_footprint_mexico -h 192.168.99.100 -p 32851 -u madmex_user madmex_database vectordata.landsat_footprints_mexico
+$docker run --rm -v $(pwd):/results -it madmex/postgres-client \
+pgsql2shp -f /results/landsat_footprint_mexico -h 192.168.99.100 -p 32851 \
+-u madmex_user madmex_database vectordata.landsat_footprints_mexico
 ```
+
+En el directorio de trabajo tendremos el archivo ESRI.
+
 
 Para el postprocesamiento tenemos:
 
