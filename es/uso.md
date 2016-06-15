@@ -247,13 +247,15 @@ $preprocesamiento_e_ingestion_landsat_no_8.sh LE70210482015055EDC00.tar.bz /anci
 
 -Requerimientos:
 
-	* imagen de docker para procesos
-	* imágenes descargadas de todo un año, preprocesadas y registradas en la base de datos.
-	* Registrar algoritmo y leyenda.
-	* datos de entrenamiento y que estén registrados en la base de datos dentro del esquema products tabla product.
-	* datos auxiliares: dem, aspect, slope.
+	* Imagen de docker para procesos
+	* Al menos 3 imágenes descargadas de un tile, preprocesadas y registradas en la base de datos.
+	* Registrar algoritmo y leyenda en la base de datos.
+	* Datos de entrenamiento y registrarlos en la base de datos dentro del esquema products tabla product.
+	* Datos auxiliares: dem, aspect, slope en la ruta especificada en el archivo de configuración configuration.ini
+		en el tag aux-data
 	* Shell clasificacion_landsat.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 	* Folder temporal donde se guardarán archivos de procesamiento.
+	* Folders madmex_processing_result, lsclassificationcommand, products donde se guardarán resultados de clasificación.
 	* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt" \
 	 en el directorio en donde está el shell:
 
@@ -268,22 +270,18 @@ export MADMEX_TEMP=/services/localtemp/temp
 
 
 
--Ejemplo:
+-Ejemplo : 
 
 	* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
 	* En ruta: /resources/config tenemos el archivo configuration.ini
-	* En ruta: /datos/eodata tenemos los datos copiados con el proceso de ingest
+	* En ruta: /datos/eodata tenemos los datos originales y resultados del preprocesamiento copiados con el proceso de ingest.
 	* En ruta: /products/inegiusvpersii-v tenemos los datos de entrenamiento
-	* En ruta: /products/dem/inegi tenemos los datos auxiliares: dem, aspect, slope
-	* En ruta: /temporal será un folder temporal
+	* En ruta: /products/dem/inegi tenemos los datos auxiliares: dem, aspect, slope (de acuerdo al configuration.ini)
+	* En ruta: /temporal se tendrá el folder temporal
 	* En rutas: /madmex_processing_results, /products y /lsclassificationcommand se tendrán resultados de clasificación
 	* En el directorio de trabajo tenemos el archivo de variables.txt
-
-
--Ejemplo:
-
 	* Path: 021, row:048
-	* Año: 2015
+	* Año: 2014
 	* Conjunto de entrenamiento: training_areas_persistentes_32_clases_125m.tif
 	* Máximo porcentaje de nubes para cada imagen: 10%
 	* Eliminación de datos atípicos (1)
