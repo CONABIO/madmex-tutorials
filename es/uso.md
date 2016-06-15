@@ -329,12 +329,22 @@ $docker run --rm -v $(pwd)/products:/LUSTRE/MADMEX/products \
 ###Postprocesamiento de clasificación
 
 -Requerimientos:
-
-	*Región de tiles clasificados
 	*Archivo ESRI de los tiles de la región
 	*Nombre de columna del archivo ESRI que contiene los tiles de la región
 
 -Ejemplo:
+
+	* Dirección IP del host en el que está levantado el servidor de postgres es 192.168.99.100
+	* En la base de datos dentro del esquema vectordata tenemos registrada la tabla de tiles "landsat_footprints_mexico"
+	* El nombre del archivo ESRI será landsat_footprint_mexico
+
+
+```
+$docker run --rm -v $(pwd):/results -it madmex/postgres-client pgsql2shp -f /results/landsat_footprint_mexico -h 192.168.99.100 -p 32851 -u madmex_user madmex_database vectordata.landsat_footprints_mexico
+```
+
+Para el postprocesamiento tenemos:
+
 
 	*En la carpeta /resultados_clasificacion tenemos los resultados del proceso de clasificación anterior
 	*Nuestro archivo ESRI se llama landsat_footprints_mexico.shp
@@ -343,7 +353,7 @@ $docker run --rm -v $(pwd)/products:/LUSTRE/MADMEX/products \
 	*El archivo postprocesamiento.tif es el resultado del postprocesamiento y se guarda en la carpeta /resultado_postprocesamiento/
 
 ```
-$ls_postprocessing_qsub.sh /resultados_clasificacion ./landsat_footprints_mexico.shp code /resultados_postprocesamiento /resultado_postprocesamiento/postprocesamiento.tif
+$postprocesamiento_clasificacion_landsat.sh /resultados_clasificacion ./landsat_footprints_mexico.shp code /resultados_postprocesamiento /resultado_postprocesamiento/postprocesamiento.tif
 ```
 
 ###Detección de cambios
