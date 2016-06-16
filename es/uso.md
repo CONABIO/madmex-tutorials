@@ -98,7 +98,7 @@ Entonces ejecutamos el siguiente comando:
 ```
 docker run --rm -v /ancillary_data:/opt/ledaps \
 -v /datos_landsat:/data -v /resultados_ledaps:/results \
-madmex/ledaps:latest /results/ledaps.sh /data/LE70210492015007EDC00.tar.bz
+madmex/ledaps:latest /results/ledaps.sh /data/LE70210492015007EDC00.tar.bz /opt/ledaps
 ```
 
 Los resultados están en el path: /resultados_ledaps
