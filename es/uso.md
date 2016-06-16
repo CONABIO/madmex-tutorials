@@ -361,7 +361,7 @@ Para el postprocesamiento tenemos:
 ```
 docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
 -v /resultados_clasificacion:/results_classification
--v /results_postprocessing:/results_postprocessing
+-v /results_postprocesamiento:/results_postprocessing
 -v /resources/config:/LUSTRE/MADMEX/code/resources/config \
 -v $(pwd):/results madmex/ws /results/postprocesamiento_clasificacion_landsat.sh \
 /results_classification landsat_footprints_mexico.shp code /results_postprocessing /results/postprocesamiento.tif
