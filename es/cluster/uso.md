@@ -7,14 +7,14 @@ En esta versión de madmex utilizamos sun grid engine un "open-source grid compu
 Consideraremos tres nodos:
 
 - Nodo maestro que tendrá el servicio master de gridengine en un contenedor de docker.
-- Nodo cliente encargado de ejecución de procesos que será el cliente del servicio master de gridengine
+- Nodo de procesamiento encargado de ejecución de procesos y será el cliente del servicio master de gridengine
 - Nodo para la base de datos.
 
 ##Base de datos
 
 ###Levantamiento del servidor de postgres
 
-Ejecutar el siguiente comando después de clonar este repositorio dentro de la carpeta "es/comandos_base_de_datos_madmex" de manera local:
+Ejecutar el siguiente comando después de clonar este repositorio dentro de la carpeta "es/comandos_base_de_datos_madmex" en el nodo para la base de datos:
 
 ```
 $docker run --name postgres-server-madmex -v $(pwd):/results -p 32852:22 -p 32851:5432 -dt madmex/postgres-server
