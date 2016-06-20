@@ -30,11 +30,18 @@ $docker run --name postgres-server-madmex -v $(pwd):/results -p 32852:22 -p 3285
 
 -Ejemplo: 
 
-	*Dirección IP del host: 192.168.99.100
+	*Dirección IP del host: 172.16.9.147
 
 ```
-$docker exec -u=postgres -it postgres-server-madmex /bin/bash /results/madmex_database_install.sh 192.168.99.100 32851
+$docker exec -u=postgres -it postgres-server-madmex /bin/bash /results/madmex_database_install.sh 172.16.9.147 32851
 ```
+
+###Levantamiento del servicio master de gridengine
+
+
+
+
+
 
 ##Landsat
 
