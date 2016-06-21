@@ -7,7 +7,7 @@ En esta versión de madmex utilizamos sun grid engine un "open-source grid compu
 Consideraremos tres nodos:
 
 - Nodo maestro que tendrá el servicio master de gridengine en un contenedor de docker.
-- Nodo de procesamiento encargado de ejecución de procesos y será el cliente del servicio master de gridengine
+- Nodo de procesamiento que tendrá un contenedor de docker encargado de ejecución de procesos y el cliente del servicio master de gridengine
 - Nodo para la base de datos.
 
 ##Base de datos
@@ -25,18 +25,19 @@ $docker run --name postgres-server-madmex -v $(pwd):/results -p 32852:22 -p 3285
 -Requerimientos:
 
 	*Dirección IP del host en el que está levantado el servidor de postgres
-	*shells de creación de base de datos, ir a la carpeta comandos_base_de_datos_madmex de este repositorio
-	*shell madmex_database_install.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+
 
 -Ejemplo: 
 
 	*Dirección IP del host: 172.16.9.147
 
+Ejecutar el siguiente comando:
+
 ```
 $docker exec -u=postgres -it postgres-server-madmex /bin/bash /results/madmex_database_install.sh 172.16.9.147 32851
 ```
 
-###Levantamiento del servicio master de gridengine
+##Levantamiento del servicio master de gridengine
 
 
 
