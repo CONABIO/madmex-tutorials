@@ -177,7 +177,10 @@ Ejecutamos el siguiente comando:
 
 ```
 
-docker run -h $(hostname -f) --name madmex_ws_proc -v /tmp/madmex_temporal:/services/localtemp/temp -p 2225:22 -p 8800:8800 -v /carpeta_compartida/:/LUSTRE/MADMEX/ -v /configuraciones/config/supervisor/madmex_webservices_supervisord.conf:/etc/supervisor/conf.d/supervisord.conf -d -t madmex/ws /usr/bin/supervisord
+docker run -h $(hostname -f) --name madmex_ws_proc -v /tmp/madmex_temporal:/services/localtemp/temp -p 2225:22 \
+-p 8800:8800 -v /carpeta_compartida/:/LUSTRE/MADMEX/ \
+-v /configuraciones/config/supervisor/madmex_webservices_supervisord.conf:/etc/supervisor/conf.d/supervisord.conf \
+ -d -t madmex/ws /usr/bin/supervisord
 
 
 ```
