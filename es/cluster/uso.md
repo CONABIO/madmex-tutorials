@@ -158,7 +158,7 @@ La imagen de docker "madmex/ws" tiene las dependencias necesarias para comunicar
 
 el archivo de configuración "madmex_webservices_supervisord.conf", "nodo.txt", "configuration.ini" están en cluster/configuraciones de este repositorio.
 
-Modificar el "configuration.ini" en la parte de database-madmex y database-classification en el hostname para la ip del host donde corre la base de datos
+*NOTA:* modificar el "configuration.ini" en la parte de database-madmex y database-classification en donde dice "hostname" para la ip del host donde está levantado el servidor de la base de datos
 
 En la carpeta code clonamos el repositorio CONABIO/madmex-v2
 
