@@ -32,14 +32,14 @@ $docker run --name postgres-server-madmex -v $(pwd):/results -p 32852:22 -p 3285
 
 -Requerimientos:
 
-	* Dirección IP del contenedor en el que está levantado el servidor de postgres, para saber la IP ejecutamos:
+	*Dirección IP del contenedor en el que está levantado el servidor de postgres. Para saber la IP ejecutamos:
 
 ```
 $docker inspect postgres-server-madmex|grep IPA
 
 ```
 
-	La dirección IPAddress es la que buscamos.
+La dirección IPAddress es la que buscamos.
 
 
 -Ejemplo: 
