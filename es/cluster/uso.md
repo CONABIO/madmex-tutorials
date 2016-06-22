@@ -110,6 +110,8 @@ Creamos el grupo @allhosts:
 ```
 root@nodomaestro:/# qconf -ahgrp @allhosts
 ```
+no modificamos nada de este archivo, tecleamos ESC y luego :x!
+
 
 Creamos la queue miqueue.q:
 
