@@ -54,8 +54,7 @@ $docker exec -u=postgres -it postgres-server-madmex /bin/bash /results/madmex_da
 En el nodo maestro ejecutar el siguiente comando:
 
 ```
-
-$docker run --name master-sge-container -h $(hostname -f) -v $(pwd):/data -p 6444:6444 -p 2224:22 \
+$docker run --name master-sge-container -h $(hostname -f) -v /carpeta_compartida:/LUSTRE/MADMEX -p 6444:6444 -p 2224:22 \
 -p 8083:80 -p 6445:6445 -dt madmex/sge_dependencies /bin/bash
 
 ```
@@ -93,6 +92,38 @@ $root@nodomaestro:/# qhost
 
 ```
 
+Configuramos al nodomaestro como submit host:
+
+```
+root@nodomaestro:/# qconf -as nodomaestro
+```
+
+Creamos el grupo @allhosts:
+
+```
+root@nodomaestro:/# qconf -ahgrp @allhosts
+```
+
+Creamos la queue miqueue.q:
+
+```
+root@nodomaestro:/# qconf -aq miqueue.q
+
+```
+
+Añadimos el grupo @allhosts a la queue:
+
+```
+root@nodomaestro:/# qconf -aattr queue hostlist @allhosts miqueue.q
+
+```
+
+Configuramos el número de cores que usarán los nodos de procesamiento, por ejemplo 2:
+
+```
+root@nodomaestro:/# qconf -aattr queue slots "2" miqueue.q
+```
+
 Salimos del docker para finalizar la configuración del servicio maestro de sun grid engine:
 
 ```
@@ -103,16 +134,68 @@ $root@nodomaestro:/# exit
 Ahora podremos visualizar en un browser la página: nodomaestro:8083/qstat que es un servicio de web para "queue monitoring de sun grid engine"
 
 
+
+
 ##Levantamiento de clientes de sun grid engine
 
 
-La imagen de docker "madmex/ws" tiene las dependencias necesarias para comunicarse con el servicio maestro de gridengine, por lo que en los nodos de procesamiento necesitamos el archivo de configuración "madmex_webservices_supervisord.conf" (ir a cluster/configuraciones de este repositorio) ejecutamos el siguiente comando:
+La imagen de docker "madmex/ws" tiene las dependencias necesarias para comunicarse con el servicio maestro de gridengine, por lo que en los nodos de procesamiento necesitamos lo siguiente:
 
-docker run -h $(hostname -f) -v /tmp/madmex_temporal:/services/localtemp/temp -p 2225:22 -p 8800:8800 -v /carpeta_compartida/:/LUSTRE/MADMEX/ -v /configuraciones/config/supervisor/madmex_webservices_supervisord.conf:/etc/supervisor/conf.d/supervisord.conf -d -t madmex_ws /usr/bin/supervisord
+- Árbol de directorios:
 
-en donde suponemos que dentro /configuraciones tenemos el archivo de configuración, /carpeta_compartida es la carpeta compartida por todos los nodos y /tmp/madmex_temporal es una carpeta temporal para almacenamiento de resultados de procesos
+/carpetacompartida/gridengine/nodo.txt
+
+/carpetacompartida/docker/logging/
+
+/configuraciones/config/supervisor/madmex_webservices_supervisord.conf
+
+/tmp/madmex_temporal
+
+el archivo de configuración "madmex_webservices_supervisord.conf" y nodo.txt está en cluster/configuraciones de este repositorio
+
+Ejecutamos el siguiente comando:
+
+```
+docker run -h $(hostname -f) --name madmex_ws_proc -v /tmp/madmex_temporal:/services/localtemp/temp -p 2225:22 -p 8800:8800 -v /carpeta_compartida/:/LUSTRE/MADMEX/ -v /configuraciones/config/supervisor/madmex_webservices_supervisord.conf:/etc/supervisor/conf.d/supervisord.conf -d -t madmex/ws /usr/bin/supervisord
+
+```
+
+Entramos al docker:
+
+```
+$docker exec -it madmex_ws_proc /bin/bash
+
+```
+Configuramos el archivo: /var/lib/gridengine/conabio/common/act_qmaster para que diga el nombre del nodo maestro: nodomaestro
 
 
+En el nodomaestro entramos al contenedor en el que corre el servicio maestro:
+
+```
+docker exec -it master-sge-container /bin/bash
+
+```
+
+Configuramos el cliente:
+
+Añadimos al nodo de procesamiento "nodoproc1" como submit host:
+
+```
+root@nodomaestro:/# qconf -as nodoproc1
+```
+
+En la entrada de hostname escribimos "nodoproc1" al ejecutar el siguiente comando:
+
+```
+root@nodomaestro:/# qconf -ae
+```
+
+
+Añadimos nodoproc1 al grupo @allhosts:
+
+```
+root@nodomaestro:/# qconf -aattr hostgroup hostlist nodo3.conabio.gob.mx @allhosts
+```
 
 
 ##Landsat
