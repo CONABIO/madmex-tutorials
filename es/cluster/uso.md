@@ -4,11 +4,19 @@ Es crucial una instalación de docker en su sistema: https://www.docker.com/
 
 En esta versión de madmex utilizamos sun grid engine un "open-source grid computing cluster software system para distributed resource management y job distribution". Se encarga del "scheduling", "dispatching" y "managing" de jobs.
 
-Consideraremos tres nodos:
+Consideraremos cuatro nodos:
 
-- Nodo maestro que tendrá el servicio master de gridengine en un contenedor de docker.
-- Nodo de procesamiento que tendrá un contenedor de docker encargado de ejecución de procesos y el cliente del servicio master de gridengine
+- Nodo maestro que tendrá el servicio master de sun grid engine en un contenedor de docker.
+- Dos nodos de procesamiento que tendrán un contenedor de docker encargado de ejecución de procesos y el cliente del servicio master de sun grid engine.
 - Nodo para la base de datos.
+
+Especificaciones para los nodos:
+
+- Nodo maestro:
+
+- Nodos de procesamiento:
+
+- Nodo para la base de datos:
 
 ##Base de datos
 
@@ -37,10 +45,57 @@ Ejecutar el siguiente comando:
 $docker exec -u=postgres -it postgres-server-madmex /bin/bash /results/madmex_database_install.sh 172.16.9.147 32851
 ```
 
-##Levantamiento del servicio master de gridengine
+##Levantamiento del servicio master de sun grid engine
 
+En el nodo maestro ejecutar el siguiente comando:
 
+```
 
+$docker run --name master-sge-container -h $(hostname -f) -v $(pwd):/data -p 6444:6444 -p 2224:22 -p 8083:80 -p 6445:6445 -dt madmex/sge_dependencies /bin/bash
+
+```
+
+Entrar al contenedor de docker que acabamos de ejecutar con el comando anterior haciendo:
+
+```
+docker exec -it master-sge-container /bin/bash
+
+```
+Dentro del docker ejecutar los siguientes comandos, en estos comandos suponemos que el hostname del nodo maestro es "nodomaestro":
+
+```
+root@nodomaestro:/# service apache2 start
+
+root@nodomaestro:/# service ssh restart
+
+root@nodomaestro:/#apt-get install -y gridengine-client gridengine-exec gridengine-master
+
+```
+
+El último comando nos llevará a una serie de configuraciones para el servicio maestro de sun grid engine. Seleccionar los defaults y en la pantalla en la que se pregunte por el SGE master hostname escribir nodomaestro.
+
+Ejecutamos:
+
+```
+$root@nodomaestro:/# /etc/init.d/gridengine-master restart
+
+```
+
+Y al ejecutar el siguiente comando no deben salir errores:
+
+```
+$root@nodomaestro:/# qhost
+
+```
+
+Salimos del docker para finalizar la configuración del servicio maestro de sun grid engine:
+
+```
+$root@nodomaestro:/# exit
+
+```
+
+Ahora podremos visualizar en un browser la página: nodomaestro:8083/qstat que es un servicio de web para queue monitoring de sun grid engine
 
 
 
