@@ -12,11 +12,20 @@
 #!/bin/bash
 #$1 es el sensor, $2 es el path, $3 es el row, $4 es el año
 gsutil ls gs://earthengine-public/landsat/$1/$2/$3/|grep $4 > lista_landsat_tile_$2$3.txt
-mkdir /results/landsat_tile_$2$3
+mkdir -p /$(pwd)/landsat_tile_$2$3
 for file in $(cat lista_landsat_tile_$2$3.txt);do
-/usr/local/bin/gsutil cp -n $file /results/landsat_tile_$2$3/
+/usr/local/bin/gsutil cp -n $file /$(pwd)/landsat_tile_$2$3/
 done;
 ```
+
+*descarga_tile_landsat.sh*
+
+```
+#!/bin/bash
+#$1 es el sensor, $2 es el path, $3 es el row, $4 es el nombre del .tar.bz
+mkdir -p /LUSTRE/MADMEX/downloads_landsat
+/usr/local/bin/gsutil cp gs://earthengine-public/landsat/$1/$2/$3/$4 /LUSTRE/MADMEX/downloads_landsat
+``
 
 ####Preprocesamiento
 
@@ -99,15 +108,15 @@ gdal_translate -of ENVI cloud.img $(echo $newfilename)_MTLFmask
 
 ```
 #!/bin/bash
-#$1 es la ruta del archivo .tar.bz a ingestar
+source /LUSTRE/MADMEX/gridengine/nodo.txt
 filename=$(basename $1)
 newdir=$(echo $filename | sed -e "s/.tar.bz//g")
-folder=/results
+folder=$MADMEX_TEMP
 new_filename=$folder/$filename
 mkdir -p $folder/$newdir
+cp $1 $folder/$newdir
 cd $folder/$newdir
-tar xvjf $new_filename
-source /results/variables.txt
+tar xvjf $filename
 /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $folder/$newdir
 
 ```
