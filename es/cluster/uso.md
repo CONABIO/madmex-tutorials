@@ -219,7 +219,7 @@ root@nodomaestro:/# qconf -ae
 Añadimos nodoproc1 al grupo @allhosts:
 
 ```
-root@nodomaestro:/# qconf -aattr hostgroup hostlist nodo3.conabio.gob.mx @allhosts
+root@nodomaestro:/# qconf -aattr hostgroup hostlist nodoproc1 @allhosts
 
 ```
 
