@@ -126,7 +126,7 @@ export MADMEX_DEBUG=True
 export MADMEX_TEMP=/services/localtemp/temp
 ```
 
-Archivo supervisord.conf:
+Archivo madmex_webservices_supervisord.conf:
 
 ```
 [supervisord]
