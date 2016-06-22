@@ -178,28 +178,28 @@ Entramos al docker:
 $docker exec -it madmex_ws_proc /bin/bash
 
 ```
-Configuramos el archivo: /var/lib/gridengine/conabio/common/act_qmaster para que diga el nombre del nodo maestro: nodomaestro
+Configuramos el archivo: /var/lib/gridengine/conabio/common/act_qmaster para que diga el nombre del nodo maestro: "nodomaestro"
 
 
-En el nodomaestro entramos al contenedor en el que corre el servicio maestro:
+En el "nodomaestro" entramos al contenedor en el que corre el servicio maestro para configuración de los clientes (nodos de procesamiento)
 
 ```
 docker exec -it master-sge-container /bin/bash
 
 ```
 
-Configuramos el cliente:
-
 Añadimos al nodo de procesamiento "nodoproc1" como submit host:
 
 ```
 root@nodomaestro:/# qconf -as nodoproc1
+
 ```
 
 En la entrada de hostname escribimos "nodoproc1" al ejecutar el siguiente comando:
 
 ```
 root@nodomaestro:/# qconf -ae
+
 ```
 
 
@@ -207,7 +207,8 @@ Añadimos nodoproc1 al grupo @allhosts:
 
 ```
 root@nodomaestro:/# qconf -aattr hostgroup hostlist nodo3.conabio.gob.mx @allhosts
-``
+
+```
 
 
 ##Landsat
