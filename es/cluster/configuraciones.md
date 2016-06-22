@@ -30,7 +30,7 @@ debug=False
 schema_landmask = vectordata
 table_landmask = country_mexico
 landsat_footprint_table = vectordata.landsat_footprints_mexico
-hostname = 172.17.0.1
+hostname =172.16.9.147
 port = 32851
 dbname = madmex_database
 username = madmex_user
@@ -46,7 +46,7 @@ schema_landmask = vectordata
 table_landmask = mexcontinental_buffer
 landsat_footprint_table = vectordata.landsat_footprints_mexico
 landsat_overlap_table = vectordata.landsat_etm_mx_footprints_overlaps
-hostname = 172.17.0.1
+hostname =172.16.9.147
 port = 32851
 dbname = madmex_classification
 username = postgres
@@ -114,5 +114,41 @@ use_logstash = True
 logstash_host = madmexservices.conabio.gob.mx
 logstash_port = 5959
 logstash_log_level = INFO
+```
+
+Archivo nodo.txt:
+
+```
+export MADMEX=/LUSTRE/MADMEX/code/madmex
+export MRV_CONFIG=/LUSTRE/MADMEX/resources/config/configuration.ini
+export PYTHONPATH=$PYTHONPATH:$MADMEX
+export MADMEX_DEBUG=True
+export MADMEX_TEMP=/services/localtemp/temp
+```
+
+Archivo supervisord.conf:
+
+```
+[supervisord]
+nodaemon=true
+
+
+[program:sshd]
+command=/usr/sbin/sshd -D
+stderr_logfile = /LUSTRE/MADMEX/docker/logging/madmex_ws_ssh_stderr.log
+stdout_logfile = /LUSTRE/MADMEX/docker/logging/madmex_ws_ssh_stdout.log
+
+[program:gridengine]
+#user=sgeadmin
+command=/bin/bash -c "service gridengine-exec restart"
+stderr_logfile = /LUSTRE/MADMEX/docker/logging/madmex_ws_sge_stderr.log
+stdout_logfile = /LUSTRE/MADMEX/docker/logging/madmex_ws_sge_stdout.log
+
+
+#[program:madmex_webservice]
+#user=madmex_admin
+command=/bin/bash -c "source /LUSTRE/MADMEX/gridengine/nodo.txt && exec python /LUSTRE/MADMEX/code/madmex/interfaces/cli/start_madmex_ws.py 0.0.0.0 8800"
+stderr_logfile = /LUSTRE/MADMEX/docker/logging/madmex_ws_stderr.log
+stdout_logfile = /LUSTRE/MADMEX/docker/logging/madmex_ws_stdout.log
 
 ```
