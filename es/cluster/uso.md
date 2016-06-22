@@ -120,6 +120,8 @@ root@nodomaestro:/# qconf -aq miqueue.q
 
 ```
 
+no modificamos nada de este archivo, tecleamos ESC y luego :x!
+
 Añadimos el grupo @allhosts a la queue:
 
 ```
