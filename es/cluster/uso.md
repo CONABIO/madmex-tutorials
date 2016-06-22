@@ -83,7 +83,7 @@ root@nodomaestro:/#apt-get install -y gridengine-client gridengine-exec gridengi
 
 ```
 
-El último comando nos llevará a una serie de configuraciones para el servicio maestro de sun grid engine. Seleccionar los defaults y en la pantalla en la que se pregunte por el SGE master hostname escribir nodomaestro.
+El último comando nos llevará a una serie de configuraciones para el servicio maestro de sun grid engine. Seleccionar los defaults y en la pantalla en la que se pregunte por "SGE master hostname" escribir "nodomaestro".
 
 Reiniciamos servicio maestro de sun grid engine:
 
