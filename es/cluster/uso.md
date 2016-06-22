@@ -54,8 +54,8 @@ $docker exec -u=postgres -it postgres-server-madmex /bin/bash /results/madmex_da
 En el nodo maestro ejecutar el siguiente comando:
 
 ```
-$docker run --name master-sge-container -h $(hostname -f) -v /carpeta_compartida:/LUSTRE/MADMEX -p 6444:6444 -p 2224:22 \
--p 8083:80 -p 6445:6445 -dt madmex/sge_dependencies /bin/bash
+$docker run --name master-sge-container -h $(hostname -f) -v /carpeta_compartida:/LUSTRE/MADMEX -p 6444:6444 \ 
+-p 2224:22 -p 8083:80 -p 6445:6445 -dt madmex/sge_dependencies /bin/bash
 
 ```
 
