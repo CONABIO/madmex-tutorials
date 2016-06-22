@@ -32,12 +32,12 @@ $docker run --name postgres-server-madmex -v $(pwd):/results -p 32852:22 -p 3285
 
 -Requerimientos:
 
-	*Dirección IP del container en el que está levantado el servidor de postgres
+	*Dirección IP del contenedor en el que está levantado el servidor de postgres
 
 
 -Ejemplo: 
 
-	*Dirección IP del container: 172.17.0.2
+	*Dirección IP del contenedor: 172.17.0.2
 
 Ejecutar el siguiente comando:
 
@@ -160,7 +160,7 @@ el archivo de configuración "madmex_webservices_supervisord.conf", "nodo.txt", 
 
 Modificar el "configuration.ini" en la parte de database-madmex y database-classification en el hostname para la ip del host donde corre la base de datos
 
-en la carpeta code clonamos el repositorio CONABIO/madmex-v2
+En la carpeta code clonamos el repositorio CONABIO/madmex-v2
 
 Ejecutamos el siguiente comando:
 
