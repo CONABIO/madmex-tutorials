@@ -154,13 +154,13 @@ La imagen de docker "madmex/ws" tiene las dependencias necesarias para comunicar
 
 - Árbol de directorios:
 
-		/carpetacompartida/gridengine/nodo.txt
+		/carpeta_compartida/gridengine/nodo.txt
 
-		/carpetacompartida/docker/logging/
+		/carpeta_compartida/docker/logging/
 
-		/carpetacompartida/code
+		/carpeta_compartida/code
 
-		/carpetacompartida/resources/config/configuration.ini
+		/carpeta_compartida/resources/config/configuration.ini
 
 		/configuraciones/config/supervisor/madmex_webservices_supervisord.conf
 
