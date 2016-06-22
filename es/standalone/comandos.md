@@ -105,8 +105,9 @@ newdir=$(echo $filename | sed -e "s/.tar.bz//g")
 folder=/results
 new_filename=$folder/$filename
 mkdir -p $folder/$newdir
+cp $1 $folder/$newdir
 cd $folder/$newdir
-tar xvjf $new_filename
+tar xvjf $filename
 source /results/variables.txt
 /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $folder/$newdir
 
