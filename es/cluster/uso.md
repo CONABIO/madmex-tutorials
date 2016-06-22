@@ -32,17 +32,17 @@ $docker run --name postgres-server-madmex -v $(pwd):/results -p 32852:22 -p 3285
 
 -Requerimientos:
 
-	*Dirección IP del host en el que está levantado el servidor de postgres
+	*Dirección IP del container en el que está levantado el servidor de postgres
 
 
 -Ejemplo: 
 
-	*Dirección IP del host: 172.16.9.147
+	*Dirección IP del container: 172.17.0.2
 
 Ejecutar el siguiente comando:
 
 ```
-$docker exec -u=postgres -it postgres-server-madmex /bin/bash /results/madmex_database_install.sh 172.16.9.147 32851
+$docker exec -u=postgres -it postgres-server-madmex /bin/bash /results/madmex_database_install.sh 172.17.0.2 5432
 ```
 
 ## Carpeta compartida por todos los nodos vía nfs:
@@ -195,7 +195,7 @@ Añadimos nodoproc1 al grupo @allhosts:
 
 ```
 root@nodomaestro:/# qconf -aattr hostgroup hostlist nodo3.conabio.gob.mx @allhosts
-```
+``
 
 
 ##Landsat
