@@ -45,17 +45,22 @@ Ejecutar el siguiente comando:
 $docker exec -u=postgres -it postgres-server-madmex /bin/bash /results/madmex_database_install.sh 172.16.9.147 32851
 ```
 
+## Carpeta compartida por todos los nodos vía nfs:
+
+
+
 ##Levantamiento del servicio master de sun grid engine
 
 En el nodo maestro ejecutar el siguiente comando:
 
 ```
 
-$docker run --name master-sge-container -h $(hostname -f) -v $(pwd):/data -p 6444:6444 -p 2224:22 -p 8083:80 -p 6445:6445 -dt madmex/sge_dependencies /bin/bash
+$docker run --name master-sge-container -h $(hostname -f) -v $(pwd):/data -p 6444:6444 -p 2224:22 \
+-p 8083:80 -p 6445:6445 -dt madmex/sge_dependencies /bin/bash
 
 ```
 
-Entrar al contenedor de docker que acabamos de ejecutar con el comando anterior haciendo:
+Entrar al contenedor de docker que acabamos de iniciar con el comando anterior ejecutando la siguiente línea:
 
 ```
 docker exec -it master-sge-container /bin/bash
@@ -74,7 +79,7 @@ root@nodomaestro:/#apt-get install -y gridengine-client gridengine-exec gridengi
 
 El último comando nos llevará a una serie de configuraciones para el servicio maestro de sun grid engine. Seleccionar los defaults y en la pantalla en la que se pregunte por el SGE master hostname escribir nodomaestro.
 
-Ejecutamos:
+Reiniciamos servicio maestro de sun grid engine:
 
 ```
 $root@nodomaestro:/# /etc/init.d/gridengine-master restart
@@ -95,7 +100,18 @@ $root@nodomaestro:/# exit
 
 ```
 
-Ahora podremos visualizar en un browser la página: nodomaestro:8083/qstat que es un servicio de web para queue monitoring de sun grid engine
+Ahora podremos visualizar en un browser la página: nodomaestro:8083/qstat que es un servicio de web para "queue monitoring de sun grid engine"
+
+
+##Levantamiento de clientes de sun grid engine
+
+
+La imagen de docker "madmex/ws" tiene las dependencias necesarias para comunicarse con el servicio maestro de gridengine, por lo que en los nodos de procesamiento necesitamos el archivo de configuración "madmex_webservices_supervisord.conf" (ir a cluster/configuraciones de este repositorio) ejecutamos el siguiente comando:
+
+docker run -h $(hostname -f) -v /tmp/madmex_temporal:/services/localtemp/temp -p 2225:22 -p 8800:8800 -v /carpeta_compartida/:/LUSTRE/MADMEX/ -v /configuraciones/config/supervisor/madmex_webservices_supervisord.conf:/etc/supervisor/conf.d/supervisord.conf -d -t madmex_ws /usr/bin/supervisord
+
+en donde suponemos que dentro /configuraciones tenemos el archivo de configuración, /carpeta_compartida es la carpeta compartida por todos los nodos y /tmp/madmex_temporal es una carpeta temporal para almacenamiento de resultados de procesos
+
 
 
 
@@ -109,6 +125,7 @@ Ahora podremos visualizar en un browser la página: nodomaestro:8083/qstat que e
 	* Año a descargar imágenes
 	* Instrumento a elegir entre tm, etm+, oli-tirs
 	* shell de descarga que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+	* Debe estar corriendo el contenedor 
 
 -Ejemplo: descarga todas las imágenes landsat del año 2015
 
@@ -116,11 +133,16 @@ Ahora podremos visualizar en un browser la página: nodomaestro:8083/qstat que e
 	* año: 2015
 	* Instrumento: etm+ (L7)
 
-Para la siguiente línea usar el shell *descarga_landsat.sh*
+Entramos al docker de madmex/ws
+
 
 ```
-$docker run --rm -v $(pwd):/results  madmex/ws:latest /bin/sh -c '/results/descarga_landsat.sh L7 021 048 2015'
+$docker exec -it madmex/ws:latest /bin/bash
 ```
+
+Para la siguiente línea usar el shell *descarga_landsat.sh*
+
+/bin/sh -c '/results/descarga_landsat.sh L7 021 048 2015'
 
 En el directorio en el que se ejecutó el comando tendremos la carpeta: *landsat_tile_021048*
 
