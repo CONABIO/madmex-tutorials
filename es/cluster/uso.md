@@ -162,6 +162,7 @@ La imagen de docker "madmex/ws" tiene las dependencias necesarias para comunicar
 
 		/carpeta_compartida/resources/config/configuration.ini
 
+
 		/configuraciones/config/supervisor/madmex_webservices_supervisord.conf
 
 		/tmp/madmex_temporal
@@ -171,8 +172,8 @@ los archivos de configuración "madmex_webservices_supervisord.conf", "nodo.txt"
 
 *NOTAS:* 
 
-- La carpeta de carpeta_compartida además de contener diferentes archivos y el código del sistema madmex, será aquella en la que se copien las imágenes descargadas y descomprimidas en un árbol de directorios. Por esto, debe tener suficiente capacidad de almacenamiento.
-- La carpeta de madmex_temporal contendrá archivos resultado de los procesos usados por el sistema madmex. Por esto, debe tener suficiente capacidad de almacenamiento.
+- La carpeta con nombre carpeta_compartida además de contener diferentes archivos y el código del sistema madmex, será aquella en la que se copien las imágenes descargadas y descomprimidas en un árbol de directorios. Por esto, debe tener suficiente capacidad de almacenamiento.
+- La carpeta con nombre madmex_temporal contendrá archivos resultado de los procesos usados por el sistema madmex. Por esto, debe tener suficiente capacidad de almacenamiento.
 - Debemos modificar el "configuration.ini" en la parte de database-madmex y database-classification en donde dice "hostname" para la ip del host donde está levantado el servidor de la base de datos.
 - En la carpeta code tenemos que clonar el repositorio CONABIO/madmex-v2.
 
@@ -239,46 +240,86 @@ root@nodomaestro:/# qconf -aattr hostgroup hostlist nodoproc1 @allhosts
 	* shell de descarga que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 	* Debe estar corriendo el contenedor 
 
+Creamos dentro de la carpeta compartida el siguiente árbol de directorios:
+
+	/carpeta_compartida/descarga_landsat
+
+En la carpeta descarga_landsat colocamos el shell de descarga: "descarga_landsat.sh"
+
 -Ejemplo: descarga todas las imágenes landsat del año 2015
 
 	* path: 021, row: 048
 	* año: 2015
 	* Instrumento: etm+ (L7)
 
-Entramos al docker de madmex/ws
-
+En el nodo maestro entramos al docker del servicio maestro de sun grid engine:
 
 ```
-$docker exec -it madmex/ws:latest /bin/bash
+docker exec -it master-sge-container /bin/bash
+
 ```
 
-Para la siguiente línea usar el shell *descarga_landsat.sh*
+Dentro de /carpeta_compartida/descarga_landsat ejecutamos el siguiente comando:
 
-/bin/sh -c '/results/descarga_landsat.sh L7 021 048 2015'
+```
+qsub -S /bin/bash -cwd /carpeta_compartida/descarga_landsat/descarga_landsat.sh L7 021 048 2015
+```
 
-En el directorio en el que se ejecutó el comando tendremos la carpeta: *landsat_tile_021048*
+En el directorio /carpeta_compartida/descarga_landsat/ tendremos la carpeta: *landsat_tile_021048*
 
 En esta carpeta se encuentran archivos con extensión *.tar.bz
+
+También tendremos archivos de logs:
+
+descarga_landsat.sh.e9  descarga_landsat.sh.o9
+
+ que nos ayudan a revisar que el proceso se inició/ejecuta/finaliza de forma correcta.
+
+ De igual forma podemos visualizar: nodomaestro:8083/qstat/qstat.cgi para monitorear el job.
+
+ Si quisiéramos detener el job podemos usar el comando en dentro del contenedor del servicio maestro de sun grid engine:
+
+ ```
+$qdel numero_job
+ ```
+
+ en donde numero_job es el número del job que quisiéramos borrar/detener.
 
 
 -Ejemplo descarga de un archivo: 
 
-Podemos listar los archivos disponibles de landsat con el siguiente comando, por ejemplo para Landsat 7 path 021, row 048:
-
-
-```
-$docker run --rm -v $(pwd):/results  madmex/ws:latest gsutil ls gs://earthengine-public/landsat/L7/021/048/
-```
-
-Archivo a descargar gs://earthengine-public/landsat/L7/021/049/LE70210492015007EDC00.tar.bz
+Podemos listar los archivos disponibles de landsat con el siguiente comando, por ejemplo para Landsat 7 path 021, row 048 entramos al contenedor madmex/ws que corre en los nodos de procesamiento
 
 ```
-$docker run --rm -v $(pwd):/results  madmex/ws:latest gsutil \ 
+$docker exec -it madmex/ws /bin/bash
 
-cp gs://earthengine-public/landsat/L7/021/049/LE70210492015007EDC00.tar.bz /results
 ```
 
-En el directorio en el que se ejecutó el comando tendremos el archivo descargado
+Y ejecutamos:
+
+```
+gsutil ls gs://earthengine-public/landsat/L7/021/048/
+```
+
+para listar todos los archivos disponibles para su descarga del sensor L7 del path 021, row 048.
+
+Por ejemplo, si quisiéramos descargar el archivo gs://earthengine-public/landsat/L7/021/049/LE70210492015007EDC00.tar.bz
+
+Entramos al contenedor del servicio maestro de sun grid engine:
+
+```
+docker exec -it master-sge-container /bin/bash
+
+```
+
+
+y ejecutamos el siguiente comando en el contenedor:
+
+```
+$qsub -S /bin/bash -cwd /carpeta_compartida/descarga_landsat/descarga_tile_landsat.sh L7 021 049 LE70210492015007EDC00.tar.bz /carpeta_compartida/descarga_landsat
+```
+
+En el directorio /carpeta_compartida/descarga_landsat tendremos el archivo descargado.
 
 
 ###Preprocesamiento
