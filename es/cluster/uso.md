@@ -224,13 +224,32 @@ Añadimos nodoproc1 al grupo @allhosts:
 $root@nodomaestro:/# qconf -aattr hostgroup hostlist nodoproc1 @allhosts
 
 ```
+
+En el nodo "nodoproc1" ejecutamos:
+
+```
+#/etc/init.d/gridengine-exec restart
+
+```
+
+Lo anterior se realiza para los otros nodos de procesamiento.
+
 Una vez levantados estos tres requerimientos: base de datos, master service y cliente de sun grid engine podemos realizar los siguientes procesos.
 
 En la siguiente explicación utilizaremos "$" para especificar que ejecutamos el comando en el host y "#" para especificar que se ejecuta en el contenedor respectivo.
 
+Los procesos los lanzaremos en el contenedor del servicio maestro de gridengine.
+
 ##Landsat
 
 ###Descarga de imágenes
+
+En el nodo maestro entramos al docker del servicio maestro de sun grid engine:
+
+```
+$docker exec -it master-sge-container /bin/bash
+
+```
 
 -Requerimientos:
 
@@ -239,9 +258,9 @@ En la siguiente explicación utilizaremos "$" para especificar que ejecutamos el
 	* Instrumento a elegir entre tm, etm+, oli-tirs
 	* shell de descarga que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
-Creamos dentro de la carpeta compartida el siguiente árbol de directorios:
+Creamos dentro de la carpeta compartida (que en el contenedor se llama /LUSTRE/MADMEX) el siguiente árbol de directorios:
 
-	/carpeta_compartida/descarga_landsat
+	/LUSTRE/MADMEX/descarga_landsat
 
 En la carpeta descarga_landsat colocamos el shell de descarga: "descarga_landsat.sh"
 
@@ -251,20 +270,13 @@ En la carpeta descarga_landsat colocamos el shell de descarga: "descarga_landsat
 	* año: 2015
 	* Instrumento: etm+ (L7)
 
-En el nodo maestro entramos al docker del servicio maestro de sun grid engine:
+Ejecutamos el siguiente comando:
 
 ```
-$docker exec -it master-sge-container /bin/bash
-
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/descarga_landsat.sh L7 021 048 2015
 ```
 
-Dentro de /carpeta_compartida/descarga_landsat ejecutamos el siguiente comando:
-
-```
-#qsub -S /bin/bash -cwd /carpeta_compartida/descarga_landsat/descarga_landsat.sh L7 021 048 2015
-```
-
-En el directorio /carpeta_compartida/descarga_landsat/ tendremos la carpeta: *landsat_tile_021048*
+En el directorio /LUSTRE/MADMEX/descarga_landsat/ tendremos la carpeta: *landsat_tile_021048*
 
 En esta carpeta se encuentran archivos con extensión *.tar.bz y también tendremos archivos de logs:
 
@@ -309,15 +321,14 @@ $docker exec -it master-sge-container /bin/bash
 
 ```
 
-
 y ejecutamos el siguiente comando en el contenedor:
 
 ```
-#qsub -S /bin/bash -cwd /carpeta_compartida/descarga_landsat/descarga_tile_landsat.sh L7 021 049 \
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/descarga_landsat/descarga_tile_landsat.sh L7 021 049 \
 LE70210492015007EDC00.tar.bz /carpeta_compartida/descarga_landsat
 ```
 
-En el directorio /carpeta_compartida/descarga_landsat tendremos el archivo descargado.
+En el directorio /LUSTRE/MADMEX/descarga_landsat tendremos el archivo descargado.
 
 
 ###Preprocesamiento
