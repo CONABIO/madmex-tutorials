@@ -227,7 +227,7 @@ root@nodomaestro:/# qconf -aattr hostgroup hostlist nodoproc1 @allhosts
 ```
 Una vez levantados estos tres requerimientos: base de datos, master service y cliente de sun grid engine podemos realizar los siguientes procesos.
 
-Utilizamos "$"" para especificar que ejecutamos el comando en el host y "#" para especificar que se ejecuta en el contenedor respectivo.
+Utilizamos "$" para especificar que ejecutamos el comando en el host y "#" para especificar que se ejecuta en el contenedor respectivo.
 
 ##Landsat
 
