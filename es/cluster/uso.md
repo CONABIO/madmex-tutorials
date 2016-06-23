@@ -267,9 +267,7 @@ qsub -S /bin/bash -cwd /carpeta_compartida/descarga_landsat/descarga_landsat.sh 
 
 En el directorio /carpeta_compartida/descarga_landsat/ tendremos la carpeta: *landsat_tile_021048*
 
-En esta carpeta se encuentran archivos con extensión *.tar.bz
-
-También tendremos archivos de logs:
+En esta carpeta se encuentran archivos con extensión *.tar.bz y también tendremos archivos de logs:
 
 descarga_landsat.sh.e9  descarga_landsat.sh.o9
 
@@ -316,7 +314,8 @@ docker exec -it master-sge-container /bin/bash
 y ejecutamos el siguiente comando en el contenedor:
 
 ```
-$qsub -S /bin/bash -cwd /carpeta_compartida/descarga_landsat/descarga_tile_landsat.sh L7 021 049 LE70210492015007EDC00.tar.bz /carpeta_compartida/descarga_landsat
+$qsub -S /bin/bash -cwd /carpeta_compartida/descarga_landsat/descarga_tile_landsat.sh L7 021 049 \
+LE70210492015007EDC00.tar.bz /carpeta_compartida/descarga_landsat
 ```
 
 En el directorio /carpeta_compartida/descarga_landsat tendremos el archivo descargado.
