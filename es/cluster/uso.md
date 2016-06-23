@@ -75,11 +75,11 @@ $docker exec -it master-sge-container /bin/bash
 Dentro del docker ejecutar los siguientes comandos, en estos comandos suponemos que el hostname del nodo maestro es "nodomaestro":
 
 ```
-root@nodomaestro:/# service apache2 start
+$root@nodomaestro:/# service apache2 start
 
-root@nodomaestro:/# service ssh restart
+$root@nodomaestro:/# service ssh restart
 
-root@nodomaestro:/#apt-get install -y gridengine-client gridengine-exec gridengine-master
+$root@nodomaestro:/#apt-get install -y gridengine-client gridengine-exec gridengine-master
 
 ```
 
