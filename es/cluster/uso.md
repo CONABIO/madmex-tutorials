@@ -225,7 +225,7 @@ $root@nodomaestro:/# qconf -aattr hostgroup hostlist nodoproc1 @allhosts
 
 ```
 
-En el nodo "nodoproc1" ejecutamos:
+En el contenedor del nodo "nodoproc1" ejecutamos:
 
 ```
 #/etc/init.d/gridengine-exec restart
