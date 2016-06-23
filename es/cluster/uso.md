@@ -162,7 +162,6 @@ La imagen de docker "madmex/ws" tiene las dependencias necesarias para comunicar
 
 		/carpeta_compartida/resources/config/configuration.ini
 
-
 		/configuraciones/config/supervisor/madmex_webservices_supervisord.conf
 
 		/tmp/madmex_temporal
