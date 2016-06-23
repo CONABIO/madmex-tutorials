@@ -225,7 +225,9 @@ Añadimos nodoproc1 al grupo @allhosts:
 root@nodomaestro:/# qconf -aattr hostgroup hostlist nodoproc1 @allhosts
 
 ```
+Una vez levantados estos tres requerimientos: base de datos, master service y cliente de sun grid engine podemos realizar los siguientes procesos.
 
+Utilizamos $ para especificar que ejecutamos el comando en el host y # para especificar que se ejecuta en el contenedor respectivo.
 
 ##Landsat
 
@@ -237,7 +239,6 @@ root@nodomaestro:/# qconf -aattr hostgroup hostlist nodoproc1 @allhosts
 	* Año a descargar imágenes
 	* Instrumento a elegir entre tm, etm+, oli-tirs
 	* shell de descarga que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* Debe estar corriendo el contenedor 
 
 Creamos dentro de la carpeta compartida el siguiente árbol de directorios:
 
@@ -254,14 +255,14 @@ En la carpeta descarga_landsat colocamos el shell de descarga: "descarga_landsat
 En el nodo maestro entramos al docker del servicio maestro de sun grid engine:
 
 ```
-docker exec -it master-sge-container /bin/bash
+$docker exec -it master-sge-container /bin/bash
 
 ```
 
 Dentro de /carpeta_compartida/descarga_landsat ejecutamos el siguiente comando:
 
 ```
-qsub -S /bin/bash -cwd /carpeta_compartida/descarga_landsat/descarga_landsat.sh L7 021 048 2015
+#qsub -S /bin/bash -cwd /carpeta_compartida/descarga_landsat/descarga_landsat.sh L7 021 048 2015
 ```
 
 En el directorio /carpeta_compartida/descarga_landsat/ tendremos la carpeta: *landsat_tile_021048*
@@ -277,7 +278,7 @@ descarga_landsat.sh.e9  descarga_landsat.sh.o9
  Si quisiéramos detener el job podemos usar el comando en dentro del contenedor del servicio maestro de sun grid engine:
 
  ```
-$qdel numero_job
+#qdel numero_job
  ```
 
  en donde numero_job es el número del job que quisiéramos borrar/detener.
@@ -295,7 +296,7 @@ $docker exec -it madmex/ws /bin/bash
 Y ejecutamos:
 
 ```
-gsutil ls gs://earthengine-public/landsat/L7/021/048/
+#gsutil ls gs://earthengine-public/landsat/L7/021/048/
 ```
 
 para listar todos los archivos disponibles para su descarga del sensor L7 del path 021, row 048.
@@ -305,7 +306,7 @@ Por ejemplo, si quisiéramos descargar el archivo gs://earthengine-public/landsa
 Entramos al contenedor del servicio maestro de sun grid engine:
 
 ```
-docker exec -it master-sge-container /bin/bash
+$docker exec -it master-sge-container /bin/bash
 
 ```
 
@@ -313,7 +314,7 @@ docker exec -it master-sge-container /bin/bash
 y ejecutamos el siguiente comando en el contenedor:
 
 ```
-$qsub -S /bin/bash -cwd /carpeta_compartida/descarga_landsat/descarga_tile_landsat.sh L7 021 049 \
+#qsub -S /bin/bash -cwd /carpeta_compartida/descarga_landsat/descarga_tile_landsat.sh L7 021 049 \
 LE70210492015007EDC00.tar.bz /carpeta_compartida/descarga_landsat
 ```
 
