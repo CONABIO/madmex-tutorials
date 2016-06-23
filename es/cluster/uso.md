@@ -170,6 +170,7 @@ La imagen de docker "madmex/ws" tiene las dependencias necesarias para comunicar
 los archivos de configuración "madmex_webservices_supervisord.conf", "nodo.txt", "configuration.ini" están en cluster/configuraciones.md de este repositorio.
 
 *NOTAS:* 
+
 	- La carpeta de carpeta_compartida además de contener diferentes archivos y el código del sistema madmex, será aquella en la que se copien las imágenes descargadas y descomprimidas en un árbol de directorios. Por esto, debe tener suficiente capacidad de almacenamiento.
 	- La carpeta de madmex_temporal contendrá archivos resultado de los procesos usados por el sistema madmex. Por esto, debe tener suficiente capacidad de almacenamiento.
 	- Debemos modificar el "configuration.ini" en la parte de database-madmex y database-classification en donde dice "hostname" para la ip del host donde está levantado el servidor de la base de datos.
