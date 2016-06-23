@@ -238,7 +238,7 @@ Una vez levantados estos tres requerimientos: base de datos, master service y cl
 
 En la siguiente explicación utilizaremos "$" para especificar que ejecutamos el comando en el host y "#" para especificar que se ejecuta en el contenedor respectivo.
 
-Los procesos los lanzaremos en el contenedor del servicio maestro de gridengine.
+Los procesos los lanzaremos en el contenedor del servicio maestro de sun grid engine.
 
 ##Landsat
 
