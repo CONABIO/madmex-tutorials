@@ -145,7 +145,7 @@ stderr_logfile = /LUSTRE/MADMEX/docker/logging/madmex_ws_sge_stderr.log
 stdout_logfile = /LUSTRE/MADMEX/docker/logging/madmex_ws_sge_stdout.log
 
 
-#[program:madmex_webservice]
+[program:madmex_webservice]
 #user=madmex_admin
 command=/bin/bash -c "source /LUSTRE/MADMEX/gridengine/nodo.txt && exec python /LUSTRE/MADMEX/code/madmex/interfaces/cli/start_madmex_ws.py 0.0.0.0 8800"
 stderr_logfile = /LUSTRE/MADMEX/docker/logging/madmex_ws_stderr.log
