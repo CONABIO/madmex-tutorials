@@ -325,7 +325,7 @@ y ejecutamos el siguiente comando en el contenedor:
 
 ```
 #qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/descarga_landsat/descarga_tile_landsat.sh L7 021 049 \
-LE70210492015007EDC00.tar.bz /carpeta_compartida/descarga_landsat
+LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/descarga_landsat
 ```
 
 En el directorio /LUSTRE/MADMEX/descarga_landsat tendremos el archivo descargado.
