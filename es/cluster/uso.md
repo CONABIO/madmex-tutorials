@@ -211,7 +211,7 @@ root@nodomaestro:/# qconf -as nodoproc1
 
 ```
 
-En la entrada de hostname escribimos "nodoproc1" al ejecutar el siguiente comando:
+Al ejecutar el siguiente comando se desplegará una pantalla en la que en la entrada de hostname escribiremos "nodoproc1" 
 
 ```
 root@nodomaestro:/# qconf -ae
