@@ -69,7 +69,7 @@ $docker run --name master-sge-container -h $(hostname -f) -v /carpeta_compartida
 Entrar al contenedor de docker que acabamos de iniciar con el comando anterior ejecutando la siguiente línea:
 
 ```
-docker exec -it master-sge-container /bin/bash
+$docker exec -it master-sge-container /bin/bash
 
 ```
 Dentro del docker ejecutar los siguientes comandos, en estos comandos suponemos que el hostname del nodo maestro es "nodomaestro":
@@ -102,13 +102,13 @@ $root@nodomaestro:/# qhost
 Configuramos al nodomaestro como submit host:
 
 ```
-root@nodomaestro:/# qconf -as nodomaestro
+$root@nodomaestro:/# qconf -as nodomaestro
 ```
 
 Creamos el grupo @allhosts:
 
 ```
-root@nodomaestro:/# qconf -ahgrp @allhosts
+$root@nodomaestro:/# qconf -ahgrp @allhosts
 ```
 no modificamos nada de este archivo, tecleamos ESC y luego :x!
 
@@ -116,7 +116,7 @@ no modificamos nada de este archivo, tecleamos ESC y luego :x!
 Creamos la queue miqueue.q:
 
 ```
-root@nodomaestro:/# qconf -aq miqueue.q
+$root@nodomaestro:/# qconf -aq miqueue.q
 
 ```
 
@@ -125,14 +125,14 @@ no modificamos nada de este archivo, tecleamos ESC y luego :x!
 Añadimos el grupo @allhosts a la queue:
 
 ```
-root@nodomaestro:/# qconf -aattr queue hostlist @allhosts miqueue.q
+$root@nodomaestro:/# qconf -aattr queue hostlist @allhosts miqueue.q
 
 ```
 
 Configuramos el número de cores que usarán los nodos de procesamiento, por ejemplo 2:
 
 ```
-root@nodomaestro:/# qconf -aattr queue slots "2" miqueue.q
+$root@nodomaestro:/# qconf -aattr queue slots "2" miqueue.q
 ```
 
 Salimos del docker para finalizar la configuración del servicio maestro de sun grid engine:
@@ -143,7 +143,6 @@ $root@nodomaestro:/# exit
 ```
 
 Ahora podremos visualizar en un browser la página: nodomaestro:8083/qstat que es un servicio de web para "queue monitoring de sun grid engine"
-
 
 
 
@@ -180,7 +179,7 @@ Ejecutamos el siguiente comando:
 
 ```
 
-docker run -h $(hostname -f) --name madmex_ws_proc -v /tmp/madmex_temporal:/services/localtemp/temp -p 2225:22 \
+$docker run -h $(hostname -f) --name madmex_ws_proc -v /tmp/madmex_temporal:/services/localtemp/temp -p 2225:22 \
 -p 8800:8800 -v /carpeta_compartida/:/LUSTRE/MADMEX/ \
 -v /configuraciones/config/supervisor/madmex_webservices_supervisord.conf:/etc/supervisor/conf.d/supervisord.conf \
  -d -t madmex/ws /usr/bin/supervisord
@@ -200,21 +199,21 @@ Configuramos el archivo: /var/lib/gridengine/conabio/common/act_qmaster para que
 En el "nodomaestro" entramos al contenedor en el que corre el servicio maestro para configuración de los clientes (nodos de procesamiento)
 
 ```
-docker exec -it master-sge-container /bin/bash
+$docker exec -it master-sge-container /bin/bash
 
 ```
 
 Añadimos al nodo de procesamiento "nodoproc1" como submit host:
 
 ```
-root@nodomaestro:/# qconf -as nodoproc1
+$root@nodomaestro:/# qconf -as nodoproc1
 
 ```
 
 Al ejecutar el siguiente comando se desplegará una pantalla en la que en la entrada de hostname escribiremos "nodoproc1" 
 
 ```
-root@nodomaestro:/# qconf -ae
+$root@nodomaestro:/# qconf -ae
 
 ```
 
@@ -222,12 +221,12 @@ root@nodomaestro:/# qconf -ae
 Añadimos nodoproc1 al grupo @allhosts:
 
 ```
-root@nodomaestro:/# qconf -aattr hostgroup hostlist nodoproc1 @allhosts
+$root@nodomaestro:/# qconf -aattr hostgroup hostlist nodoproc1 @allhosts
 
 ```
 Una vez levantados estos tres requerimientos: base de datos, master service y cliente de sun grid engine podemos realizar los siguientes procesos.
 
-Utilizamos "$" para especificar que ejecutamos el comando en el host y "#" para especificar que se ejecuta en el contenedor respectivo.
+En la siguiente explicación utilizaremos "$" para especificar que ejecutamos el comando en el host y "#" para especificar que se ejecuta en el contenedor respectivo.
 
 ##Landsat
 
