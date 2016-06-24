@@ -24,7 +24,7 @@ done;
 #!/bin/bash
 #entrada: $1 es el sensor, $2 es el path, $3 es el row, $4 es el nombre del .tar.bz
 /usr/local/bin/gsutil cp gs://earthengine-public/landsat/$1/$2/$3/$4 $5
-```
+``
 
 ####Preprocesamiento
 
@@ -117,6 +117,8 @@ cp $1 $folder/$newdir
 cd $folder/$newdir
 tar xvjf $filename
 /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $folder/$newdir
+
+rm -r $folder/$newdir
 
 ```
 
