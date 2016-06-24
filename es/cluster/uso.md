@@ -373,16 +373,16 @@ Los resultados están en el path: /resultados_ledaps
 
 -Requerimientos:
 
-	* Para un archivo de Landsat tm o etm+: shell de fmask.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* Para un archivo de Landsat 8: shell de fmask_ls8.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* El sistema en el que se ejecutan los comandos debe tener más de 4096Mb.
+* Para un archivo de Landsat tm o etm+: shell de fmask.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* Para un archivo de Landsat 8: shell de fmask_ls8.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* El sistema en el que se ejecutan los comandos debe tener más de 4096Mb.
 
 -Ejemplo para Landsat 7: LE70210492015007EDC00.tar.bz
 
 
 
 ```
-#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/fmask/fmask.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz
+#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/fmask/fmask.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/fmask
 
 ```
 
