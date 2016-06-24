@@ -425,8 +425,8 @@ Necesitamos el siguiente árbol de directorios:
 
 -Ejemplo para el archivo: LC80210482015015LGN00.tar.bz. En este ejemplo:
 
-* En la carpeta carpeta_compartida/data_ingestion tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-* En la carpeta carpeta_compartida/descarga_landsat tenemos el archivo LC80210482015015LGN00.tar.bz
+* En la carpeta "carpeta_compartida/data_ingestion" tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* En la carpeta "carpeta_compartida/descarga_landsat" tenemos el archivo LC80210482015015LGN00.tar.bz
 
 Ejecutamos la siguiente línea en el contenedor del servicio maestro de sun grid engine:
 
@@ -441,12 +441,12 @@ Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el
 -Ejemplo para el folder: LC80210482015015LGN00. En este ejemplo:
 
 
-	* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
-	* En ruta: /resources/config tenemos el archivo configuration.ini
-	* En el directorio de trabajo tenemos el folder a ingestar: LC80210482015015LGN00
-	* En el directorio de trabajo tenemos el archivo de variables.txt
-	* En ruta: /datos/eodata queremos que se copien los archivos
+* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
+* En ruta: /resources/config tenemos el archivo configuration.ini
+* En el directorio de trabajo tenemos el folder a ingestar: LC80210482015015LGN00
+* En el directorio de trabajo tenemos el archivo de variables.txt
+* En ruta: /datos/eodata queremos que se copien los archivos
 
 Ejecutamos la siguiente línea
 
