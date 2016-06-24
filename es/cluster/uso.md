@@ -380,11 +380,10 @@ Los resultados están en el path: /resultados_ledaps
 -Ejemplo para Landsat 7: LE70210492015007EDC00.tar.bz
 
 
-Ejecutar el siguiente comando en el directorio que contiene el *.tar.bz
 
 ```
-$docker run --rm -v $(pwd):/data madmex/python-fmask /data/fmask_ls.sh \
-/data/LC80210482015303LGN00.tar.bzLE70210492015007EDC00.tar.bz
+#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/fmask/fmask.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz
+
 ```
 
 -Ejemplo para archivo de Landsat 8: LC80210482015015LGN00.tar.bz:
