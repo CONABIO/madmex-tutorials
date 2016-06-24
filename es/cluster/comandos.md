@@ -24,7 +24,7 @@ done;
 #!/bin/bash
 #entrada: $1 es el sensor, $2 es el path, $3 es el row, $4 es el nombre del .tar.bz
 /usr/local/bin/gsutil cp gs://earthengine-public/landsat/$1/$2/$3/$4 $5
-```
+``
 
 ####Preprocesamiento
 
@@ -66,20 +66,34 @@ rm -rf REANALYSIS
 
 ```
 #!/bin/bash
-#$1 es la ruta con los datos en forma .tar.bz
+#Entrada: $1 es la ruta con los datos en forma .tar.bz, $2 es la ruta que queremos se copien los archivos
+source /LUSTRE/MADMEX/gridengine/nodo.txt
 filename=$(basename $1)
 newdir=$(echo $filename | sed -e "s/.tar.bz//g")
-path=$(echo $PWD)
+path=$MADMEX_TEMP
 new_filename=$path/$filename
 mkdir -p $path/$newdir
 cd $path/$newdir
 tar xvjf $new_filename
-gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L*_B[1,2,3,4,5,7].TIF
-gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img L*_B6_VCID_?.TIF
-fmask_usgsLandsatSaturationMask.py -i ref.img -m *_MTL.txt -o saturationmask.img
-fmask_usgsLandsatTOA.py -i ref.img -m *_MTL.txt -o toa.img
-fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
-gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
+
+ssh docker@172.17.0.1 docker run --rm -v /Users/sge/tmp/madmex_temporal/$newdir:/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img $(ls $MADMEX_TEMP/$newdir|grep L.*_B[1-7].TIF)
+
+ssh docker@172.17.0.1 docker run --rm -v /Users/sge/tmp/madmex_temporal/$newdir:/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img $(ls $MADMEX_TEMP/$newdir|grep L.*_B6_VCID_[0-9].TIF)
+
+ssh docker@172.17.0.1 docker run --rm -v /Users/sge/tmp/madmex_temporal/$newdir:/data madmex/python-fmask fmask_usgsLandsatSaturationMask.py -i ref.img -m $(ls $MADMEX_TEMP/$newdir|grep .*_MTL.txt) -o saturationmask.img
+
+ssh docker@172.17.0.1 docker run --rm -v /Users/sge/tmp/madmex_temporal/$newdir:/data madmex/python-fmask fmask_usgsLandsatTOA.py -i ref.img -m $(ls $MADMEX_TEMP/$newdir|grep .*_MTL.txt) -o toa.img
+
+ssh docker@172.17.0.1 docker run --rm -v /Users/sge/tmp/madmex_temporal/$newdir:/data madmex/python-fmask fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m $(ls $MADMEX_TEMP/$newdir|grep .*_MTL.txt) -s saturationmask.img -o cloud.img
+
+cd $MADMEX_TEMP/$newdir && gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
+
+mkdir -p $MADMEX_TEMP/$newdir/maskfolder
+
+cd $MADMEX_TEMP/$newdir && cp *_MTL.txt maskfolder && mv *_MTLFmask* maskfolder
+
+cp -r $path/$newdir $2
+
 ```
 
 *fmask_ls8.sh*
