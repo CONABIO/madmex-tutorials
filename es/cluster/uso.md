@@ -334,18 +334,18 @@ En el directorio /LUSTRE/MADMEX/descarga_landsat tendremos el archivo descargado
 
 -Ejemplo para datos después del año 2012-2013 con el archivo LE70210492015007EDC00.tar.bz:
 
-	*En ruta: /datos_landsat tenemos el LE70210492015007EDC00.tar.bz
-	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
-	*En ruta: /ancillary_data tenemos descomprimido el ancillary data
-	*Usamos la imagen: ledaps/ledaps:latest
+* En la carpeta "carpeta_compartida/ledaps" tenemos el shell de ledaps.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+
+* En la carpeta "carpeta_compartida/ledaps" tenemos el archivo LE70210492015007EDC00.tar.bz
+
+* En la carpeta "/carpeta_compartida/ledaps_anc_after_2012" tenemos descomprimido el ancillary data
+* Usamos la imagen: ledaps/ledaps:latest
 
 Entonces ejecutamos el siguiente comando:
 
 
 ```
-docker run --rm -v /ancillary_data:/opt/ledaps \
--v /datos_landsat:/data -v /resultados_ledaps:/results \
-madmex/ledaps:latest /results/ledaps.sh /data/LE70210492015007EDC00.tar.bz /opt/ledaps
+#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/ledaps_anc_after_2012
 ```
 
 Los resultados están en el path: /resultados_ledaps
