@@ -339,13 +339,16 @@ En el directorio /LUSTRE/MADMEX/descarga_landsat tendremos el archivo descargado
 * En la carpeta "carpeta_compartida/descarga_landsat" tenemos el archivo LE70210492015007EDC00.tar.bz
 
 * En la carpeta "/carpeta_compartida/ledaps_anc" tenemos descomprimido el ancillary data
+
+* En la carpeta /carpeta_compartida/ledaps queremos los resultados
+
 * Usamos la imagen: ledaps/ledaps:latest
 
 Entonces ejecutamos el siguiente comando:
 
 
 ```
-#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/ledaps_anc /LUSTRE/MADMEX/ledaps
+#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/ledaps_anc/ledaps_aux_1978_2014 /LUSTRE/MADMEX/ledaps
 ```
 
 Los resultados están en el path: /resultados_ledaps
@@ -423,15 +426,15 @@ Necesitamos el siguiente árbol de directorios:
 * Shell de data_ingestion.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
 
--Ejemplo para el archivo: LC80210482015015LGN00.tar.bz. En este ejemplo:
+-Ejemplo para el archivo: LE70210492015007EDC00.tar.bz. En este ejemplo:
 
 * En la carpeta "carpeta_compartida/data_ingestion" tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-* En la carpeta "carpeta_compartida/descarga_landsat" tenemos el archivo LC80210482015015LGN00.tar.bz
+* En la carpeta "carpeta_compartida/descarga_landsat" tenemos el archivo LE70210492015007EDC00.tar.bz
 
 Ejecutamos la siguiente línea en el contenedor del servicio maestro de sun grid engine:
 
 ```
-#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/data_ingestion/data_ingestion.sh /LUSTRE/MADMEX/descarga_landsat/LC80210482015015LGN00.tar.bz
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/data_ingestion/data_ingestion.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz
 ```
 
 Los resultados están debajo del nivel /carpeta_compartida/eodata y en la base de datos.
