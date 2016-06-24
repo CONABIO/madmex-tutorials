@@ -151,7 +151,8 @@ Ahora podremos visualizar en un browser la página: nodomaestro:8083/qstat que e
 
 La imagen de docker "madmex/ws" tiene las dependencias necesarias para comunicarse con el servicio maestro de gridengine, por lo que en los nodos de procesamiento necesitamos lo siguiente:
 
-- Árbol de directorios:
+- Se deben tener permisos de escritura y el owner debe ser root para el Árbol de directorios:
+
 		/carpeta_compartida/docker/logging/
 
 		/configuraciones/config/supervisor/madmex_webservices_supervisord.conf
