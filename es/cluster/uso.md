@@ -152,14 +152,7 @@ Ahora podremos visualizar en un browser la página: nodomaestro:8083/qstat que e
 La imagen de docker "madmex/ws" tiene las dependencias necesarias para comunicarse con el servicio maestro de gridengine, por lo que en los nodos de procesamiento necesitamos lo siguiente:
 
 - Árbol de directorios:
-
-		/carpeta_compartida/gridengine/nodo.txt
-
 		/carpeta_compartida/docker/logging/
-
-		/carpeta_compartida/code
-
-		/carpeta_compartida/resources/config/configuration.ini
 
 		/configuraciones/config/supervisor/madmex_webservices_supervisord.conf
 
@@ -172,8 +165,7 @@ los archivos de configuración "madmex_webservices_supervisord.conf", "nodo.txt"
 
 - La carpeta con nombre carpeta_compartida además de contener diferentes archivos y el código del sistema madmex, será aquella en la que se copien las imágenes descargadas y descomprimidas en un árbol de directorios. Por esto, debe tener suficiente capacidad de almacenamiento.
 - La carpeta con nombre madmex_temporal contendrá archivos resultado de los procesos usados por el sistema madmex. Por esto, debe tener suficiente capacidad de almacenamiento.
-- Debemos modificar el "configuration.ini" en la parte de database-madmex y database-classification en donde dice "hostname" para la ip del host donde está levantado el servidor de la base de datos.
-- En la carpeta code tenemos que clonar el repositorio CONABIO/madmex-v2.
+- La carpeta logging debe tener permisos de escritura.
 
 Ejecutamos el siguiente comando:
 
@@ -407,45 +399,42 @@ Los resultados están en el directorio donde se ejecutó el comando.
 
 El proceso de ingestión de imágenes se realiza con el shell *data_ingestion.sh* al archivo .tar.bz o con el shell *data_ingestion_folder.sh* al folder descomprimido.
 
+Necesitamos el siguiente árbol de directorios:
+
+		/carpeta_compartida/gridengine/nodo.txt
+
+		/carpeta_compartida/code
+
+		/carpeta_compartida/resources/config/configuration.ini
+
+		/carpeta_compartida/eodata
+
+*NOTAS:* 
+
+- Debemos modificar el "configuration.ini" en la parte de database-madmex y database-classification en donde dice "hostname" para la ip del host donde está levantado el servidor de la base de datos.
+- En la carpeta code tenemos que clonar el repositorio CONABIO/madmex-v2.
+- El archivo configuration.ini y "nodo.txt" están en configuraciones.md de este repositorio.
+- En la carpeta "eodata" se copiarán las imágenes. También se realiza un registro en la base de datos.
+
+
 -Requerimientos:
 
 	* Imagen de docker para procesos: madmex/ws
 	* Shell de data_ingestion.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* Clonar repositorio de CONABIO/madmex-v2
-	* Archivo de configuración con el nombre "configuration.ini" ir a configuraciones.md de este respositorio
-	* Crear carpetas "resources/config" y colocar ahí el archivo de configuración
-	* Crear carpeta "eodata", aquí se copiaran las imágenes.
-	* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt" \
-	 en el directorio en donde está el shell:
 
-```
-export MADMEX=/LUSTRE/MADMEX/code/
-export MRV_CONFIG=$MADMEX/resources/config/configuration.ini
-export PYTHONPATH=$PYTHONPATH:$MADMEX
-export MADMEX_DEBUG=True
-export MADMEX_TEMP=/services/localtemp/temp
-
-```
 
 -Ejemplo para el archivo: LC80210482015015LGN00.tar.bz. En este ejemplo:
 
-	* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
-	* En ruta: /resources/config tenemos el archivo configuration.ini
-	* En el directorio de trabajo tenemos el archivo a ingestar: LC80210482015015LGN00.tar.bz
-	* En el directorio de trabajo tenemos el archivo de variables.txt
-	* En ruta: /datos/eodata queremos que se copien los archivos
+	* En la carpeta carpeta_compartida/data_ingestion tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+	* En la carpeta carpeta_compartida/descarga_landsat tenemos el archivo LC80210482015015LGN00.tar.bz
 
-Ejecutamos la siguiente línea
+Ejecutamos la siguiente línea en el contenedor del servicio maestro de sun grid engine:
 
 ```
-docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
--v /resources/config:/LUSTRE/MADMEX/code/resources/config \
--v /datos/eodata:/LUSTRE/MADMEX/eodata -v $(pwd):/results madmex/ws \
-/results/data_ingestion.sh /results/LC80210482015015LGN00.tar.bz
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/data_ingestion/data_ingestion.sh /LUSTRE/MADMEX/descarga_landsat/LC80210482015015LGN00.tar.bz
 ```
 
-Los resultados están en el directorio de trabajo bajo el directorio eodata y en la base de datos
+Los resultados están debajo del nivel /carpeta_compartida/eodata y en la base de datos.
 
 Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el shell: data_ingestion_folder.sh al folder que se descomprimió con estos procesos. En la base de datos y en el folder eodata, se ingestarán y copiarán tanto las imágenes que se descargaron y descomprimieron del archivo .tar.bz, como los resultados del preprocesamiento.
 
