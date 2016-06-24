@@ -119,7 +119,7 @@ logstash_log_level = INFO
 Archivo nodo.txt:
 
 ```
-export MADMEX=/LUSTRE/MADMEX/code/madmex
+export MADMEX=/LUSTRE/MADMEX/code/
 export MRV_CONFIG=/LUSTRE/MADMEX/resources/config/configuration.ini
 export PYTHONPATH=$PYTHONPATH:$MADMEX
 export MADMEX_DEBUG=True
