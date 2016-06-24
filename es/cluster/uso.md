@@ -425,8 +425,8 @@ Necesitamos el siguiente árbol de directorios:
 
 -Ejemplo para el archivo: LC80210482015015LGN00.tar.bz. En este ejemplo:
 
-	* En la carpeta carpeta_compartida/data_ingestion tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* En la carpeta carpeta_compartida/descarga_landsat tenemos el archivo LC80210482015015LGN00.tar.bz
+* En la carpeta carpeta_compartida/data_ingestion tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* En la carpeta carpeta_compartida/descarga_landsat tenemos el archivo LC80210482015015LGN00.tar.bz
 
 Ejecutamos la siguiente línea en el contenedor del servicio maestro de sun grid engine:
 
