@@ -73,8 +73,9 @@ newdir=$(echo $filename | sed -e "s/.tar.bz//g")
 path=$MADMEX_TEMP
 new_filename=$path/$filename
 mkdir -p $path/$newdir
+cp $1 $path/$newdir
 cd $path/$newdir
-tar xvjf $new_filename
+tar xvjf $filename
 
 ssh docker@172.17.0.1 docker run --rm -v /Users/sge/tmp/madmex_temporal/$newdir:/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img $(ls $MADMEX_TEMP/$newdir|grep L.*_B[1-7].TIF)
 
@@ -94,6 +95,7 @@ cd $MADMEX_TEMP/$newdir && cp *_MTL.txt maskfolder && mv *_MTLFmask* maskfolder
 
 cp -r $path/$newdir $2
 
+rm -r $path/$newdir
 ```
 
 *fmask_ls8.sh*
