@@ -336,16 +336,16 @@ En el directorio /LUSTRE/MADMEX/descarga_landsat tendremos el archivo descargado
 
 * En la carpeta "carpeta_compartida/ledaps" tenemos el shell de ledaps.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
-* En la carpeta "carpeta_compartida/ledaps" tenemos el archivo LE70210492015007EDC00.tar.bz
+* En la carpeta "carpeta_compartida/descarga_landsat" tenemos el archivo LE70210492015007EDC00.tar.bz
 
-* En la carpeta "/carpeta_compartida/ledaps_anc_after_2012" tenemos descomprimido el ancillary data
+* En la carpeta "/carpeta_compartida/ledaps_anc" tenemos descomprimido el ancillary data
 * Usamos la imagen: ledaps/ledaps:latest
 
 Entonces ejecutamos el siguiente comando:
 
 
 ```
-#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/ledaps_anc_after_2012
+#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/ledaps_anc /LUSTRE/MADMEX/ledaps
 ```
 
 Los resultados están en el path: /resultados_ledaps
