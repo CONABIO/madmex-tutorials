@@ -390,7 +390,8 @@ Entonces ejecutamos el siguiente comando:
 
 ```
 #qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps.sh \
-/LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/ledaps_anc/ledaps_aux_1978_2014 \
+/LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/ledaps \
+/LUSTRE/MADMEX/ledaps_anc/ledaps_aux_1978_2014 \
 /LUSTRE/MADMEX/ledaps /carpeta_compartida /tmp/madmex_temporal
 ```
 
