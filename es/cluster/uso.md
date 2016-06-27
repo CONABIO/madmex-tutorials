@@ -377,13 +377,11 @@ Creamos dentro de la carpeta compartida ledaps con permisos de escritura y owner
 
 * En esta carpeta colocamos el shell de ledaps.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
-* En la carpeta "/carpeta_compartida/descarga_landsat" tenemos el archivo LE70210492015007EDC00.tar.bz (ver sección de descarga)
+* En la carpeta "/LUSTRE/MADMEX/descarga_landsat" tenemos el archivo LE70210492015007EDC00.tar.bz (ver sección de descarga)
 
-* En la carpeta "/carpeta_compartida/ledaps_anc" tenemos descomprimido el ancillary data
+* En la carpeta "/LUSTRE/MADMEX/ledaps_anc" tenemos descomprimido el ancillary data
 
-* En la carpeta /carpeta_compartida/ledaps queremos los resultados
-
-* Para este ejemplo usamos la imagen: ledaps/ledaps:latest
+* En la carpeta /LUSTRE/MADMEX/ledaps queremos los resultados
 
 Entonces ejecutamos el siguiente comando:
 
@@ -396,17 +394,15 @@ Entonces ejecutamos el siguiente comando:
 
 -Ejemplo para datos antes del año 2012-2013 con el archivo LE70210481999203AGS00.tar.bz: (advertencia, debemos utilizar para este ejemplo ancillary data antiguo)
 
-	*En ruta: /descarga_landsat tenemos el LE70210481999203AGS00.tar.bz
-	*En ruta: /carpeta_compartida/ledaps queremos los resultados del preprocesamiento
-	*En ruta: /carpeta_compartida/ancillary_data tenemos descomprimido el ancillary data
+	*En ruta: /LUSTRE/MADMEX/descarga_landsat tenemos el LE70210481999203AGS00.tar.bz
+	*En ruta: /LUSTRE/MADMEX/ledaps queremos los resultados del preprocesamiento
+	*En ruta: /LUSTRE/MADMEX/ancillary_data tenemos descomprimido el ancillary data
 
 ```
 #qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps_antes_2012.sh /LUSTRE/MADMEX/descarga_landsat/LE70210481999203AGS00.tar.bz \
 /LUSTRE/MADMEX/ancillary_data /tmp/madmex_temporal /LUSTRE/MADMEX/ledaps
 
 ```
-
-Los resultados están en el path: /resultados_ledaps
 
 ####FMASK
 
