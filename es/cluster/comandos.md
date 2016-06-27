@@ -66,7 +66,7 @@ rm -rf REANALYSIS
 
 ```
 #!/bin/bash
-#Entrada: $1 es la ruta con los datos en forma .tar.bz, $2 es la ruta que queremos se copien los archivos
+#Entrada: $1 es la ruta con los datos en forma .tar.bz, $2 es la ruta que queremos se copien los archivos, $3 es la ruta a la carpeta temporal
 source /LUSTRE/MADMEX/gridengine/nodo.txt
 filename=$(basename $1)
 newdir=$(echo $filename | sed -e "s/.tar.bz//g")
