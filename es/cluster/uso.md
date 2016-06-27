@@ -401,9 +401,12 @@ Entonces ejecutamos el siguiente comando:
 	*En ruta: /carpeta_compartida/ancillary_data tenemos descomprimido el ancillary data
 
 ```
-#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps_antes_2012.sh LE70210481999203AGS00.tar.bz \
-/carpeta_compartida/ancillary_data /tmp/madmex_temporal /carpeta_compartida/ledaps
+#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps_antes_2012.sh /LUSTRE/MADMEX/descarga_landsat/LE70210481999203AGS00.tar.bz \
+/LUSTRE/MADMEX/ancillary_data /tmp/madmex_temporal /LUSTRE/MADMEX/ledaps
+
 ```
+
+qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps_antes_2012.sh /LUSTRE/MADMEX/descarga_landsat/LE70210481999203AGS00.tar.bz /LUSTRE/MADMEX/ledaps_anc/ledaps_aux.1980-2013/ /tmp/madmex_temporal /LUSTRE/MADMEX/ledaps
 
 Los resultados están en el path: /resultados_ledaps
 
