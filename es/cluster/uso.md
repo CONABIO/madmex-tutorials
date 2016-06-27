@@ -172,7 +172,6 @@ El archivo de configuración "madmex_webservices_supervisord.conf" se encuentra 
 		/tmp/madmex_temporal
 
 
-"nodo.txt", "configuration.ini" están en cluster/configuraciones.md de este repositorio.
 
 
 Ejecutamos el siguiente comando:
@@ -344,15 +343,15 @@ Creamos dentro de la carpeta compartida ledaps con permisos de escritura y owner
 
  	carpeta_compartida/ledaps
 
-En esta carpeta colocamos el shell de ledaps.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* En esta carpeta colocamos el shell de ledaps.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
-En la carpeta "carpeta_compartida/descarga_landsat" tenemos el archivo LE70210492015007EDC00.tar.bz (ver sección anterior)
+* En la carpeta "carpeta_compartida/descarga_landsat" tenemos el archivo LE70210492015007EDC00.tar.bz (ver sección anterior)
 
-En la carpeta "/carpeta_compartida/ledaps_anc" tenemos descomprimido el ancillary data
+* En la carpeta "/carpeta_compartida/ledaps_anc" tenemos descomprimido el ancillary data
 
-En la carpeta /carpeta_compartida/ledaps queremos los resultados
+* En la carpeta /carpeta_compartida/ledaps queremos los resultados
 
-Para este ejemplo usamos la imagen: ledaps/ledaps:latest
+* Para este ejemplo usamos la imagen: ledaps/ledaps:latest
 
 Entonces ejecutamos el siguiente comando:
 
@@ -390,7 +389,8 @@ Los resultados están en el path: /resultados_ledaps
 
 
 ```
-#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/fmask/fmask.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/fmask
+#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/fmask/fmask.sh \
+/LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/fmask
 
 ```
 
@@ -421,10 +421,11 @@ Necesitamos el siguiente árbol de directorios:
 
 *NOTAS:* 
 
+- Los archivos de "nodo.txt", "configuration.ini" están en cluster/configuraciones.md de este repositorio.
 - Debemos modificar el "configuration.ini" en la parte de database-madmex y database-classification en donde dice "hostname" para la ip del host donde está levantado el servidor de la base de datos.
 - En la carpeta code tenemos que clonar el repositorio CONABIO/madmex-v2.
-- El archivo configuration.ini y "nodo.txt" están en configuraciones.md de este repositorio.
-- En la carpeta "eodata" se copiarán las imágenes. También se realiza un registro en la base de datos.
+- En la carpeta "eodata" se copiarán las imágenes, por lo que debe tener permisos de escritura y el owner debe ser "root". 
+- El proceso de ingestión también realiza un registro en la base de datos.
 
 
 -Requerimientos:
