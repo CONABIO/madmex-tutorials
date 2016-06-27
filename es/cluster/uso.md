@@ -149,9 +149,9 @@ Ahora podremos visualizar en un browser la página: nodomaestro:8083/qstat que e
 ##Levantamiento de clientes de sun grid engine
 
 
-La imagen de docker "madmex/ws" tiene las dependencias necesarias para comunicarse con el servicio maestro de gridengine, por lo que en los nodos de procesamiento necesitamos lo siguiente:
+La imagen de docker "madmex/ws" tiene las dependencias necesarias para comunicarse con el servicio maestro de gridengine, por lo que en los nodos de procesamiento necesitamos que cumplan con lo siguiente:
 
-- Se deben tener permisos de escritura y el owner debe ser root para el Árbol de directorios:
+- En cada nodo de procesamiento se deben tener permisos de escritura y el owner debe ser "root" para el siguiente árbol de directorios:
 
 		/carpeta_compartida/docker/logging/
 
