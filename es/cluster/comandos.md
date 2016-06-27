@@ -62,6 +62,7 @@ rm -rf CMGDEM.hdf
 rm -rf EP_TOMS
 rm -rf REANALYSIS
 cp -r $dir $4
+rm -r $dir
 ```
 
 *ledaps_antes_2012.sh*
@@ -87,9 +88,12 @@ mkdir $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
 metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
 ssh docker@172.17.0.1  docker run -w=/data --rm -e metadata=$metadata -v $2:/opt/ledaps -v $3/$newdir:/data madmex/ledaps-legacy:latest /usr/local/bin/ledapsSrc/bin/do_ledaps.csh $metadata
 
-rm -r $MADMEX_TEMP/$newdir
-
-cp -r $MADMEX_TEMP/$newdir $4
+rm $filename
+rm -rf CMGDEM.hdf
+rm -rf EP_TOMS
+rm -rf REANALYSIS
+cp -r $dir $4
+rm -r $dir
 
 ```
 
