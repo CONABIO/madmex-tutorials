@@ -26,7 +26,9 @@ done;
 /usr/local/bin/gsutil cp gs://earthengine-public/landsat/$1/$2/$3/$4 $5
 ```
 
+
 ####Preprocesamiento
+
 
 *ledaps.sh*
 
