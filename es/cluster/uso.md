@@ -276,7 +276,7 @@ Ejecutamos el siguiente comando:
 
 En el directorio /LUSTRE/MADMEX/descarga_landsat/ tendremos la carpeta: *landsat_tile_021048*
 
-En esta carpeta se encuentran archivos con extensión *.tar.bz y también tendremos archivos de logs:
+en la que se encuentran archivos con extensión *.tar.bz y también tendremos archivos de logs:
 
 	descarga_landsat.sh.e9  descarga_landsat.sh.o9
 
@@ -352,7 +352,7 @@ En la carpeta "/carpeta_compartida/ledaps_anc" tenemos descomprimido el ancillar
 
 En la carpeta /carpeta_compartida/ledaps queremos los resultados
 
-Para este ejmplo usamos la imagen: ledaps/ledaps:latest
+Para este ejemplo usamos la imagen: ledaps/ledaps:latest
 
 Entonces ejecutamos el siguiente comando:
 
