@@ -54,7 +54,19 @@ $docker exec -u=postgres -it postgres-server-madmex /bin/bash /results/madmex_da
 
 ## Carpeta compartida por todos los nodos vía nfs:
 
-Lo siguiente asume un servidor nfs en un sistema ubuntu y una carpeta con nombre /carpeta_compartida.
+Lo siguiente asume un servidor nfs en un sistema ubuntu versión 14.04 y una carpeta con nombre /carpeta_compartida. 
+
+Para instalar el servidor nfs en el nodo maestro ejecutar:
+
+```
+$sudo apt-get install nfs-kernel-server
+```
+
+En los nodos de procesamiento ejecutar:
+
+```
+$sudo apt-get install nfs-common
+```
 
 En el nodo maestro configuramos el archivo "/etc/exports" con las siguientes entradas:
 
@@ -193,9 +205,6 @@ El archivo de configuración "madmex_webservices_supervisord.conf" se encuentra 
 - En cada nodo de procesamiento debemos tener una carpeta "madmex_temporal" con suficiente capacidad de almacenamiento, en ella se almacenan resultados de procesos de madmex que posteriormente se eliminan una vez que el proceso finalice con su uso:
 
 		/tmp/madmex_temporal
-
-
-
 
 Ejecutamos el siguiente comando:
 
@@ -368,7 +377,7 @@ Creamos dentro de la carpeta compartida ledaps con permisos de escritura y owner
 
 * En esta carpeta colocamos el shell de ledaps.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
-* En la carpeta "carpeta_compartida/descarga_landsat" tenemos el archivo LE70210492015007EDC00.tar.bz (ver sección de descarga)
+* En la carpeta "/carpeta_compartida/descarga_landsat" tenemos el archivo LE70210492015007EDC00.tar.bz (ver sección de descarga)
 
 * En la carpeta "/carpeta_compartida/ledaps_anc" tenemos descomprimido el ancillary data
 
@@ -380,7 +389,7 @@ Entonces ejecutamos el siguiente comando:
 
 
 ```
-#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/ledaps_anc/ledaps_aux_1978_2014 /LUSTRE/MADMEX/ledaps
+#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/ledaps_anc/ledaps_aux_1978_2014 /LUSTRE/MADMEX/ledaps /carpeta_compartida /tmp/madmex_temporal
 ```
 
 -Ejemplo para datos antes del año 2012-2013 con el archivo LE70210481999203AGS00.tar.bz: (advertencia, debemos utilizar para este ejemplo ancillary data antiguo)
@@ -413,7 +422,7 @@ Los resultados están en el path: /resultados_ledaps
 
 ```
 #qsub -S /bin/bash -cwd /LUSTRE/MADMEX/fmask/fmask.sh \
-/LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/fmask
+/LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/fmask /tmp/madmex_temporal
 
 ```
 
