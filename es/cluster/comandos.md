@@ -40,7 +40,6 @@ replace=""
 filename=$(basename $1)
 newdir=$(echo $filename | sed -n 's/\(L*.*\).tar.bz/\1/;p')
 dir=$MADMEX_TEMP/$newdir
-echo $dir >> file.txr
 mkdir -p $dir
 cp $1 $dir
 #new_filename=$MADMEX_TEMP/$filename
