@@ -34,12 +34,13 @@ done;
 
 ```
 #!/bin/bash
-#Entrada: $1 es el archivo tar, $2 es la ruta al ancillary data, $3 es la ruta en donde queremos los resultados, $4 es la ruta a la carpeta compartida en el host, $5 es la ruta a la carpeta temporal
+#Entrada: $1 is the tar file, $2 es la ruta al ancillary data, $3 es la ruta en donde queremos los resultados, $4 es la ruta a la carpeta compartida en el host, $5 es la ruta a la carpeta temporal
 source /LUSTRE/MADMEX/gridengine/nodo.txt
 replace=""
 filename=$(basename $1)
 newdir=$(echo $filename | sed -n 's/\(L*.*\).tar.bz/\1/;p')
 dir=$MADMEX_TEMP/$newdir
+echo $dir >> file.txr
 mkdir -p $dir
 cp $1 $dir
 #new_filename=$MADMEX_TEMP/$filename
@@ -51,17 +52,17 @@ mkdir $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
 mkdir $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
 metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
 metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
-ssh docker@172.17.0.1 docker run -w=/data --rm -e metadata=$metadata -e metadataxml=$metadataxml -v $4/ledaps_anc/ledaps_aux_1978_2014/:/opt/ledaps -v $5/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml
-ssh docker@172.17.0.1 docker run -w=/data --rm -e metadataxml=$metadataxml -v $4/ledaps_anc/ledaps_aux_1978_2014/:/opt/ledaps -v $5/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/do_ledaps.csh $metadataxml
-ssh docker@172.17.0.1 docker run -w=/data --rm -e newdir=$newdir -e metadataxml=$metadataxml -v $4/ledaps_anc/ledaps_aux_1978_2014/:/opt/ledaps -v $5/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$(echo $newdir).hdf --del_src_files
+#LEDAPS_AUX_DIR=$(pwd)
+ssh docker@172.17.0.1 docker run -w=/data --rm -e metadata=$metadata -e metadataxml=$metadataxml -v $3/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml
+ssh docker@172.17.0.1 docker run -w=/data --rm -e metadataxml=$metadataxml -v $3/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/do_ledaps.csh $metadataxml
+ssh docker@172.17.0.1 docker run -w=/data --rm -e newdir=$newdir -e metadataxml=$metadataxml -v $3/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$(echo $newdir).hdf --del_src_files
 cd $dir && mv lndsr.$(echo $newdir)_MTL.txt lndsr.$(echo $newdir)_metadata.txt
 cd $dir && mv lndcal.$(echo $newdir)_MTL.txt lndcal.$(echo $newdir)_metadata.txt
-cp -r $dir $3
+cp -r $dir $4
 rm $filename
 rm -rf CMGDEM.hdf
 rm -rf EP_TOMS
 rm -rf REANALYSIS
-
 ```
 
 *ledasp_antes_2012.sh*
