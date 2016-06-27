@@ -256,9 +256,9 @@ $docker exec -it master-sge-container /bin/bash
 	* Instrumento a elegir entre tm, etm+, oli-tirs
 	* shell de descarga que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
-Creamos dentro de la carpeta compartida (que en el contenedor se llama /LUSTRE/MADMEX) la carpeta descarga_landsat con permisos de escritura y owner "root":
+Creamos dentro de la carpeta compartida la carpeta descarga_landsat con permisos de escritura y owner "root":
 
-	/LUSTRE/MADMEX/descarga_landsat
+	/carpeta_compartida/descarga_landsat
 
 En la carpeta descarga_landsat colocamos el shell de descarga: "descarga_landsat.sh"
 
@@ -340,15 +340,19 @@ En el directorio /LUSTRE/MADMEX/descarga_landsat tendremos el archivo descargado
 
 -Ejemplo para datos después del año 2012-2013 con el archivo LE70210492015007EDC00.tar.bz:
 
-* En la carpeta "carpeta_compartida/ledaps" tenemos el shell de ledaps.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+Creamos dentro de la carpeta compartida ledaps con permisos de escritura y owner "root":
 
-* En la carpeta "carpeta_compartida/descarga_landsat" tenemos el archivo LE70210492015007EDC00.tar.bz
+ 	carpeta_compartida/ledaps
 
-* En la carpeta "/carpeta_compartida/ledaps_anc" tenemos descomprimido el ancillary data
+En esta carpeta colocamos el shell de ledaps.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
-* En la carpeta /carpeta_compartida/ledaps queremos los resultados
+En la carpeta "carpeta_compartida/descarga_landsat" tenemos el archivo LE70210492015007EDC00.tar.bz (ver sección anterior)
 
-* Usamos la imagen: ledaps/ledaps:latest
+En la carpeta "/carpeta_compartida/ledaps_anc" tenemos descomprimido el ancillary data
+
+En la carpeta /carpeta_compartida/ledaps queremos los resultados
+
+Para este ejmplo usamos la imagen: ledaps/ledaps:latest
 
 Entonces ejecutamos el siguiente comando:
 
@@ -356,8 +360,6 @@ Entonces ejecutamos el siguiente comando:
 ```
 #qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/ledaps_anc/ledaps_aux_1978_2014 /LUSTRE/MADMEX/ledaps
 ```
-
-Los resultados están en el path: /resultados_ledaps
 
 -Ejemplo para datos antes del año 2012-2013 con el archivo LE70210481999203AGS00.tar.bz: (advertencia, debemos utilizar para este ejemplo ancillary data antiguo)
 
