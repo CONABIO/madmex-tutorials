@@ -271,20 +271,20 @@ En la carpeta descarga_landsat colocamos el shell de descarga: "descarga_landsat
 Ejecutamos el siguiente comando:
 
 ```
-#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/descarga_landsat.sh L7 021 048 2015
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/descarga_landsat/descarga_landsat.sh L7 021 048 2015
 ```
 
 En el directorio /LUSTRE/MADMEX/descarga_landsat/ tendremos la carpeta: *landsat_tile_021048*
 
 En esta carpeta se encuentran archivos con extensión *.tar.bz y también tendremos archivos de logs:
 
-descarga_landsat.sh.e9  descarga_landsat.sh.o9
+	descarga_landsat.sh.e9  descarga_landsat.sh.o9
 
- que nos ayudan a revisar que el proceso se inició/ejecuta/finaliza de forma correcta.
+que nos ayudan a revisar que el proceso se inició/ejecuta/finaliza de forma correcta.
 
- De igual forma podemos visualizar: nodomaestro:8083/qstat/qstat.cgi para monitorear el job.
+De igual forma podemos visualizar: nodomaestro:8083/qstat/qstat.cgi para monitorear el job.
 
- Si quisiéramos detener el job podemos usar el comando en dentro del contenedor del servicio maestro de sun grid engine:
+Si quisiéramos detener el job podemos usar el comando en dentro del contenedor del servicio maestro de sun grid engine:
 
  ```
 #qdel numero_job
