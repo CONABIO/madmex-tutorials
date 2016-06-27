@@ -389,7 +389,9 @@ Entonces ejecutamos el siguiente comando:
 
 
 ```
-#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/ledaps_anc/ledaps_aux_1978_2014 /LUSTRE/MADMEX/ledaps /carpeta_compartida /tmp/madmex_temporal
+#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps.sh \
+/LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/ledaps_anc/ledaps_aux_1978_2014 \
+/LUSTRE/MADMEX/ledaps /carpeta_compartida /tmp/madmex_temporal
 ```
 
 -Ejemplo para datos antes del año 2012-2013 con el archivo LE70210481999203AGS00.tar.bz: (advertencia, debemos utilizar para este ejemplo ancillary data antiguo)
