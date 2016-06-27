@@ -1,8 +1,8 @@
 Contacto MAD-Mex
 
 Contacto principal:
-- [M. en C. Roberto Carlos Martínez Carrada](rmartinez@conabio.gob.mx)
+- [M. en C. Roberto Carlos Martínez Carrada](http://www.conabio.gob.mx/web/conocenos/CGIA_CPI.html)
 Contactos auxiliares:
-- [Mtro. Erick Palacios Moreno](epalacios@conabio.gob.mx)
-- [Ing. Amaury Gutiérrez Acosta](agutierrez@conabio.gob.mx)
+- [Mtro. Erick Palacios Moreno](http://www.conabio.gob.mx/web/conocenos/CGIA_CPI.html)
+- [Ing. Amaury Gutiérrez Acosta](http://www.conabio.gob.mx/web/conocenos/CGIA_CPI.html)
 
