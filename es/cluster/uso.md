@@ -145,7 +145,6 @@ $root@nodomaestro:/# exit
 Ahora podremos visualizar en un browser la página: nodomaestro:8083/qstat que es un servicio de web para "queue monitoring de sun grid engine"
 
 
-
 ##Levantamiento de clientes de sun grid engine
 
 
@@ -155,28 +154,34 @@ La imagen de docker "madmex/ws" tiene las dependencias necesarias para comunicar
 
 		/carpeta_compartida/docker/logging/
 
+*NOTA:* 
+
+La carpeta con nombre "carpeta_compartida" además de contener diferentes archivos y el código del sistema madmex, será aquella en la que se copien las imágenes descargadas y descomprimidas en un árbol de directorios. Por esto, debe tener suficiente capacidad de almacenamiento.
+
+
+- En cada nodo de procesamiento debemos tener el siguiente archivo de configuración, dentro de los directorios:
+
 		/configuraciones/config/supervisor/madmex_webservices_supervisord.conf
+
+*NOTA:*
+
+El archivo de configuración "madmex_webservices_supervisord.conf" se encuentra en cluster/configuraciones.md de este repositorio
+
+- En cada nodo de procesamiento debemos tener una carpeta "madmex_temporal" con suficiente capacidad de almacenamiento, en ella se almacenan resultados de procesos de madmex que posteriormente se eliminan una vez que el proceso finalice con su uso:
 
 		/tmp/madmex_temporal
 
 
-los archivos de configuración "madmex_webservices_supervisord.conf", "nodo.txt", "configuration.ini" están en cluster/configuraciones.md de este repositorio.
+"nodo.txt", "configuration.ini" están en cluster/configuraciones.md de este repositorio.
 
-*NOTAS:* 
-
-- La carpeta con nombre carpeta_compartida además de contener diferentes archivos y el código del sistema madmex, será aquella en la que se copien las imágenes descargadas y descomprimidas en un árbol de directorios. Por esto, debe tener suficiente capacidad de almacenamiento.
-- La carpeta con nombre madmex_temporal contendrá archivos resultado de los procesos usados por el sistema madmex. Por esto, debe tener suficiente capacidad de almacenamiento.
-- La carpeta logging debe tener permisos de escritura.
 
 Ejecutamos el siguiente comando:
 
 ```
-
 $docker run -h $(hostname -f) --name madmex_ws_proc -v /tmp/madmex_temporal:/services/localtemp/temp -p 2225:22 \
 -p 8800:8800 -v /carpeta_compartida/:/LUSTRE/MADMEX/ \
 -v /configuraciones/config/supervisor/madmex_webservices_supervisord.conf:/etc/supervisor/conf.d/supervisord.conf \
  -d -t madmex/ws /usr/bin/supervisord
-
 
 ```
 
@@ -251,7 +256,7 @@ $docker exec -it master-sge-container /bin/bash
 	* Instrumento a elegir entre tm, etm+, oli-tirs
 	* shell de descarga que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
-Creamos dentro de la carpeta compartida (que en el contenedor se llama /LUSTRE/MADMEX) el siguiente árbol de directorios:
+Creamos dentro de la carpeta compartida (que en el contenedor se llama /LUSTRE/MADMEX) la carpeta descarga_landsat con permisos de escritura y owner "root":
 
 	/LUSTRE/MADMEX/descarga_landsat
 
