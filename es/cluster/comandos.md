@@ -66,6 +66,7 @@ rm -rf REANALYSIS
 
 *ledasp_antes_2012.sh*
 
+
 ```
 #!/bin/bash
 #Entrada: $1 es la ruta al archivo tar, $2 es la ruta al ancillary data, $3 es la ruta a la carpeta temporal, $4 es la ruta a la carpeta compartida en el host en la que queremos los resultados
@@ -73,7 +74,7 @@ source /LUSTRE/MADMEX/gridengine/nodo.txt
 
 filename=$(basename $1)
 
-docker run --rm -v $2:/opt/ledaps -v /$1:/data -v $3:/results madmex/ledaps-legacy:latest /opt/ledaps /data/$filename /results
+ssh docker@172.17.0.1  docker run --rm -v $2:/opt/ledaps -v /$1:/data -v $3:/results madmex/ledaps-legacy:latest /opt/ledaps /data/$filename /results
 
 cp -r $3/$1 $4
 
