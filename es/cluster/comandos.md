@@ -25,7 +25,7 @@ done;
 #entrada: $1 es el sensor, $2 es el path, $3 es el row, $4 es el nombre del .tar.bz
 /usr/local/bin/gsutil cp gs://earthengine-public/landsat/$1/$2/$3/$4 $5
 
-```
+``
 
 ####Preprocesamiento
 
@@ -33,7 +33,7 @@ done;
 
 ```
 #!/bin/bash
-#Entrada: $1 is the tar file, $2 es la ruta al ancillary data, $3 es la ruta en donde queremos los resultados, $4 es la ruta a la carpeta compartida en el host, $5 es la ruta a la carpeta temporal
+#Entrada: $1 es el archivo tar, $2 es la ruta al ancillary data, $3 es la ruta en donde queremos los resultados, $4 es la ruta a la carpeta compartida en el host, $5 es la ruta a la carpeta temporal
 source /LUSTRE/MADMEX/gridengine/nodo.txt
 replace=""
 filename=$(basename $1)
@@ -60,6 +60,20 @@ rm $filename
 rm -rf CMGDEM.hdf
 rm -rf EP_TOMS
 rm -rf REANALYSIS
+
+```
+
+*ledasp_antes_2012.sh*
+
+```
+#!/bin/bash
+#Entrada: $1 es el archivo tar, $2 es la ruta al ancillary data, $3 es la ruta temporal, $4 es la ruta a la carpeta compartida en el host en la que queremos los resultados
+source /LUSTRE/MADMEX/gridengine/nodo.txt
+
+docker run --rm -v $2:/opt/ledaps -v /datos_landsat:/data -v $3:/results madmex/ledaps-legacy:latest /opt/ledaps /data/$1 /results
+
+cp -r $3/$1 $4
+
 
 ```
 
