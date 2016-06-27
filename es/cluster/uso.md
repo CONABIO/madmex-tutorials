@@ -345,7 +345,7 @@ Creamos dentro de la carpeta compartida ledaps con permisos de escritura y owner
 
 * En esta carpeta colocamos el shell de ledaps.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
-* En la carpeta "carpeta_compartida/descarga_landsat" tenemos el archivo LE70210492015007EDC00.tar.bz (ver sección anterior)
+* En la carpeta "carpeta_compartida/descarga_landsat" tenemos el archivo LE70210492015007EDC00.tar.bz (ver sección de descarga)
 
 * En la carpeta "/carpeta_compartida/ledaps_anc" tenemos descomprimido el ancillary data
 
@@ -434,10 +434,11 @@ Necesitamos el siguiente árbol de directorios:
 * Shell de data_ingestion.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
 
--Ejemplo para el archivo: LE70210492015007EDC00.tar.bz. En este ejemplo:
+-Ejemplo para el archivo: LE70210492015007EDC00.tar.bz.
 
-* En la carpeta "carpeta_compartida/data_ingestion" tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-* En la carpeta "carpeta_compartida/descarga_landsat" tenemos el archivo LE70210492015007EDC00.tar.bz
+* En la carpeta "carpeta_compartida/data_ingestion" tenemos el shell de data_ingestion.sh
+
+* En la carpeta "carpeta_compartida/descarga_landsat" tenemos el archivo LE70210492015007EDC00.tar.bz (ver sección de descarga)
 
 Ejecutamos la siguiente línea en el contenedor del servicio maestro de sun grid engine:
 
@@ -445,7 +446,7 @@ Ejecutamos la siguiente línea en el contenedor del servicio maestro de sun grid
 #qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/data_ingestion/data_ingestion.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz
 ```
 
-Los resultados están debajo del nivel /carpeta_compartida/eodata y en la base de datos.
+Los imágenes están debajo del nivel /carpeta_compartida/eodata y el registro de este folder está en la base de datos dentro del esquema "eodata" y tabla "dataset".
 
 Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el shell: data_ingestion_folder.sh al folder que se descomprimió con estos procesos. En la base de datos y en el folder eodata, se ingestarán y copiarán tanto las imágenes que se descargaron y descomprimieron del archivo .tar.bz, como los resultados del preprocesamiento.
 
