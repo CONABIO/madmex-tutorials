@@ -54,7 +54,30 @@ $docker exec -u=postgres -it postgres-server-madmex /bin/bash /results/madmex_da
 
 ## Carpeta compartida por todos los nodos vía nfs:
 
+Lo siguiente asume un servidor nfs en un sistema ubuntu y una carpeta con nombre /carpeta_compartida.
 
+En el nodo maestro configuramos el archivo "/etc/exports" con las siguientes entradas:
+
+	/carpeta_compartida ip_nodo_procesamiento1(rw, sync, no_subtree_check, no_root_squash)
+	/carpeta_compartida ip_nodo_procesamiento2(rw, sync, no_subtree_check, no_root_squash)
+
+Ejecutamos:
+
+```
+$sudo exportfs -ar
+```
+
+En los nodos de procesamiento creamos la carpeta con nombre /carpeta_compartida. 
+
+Añadimos la línea en el archivo /etc/fstab:
+
+	ip_nodo_maestro:/carpeta_compartida /carpeta_compartida nfs default 0 0
+
+ y ejecutamos la línea:
+
+```
+$sudo mount -a
+```
 
 ##Levantamiento del servicio master de sun grid engine
 
