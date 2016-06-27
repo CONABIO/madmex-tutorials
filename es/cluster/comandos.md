@@ -24,7 +24,6 @@ done;
 #!/bin/bash
 #entrada: $1 es el sensor, $2 es el path, $3 es el row, $4 es el nombre del .tar.bz
 /usr/local/bin/gsutil cp gs://earthengine-public/landsat/$1/$2/$3/$4 $5
-
 ```
 
 ####Preprocesamiento
