@@ -396,16 +396,12 @@ Entonces ejecutamos el siguiente comando:
 
 -Ejemplo para datos antes del año 2012-2013 con el archivo LE70210481999203AGS00.tar.bz: (advertencia, debemos utilizar para este ejemplo ancillary data antiguo)
 
-	*En ruta: /datos_landsat tenemos el LE70210481999203AGS00.tar.bz
-	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
-	*En ruta: /ancillary_data tenemos descomprimido el ancillary data
-	*Usamos la imagen: madmex/ledaps-legacy:latest
-
+	*En ruta: /descarga_landsat tenemos el LE70210481999203AGS00.tar.bz
+	*En ruta: /carpeta_compartida/ledaps queremos los resultados del preprocesamiento
+	*En ruta: /carpeta_compartida/ancillary_data tenemos descomprimido el ancillary data
 
 ```
-docker run --rm -v /ancillary_data:/opt/ledaps \
--v /datos_landsat:/data -v /resultados_ledaps:/results \
-madmex/ledaps-legacy:latest /opt/ledaps /data/LE70210481999203AGS00.tar.bz /results
+#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps_antes_2012.sh LE70210481999203AGS00.tar.bz /carpeta_compartida/ancillary_data /tmp/madmex_temporal /carpeta_compartida/ledaps
 ```
 
 Los resultados están en el path: /resultados_ledaps
