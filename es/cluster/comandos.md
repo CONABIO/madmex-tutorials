@@ -85,7 +85,6 @@ cp $2/CMGDEM.hdf $dir
 mkdir $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
 mkdir $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
 metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
-echo $metadata >> file_metadata.txt
 ssh docker@172.17.0.1  docker run -w=/data --rm -e metadata=$metadata -v $2:/opt/ledaps -v $3/$newdir:/data madmex/ledaps-legacy:latest /usr/local/bin/ledapsSrc/bin/do_ledaps.csh $metadata
 
 rm -r $MADMEX_TEMP/$newdir
