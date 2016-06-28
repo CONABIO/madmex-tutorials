@@ -34,7 +34,7 @@ done;
 
 ```
 #!/bin/bash
-#Entrada: $1 is the tar file, $2 es la ruta al ancillary data, $3 es la ruta en donde queremos los resultados, $4 es la ruta a la carpeta compartida en el host, $5 es la ruta a la carpeta temporal
+#Entrada: $1 is the tar file, $2 es la ruta al ancillary data, $3 es la ruta a la carpeta temporal, $4 es la ruta en la que queremos los resultados
 source /LUSTRE/MADMEX/gridengine/nodo.txt
 replace=""
 filename=$(basename $1)
