@@ -16,20 +16,25 @@ Especificaciones para los nodos:
   * mínimo: 2-4 vCPUs
   * mínimo: 4 GB RAM
   * memoria: 50GB
-  * ssh: 22/tcp
 
 - Nodos de procesamiento:
   * mínimo: 16 vCPUs
   * mínimo: 64 GB RAM
   * memoria: 50GB
-  * ssh: 22/tcp
 
 - Nodo para la base de datos:
   * mínimo: 1 vCPUs
   * mínimo: 16 GB RAM
   * memoria: 20GB
-  * ssh: 22/tcp
-  * postres: 5432/tcp
+
+Entre todos los nodos tendremos una carpeta compartida en la que se hará un árbol de directorios para almacenar las imágenes entre otros usos. Como mínimo 50 gb disponibles son aceptables.
+
+En cada nodo de procesamiento tendremos una carpeta "madmex_temporal" en la que almacenaremos resultados de procesos. Como mínimo 100 gb disponibles son aceptables.
+
+
+*NOTA:*
+
+Estos requerimientos de las carpetas varían para el caso de uso.
 
 ##Base de datos
 
