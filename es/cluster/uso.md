@@ -499,20 +499,13 @@ Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el
 -Ejemplo para el folder: LC80210482015015LGN00. En este ejemplo:
 
 
-* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
-* En ruta: /resources/config tenemos el archivo configuration.ini
-* En el directorio de trabajo tenemos el folder a ingestar: LC80210482015015LGN00
-* En el directorio de trabajo tenemos el archivo de variables.txt
-* En ruta: /datos/eodata queremos que se copien los archivos
+* En ruta: /LUSTRE/MADMEX/ingestion_landsat tenemos el shell data_ingestion.sh
+* En el directorio de trabajo tenemos el folder a ingestar resultado de fmask para el archivo LE70210492015007EDC00.tar.bz 
 
 Ejecutamos la siguiente línea
 
 ```
-docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
--v /resources/config:/LUSTRE/MADMEX/code/resources/config \
--v /datos/eodata:/LUSTRE/MADMEX/eodata -v $(pwd):/results madmex/ws \
-/results/data_ingestion_folder.sh /results/LC80210482015015LGN00
+qsub -cwd -S /bin/bash /LUSTRE/MADMEX/ingestion_landsat/data_ingestion_folder.sh \ /LUSTRE/MADMEX/fmask/LE70210492015007EDC00/maskfolder/
 ```
 
 
