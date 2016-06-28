@@ -264,17 +264,16 @@ rm -r $MADMEX_TEMP/$newdir/
 
 ```
 #!/bin/bash
-#Entrada: $1 es el archivo tar, $2 es la ruta a la carpeta temporal
+#Entrada: $1 es la ruta con los datos en forma .tar.bz, $2 es la ruta a la carpeta temporal
 source /LUSTRE/MADMEX/gridengine/nodo.txt
 filename=$(basename $1)
-newdir=$(echo $filename | sed -n 's/\(L*.*\).tar.bz/\1/;p')
-dir=$MADMEX_TEMP/$newdir
-mkdir -p $dir
-cp $1 $dir
-#new_filename=$MADMEX_TEMP/$filename
-cd $dir && tar xvf $filename
-
-#FMASK:
+newdir=$(echo $filename | sed -e "s/.tar.bz//g")
+path=$MADMEX_TEMP
+new_filename=$path/$filename
+mkdir -p $path/$newdir
+cp $1 $path/$newdir
+cd $path/$newdir
+tar xvjf $filename
 
 ssh docker@172.17.0.1 docker run --rm -v $2/$newdir:/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img $(ls $MADMEX_TEMP/$newdir|grep L[C-O]8.*_B[1-7,9].TIF)
 
@@ -288,9 +287,9 @@ ssh docker@172.17.0.1 docker run --rm -v $2/$newdir:/data madmex/python-fmask fm
 
 cd $MADMEX_TEMP/$newdir && gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
 
-#mkdir -p $MADMEX_TEMP/$newdir/maskfolder
+mkdir -p $MADMEX_TEMP/$newdir/maskfolder
 
-#cd $MADMEX_TEMP/$newdir && cp *_MTL.txt maskfolder && mv *_MTLFmask* maskfolder
+cd $MADMEX_TEMP/$newdir && cp *_MTL.txt maskfolder && mv *_MTLFmask* maskfolder
 
 /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $MADMEX_TEMP/$newdir
 
