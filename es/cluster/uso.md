@@ -34,7 +34,7 @@ En cada nodo de procesamiento tendremos una carpeta "madmex_temporal" en la que 
 
 *NOTA:*
 
-Estos requerimientos de las carpetas varían para el caso de uso.
+Estos requerimientos de la capacidad en las carpetas varían para el caso de uso.
 
 ##Base de datos
 
