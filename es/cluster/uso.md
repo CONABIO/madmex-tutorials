@@ -540,14 +540,14 @@ Ejecutamos la siguiente línea:
 
 -Requerimientos:
 
-	* Al menos 3 imágenes descargadas de un tile, preprocesadas y registradas en la base de datos.
-	* Registrar algoritmo y leyenda en la base de datos.
-	* Datos de entrenamiento y registrarlos en la base de datos dentro del esquema products tabla product.
-	* Datos auxiliares: dem, aspect, slope en la ruta especificada en el archivo de configuración configuration.ini
-		en el tag aux-data
-	* Shell clasificacion_landsat.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* Folder temporal donde se guardarán archivos de procesamiento.
-	* El siguiente árbol de directorios:
+* Al menos 3 imágenes descargadas de un tile, preprocesadas y registradas en la base de datos.
+* Registrar algoritmo y leyenda en la base de datos.
+* Datos de entrenamiento y registrarlos en la base de datos dentro del esquema products tabla product.
+* Datos auxiliares: dem, aspect, slope en la ruta especificada en el archivo de configuración configuration.ini
+en el tag aux-data
+* Shell clasificacion_landsat.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* Folder temporal donde se guardarán archivos de procesamiento.
+* El siguiente árbol de directorios:
 
 	/LUSTRE/MADMEX/products/
 	/LUSTRE/MADMEX/processes/madmex_processing_results
