@@ -27,7 +27,7 @@ Especificaciones para los nodos:
   * mínimo: 16 GB RAM
   * memoria: 20GB
 
-Entre todos los nodos tendremos una carpeta compartida en la que se hará un árbol de directorios para almacenar las imágenes entre otros usos. Como mínimo 50 gb disponibles son aceptables.
+Entre los nodos de procesamiento y el nodo maestro tendremos una carpeta compartida en la que se hará un árbol de directorios para almacenar las imágenes, así como otros usos. Un mínimo de 1 tb disponibles son aceptables para esta carpeta.
 
 En cada nodo de procesamiento tendremos una carpeta "madmex_temporal" en la que almacenaremos resultados de procesos. Como mínimo 100 gb disponibles son aceptables.
 
