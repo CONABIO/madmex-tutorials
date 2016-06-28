@@ -300,7 +300,7 @@ $docker exec -it master-sge-container /bin/bash
 
 -Requerimientos:
 
-	* Path, row de tile de landsat
+	* Path, row de tile de landsat.
 	* Año a descargar imágenes
 	* Instrumento a elegir entre tm, etm+, oli-tirs
 	* shell de descarga que debe tener permisos de ejecución, ir a comandos.md de este repositorio
