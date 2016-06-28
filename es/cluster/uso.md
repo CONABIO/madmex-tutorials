@@ -499,7 +499,7 @@ Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el
 -Ejemplo para el folder: LC80210482015015LGN00. En este ejemplo:
 
 
-* En ruta: /LUSTRE/MADMEX/ingestion_landsat tenemos el shell data_ingestion.sh
+* En ruta: /LUSTRE/MADMEX/ingestion_landsat tenemos el shell data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 * En el directorio de trabajo tenemos el folder a ingestar resultado de fmask para el archivo LE70210492015007EDC00.tar.bz 
 
 Ejecutamos la siguiente línea
@@ -513,28 +513,25 @@ qsub -cwd -S /bin/bash /LUSTRE/MADMEX/ingestion_landsat/data_ingestion_folder.sh
 
 -Requerimientos:
 
-	* Shell preprocesamiento_e_ingestion_no_landsat_8.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+	* Shell preprocesamiento_e_ingestion_landsat_no_8_datos_despues_2012.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 	* Datos en formato .tar.bz
 	* Ancillary data para LEDAPS
 	* Archivo de configuración con el nombre "configuration.ini", ir a configuraciones.md de este respositorio.
-	* Crear carpetas "resources/config" y colocar ahí el archivo de configuración
-	* Clonar repositorio de CONABIO/madmex-v2
-	* Crear carpeta "eodata", aquí se copiaran las imágenes.
+	* Crear carpeta "eodata" con permisos de escritura y owner "root" , aquí se copiaran las imágenes.
 
 
--Ejemplo para el archivo: LE70210482015055EDC00.tar.bz
+-Ejemplo para el archivo: LE70210492015071EDC00.tar.bz
 
-	* En el directorio de trabajo tenemos los datos .tar.bz
-	* En ruta: /ancillary_data tenemos descomprimido el ancillary data
-	* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
-	* En ruta: /resources/config tenemos el archivo configuration.ini
-	* En ruta: /datos/eodata queremos que se copien los archivos
+	* En el directorio /LUSTRE/MADMEX/descarga_landsat tenemos los datos .tar.bz
+	* En ruta: /LUSTRE/MADMEX/ancillary_data tenemos descomprimido el ancillary data
+	* En ruta: /LUSTRE/MADMEX/eodata queremos que se copien los archivos
+	* El folder temporal del host es: /tmp/madmex_temporal
 
 
 Ejecutamos la siguiente línea:
 
 ```
-$preprocesamiento_e_ingestion_landsat_no_8.sh LE70210482015055EDC00.tar.bz /ancillary_data /madmex-v2 /resources/config /datos/eodata
+qsub -S /bin/bash -cwd /LUSTRE/MADMEX/preproc_and_ingest/preprocesamiento_e_ingestion_landsat_no_8_datos_despues_2012.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015071EDC00.tar.bz /LUSTRE/MADMEX/ancillary_data /tmp/madmex_temporal
 
 ```
 

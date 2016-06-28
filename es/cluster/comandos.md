@@ -202,60 +202,63 @@ source /LUSTRE/MADMEX/gridengine/nodo.txt
 
 ####Preprocesamiento e ingestión
 
-*preprocesamiento_e_ingestion_landsat_no_8.sh*
+*preprocesamiento_e_ingestion_landsat_no_8_datos_despues_2012.sh*
 
 ```
 #!/bin/bash
-#$1 es la ruta a los datos de landsat .tar.bz
-#$2 es la ruta al ancillary data de LEDAPS
-#$3 es la ruta al repositorio CONABIO/madmex-v2
-#$4 es la ruta al archivo configuration.ini
-#$5 es la ruta a la carpeta eodata
-
-name=$(basename $1)
-basename=$(echo $name|sed -n 's/\(L*.*\).tar.bz/\1/;p')
-path=$(echo $PWD)
-dir=$path/$basename
+#Entrada: $1 is the tar file, $2 es la ruta al ancillary data, $3 es la ruta a la carpeta temporal
+source /LUSTRE/MADMEX/gridengine/nodo.txt
+replace=""
+filename=$(basename $1)
+newdir=$(echo $filename | sed -n 's/\(L*.*\).tar.bz/\1/;p')
+dir=$MADMEX_TEMP/$newdir
 mkdir -p $dir
 cp $1 $dir
-cd $dir && tar xvf $name
-#LEDAPS:
-year=$(echo $name|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
-
+#new_filename=$MADMEX_TEMP/$filename
+cd $dir && tar xvf $filename
+#LEDAPS
+year=$(echo $filename|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
 cp $2/CMGDEM.hdf $dir
 mkdir $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
 mkdir $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
 metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
 metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
-echo "Working directory:"
-echo $(pwd)
-docker $(docker-machine config default) run --rm -e metadata=$metadata -e metadataxml=$metadataxml -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml'
-docker $(docker-machine config default) run --rm -e metadataxml=$metadataxml -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/do_ledaps.csh $metadataxml'
-#docker $(docker-machine config default) run --rm -e metadataxml=$metadataxml -e basename=$basename -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif'
-docker $(docker-machine config default) run --rm -e metadataxml=$metadataxml -e basename=$basename -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf --del_src_files'
-mv lndsr.$(echo $basename)_MTL.txt lndsr.$(echo $basename)_metadata.txt 
-mv lndcal.$(echo $basename)_MTL.txt lndcal.$(echo $basename)_metadata.txt 
-rm $name
+ssh docker@172.17.0.1 docker run -w=/data --rm -e metadata=$metadata -e metadataxml=$metadataxml -v $3/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml
+ssh docker@172.17.0.1 docker run -w=/data --rm -e metadataxml=$metadataxml -v $3/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/do_ledaps.csh $metadataxml
+ssh docker@172.17.0.1 docker run -w=/data --rm -e newdir=$newdir -e metadataxml=$metadataxml -v $3/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$(echo $newdir).hdf --del_src_files
+cd $dir && mv lndsr.$(echo $newdir)_MTL.txt lndsr.$(echo $newdir)_metadata.txt
+cd $dir && mv lndcal.$(echo $newdir)_MTL.txt lndcal.$(echo $newdir)_metadata.txt
+rm $filename
 rm -rf CMGDEM.hdf
 rm -rf EP_TOMS
 rm -rf REANALYSIS
 
-#Fmask:
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L*_B[1,2,3,4,5,7].TIF
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img L*_B6_VCID_?.TIF
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatSaturationMask.py -i ref.img -m *_MTL.txt -o saturationmask.img
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatTOA.py -i ref.img -m *_MTL.txt -o toa.img
-docker $(docker-machine config default) run --rm -v $(pwd):/data madmex/python-fmask fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
-docker $(docker-machine config default) run -v $(pwd):/data madmex/python-fmask gdal_translate -of ENVI cloud.img $(echo $basename)_MTLFmask
+#FMASK
 
-#Ingest
-cd $path
-MADMEX=/LUSTRE/MADMEX/code 
-MRV_CONFIG=$MADMEX/resources/config/configuration.ini
-PYTHONPATH=$PYTHONPATH:$MADMEX
-MADMEX_DEBUG=True
-MADMEX_TEMP=/services/localtemp/temp
-docker $(docker-machine config default) run -e MADMEX=$MADMEX -e MRV_CONFIG=$MRV_CONFIG -e PYTHONPATH=$PYTHONPATH -e MADMEX_DEBUG=$MADMEX_DEBUG -e MADMEX_TEMP=$MADMEX_TEMP --rm -v $3:/LUSTRE/MADMEX/code -v $4:/LUSTRE/MADMEX/code/resources/config -v $5:/LUSTRE/MADMEX/eodata -v $(pwd):/results madmex/ws /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory /results/$basename
+ssh docker@172.17.0.1 docker run --rm -v $3/$newdir:/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img $(ls $MADMEX_TEMP/$newdir|grep L.*_B[1-7].TIF)
+
+ssh docker@172.17.0.1 docker run --rm -v $3/$newdir:/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img $(ls $MADMEX_TEMP/$newdir|grep L.*_B6_VCID_[0-9].TIF)
+
+ssh docker@172.17.0.1 docker run --rm -v $3/$newdir:/data madmex/python-fmask fmask_usgsLandsatSaturationMask.py -i ref.img -m $(ls $MADMEX_TEMP/$newdir|grep .*_MTL.txt) -o saturationmask.img
+
+ssh docker@172.17.0.1 docker run --rm -v $3/$newdir:/data madmex/python-fmask fmask_usgsLandsatTOA.py -i ref.img -m $(ls $MADMEX_TEMP/$newdir|grep .*_MTL.txt) -o toa.img
+
+ssh docker@172.17.0.1 docker run --rm -v $3/$newdir:/data madmex/python-fmask fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m $(ls $MADMEX_TEMP/$newdir|grep .*_MTL.txt) -s saturationmask.img -o cloud.img
+
+cd $MADMEX_TEMP/$newdir && gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
+
+mkdir -p $MADMEX_TEMP/$newdir/maskfolder
+
+cd $MADMEX_TEMP/$newdir && cp *_MTL.txt maskfolder && mv *_MTLFmask* maskfolder
+
+#INGEST
+
+/usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $MADMEX_TEMP/$newdir
+
+/usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $MADMEX_TEMP/$newdir/maskfolder
+
+rm -r $MADMEX_TEMP/$newdir/
+
 
 ```
 
