@@ -540,7 +540,6 @@ Ejecutamos la siguiente línea:
 
 -Requerimientos:
 
-	* Imagen de docker para procesos
 	* Al menos 3 imágenes descargadas de un tile, preprocesadas y registradas en la base de datos.
 	* Registrar algoritmo y leyenda en la base de datos.
 	* Datos de entrenamiento y registrarlos en la base de datos dentro del esquema products tabla product.
@@ -548,36 +547,25 @@ Ejecutamos la siguiente línea:
 		en el tag aux-data
 	* Shell clasificacion_landsat.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 	* Folder temporal donde se guardarán archivos de procesamiento.
-	* Folders madmex_processing_result, lsclassificationcommand, products donde se guardarán resultados de clasificación.
-	* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt" \
-	 en el directorio en donde está el shell:
+	* El siguiente árbol de directorios:
 
-```
-export MADMEX=/LUSTRE/MADMEX/code/
-export MRV_CONFIG=$MADMEX/resources/config/configuration.ini
-export PYTHONPATH=$PYTHONPATH:$MADMEX
-export MADMEX_DEBUG=True
-export MADMEX_TEMP=/services/localtemp/temp
-
-```
-
+	/LUSTRE/MADMEX/products/
+	/LUSTRE/MADMEX/processes/madmex_processing_results
+	/LUSTRE/MADMEX/products/lsclassificationcommand
 
 
 -Ejemplo : 
 
-	* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
-	* En ruta: /resources/config tenemos el archivo configuration.ini
-	* En ruta: /datos/eodata tenemos los datos originales y resultados del preprocesamiento copiados con el proceso de ingest.
-	* En ruta: /products/inegiusvpersii-v tenemos los datos de entrenamiento
-	* En ruta: /products/dem/inegi tenemos los datos auxiliares: dem, aspect, slope (de acuerdo al configuration.ini)
-	* En ruta: /temporal se tendrá el folder temporal
-	* En rutas: /madmex_processing_results, /products y /lsclassificationcommand se tendrán resultados de clasificación
-	* En el directorio de trabajo tenemos el archivo de variables.txt
-	* Path: 021, row:048
-	* Año: 2014
-	* Conjunto de entrenamiento: training_areas_persistentes_32_clases_125m.tif
-	* Máximo porcentaje de nubes para cada imagen: 10%
-	* Eliminación de datos atípicos (1)
+* En ruta: /LUSTRE/MADMEX/clasificacion tenemos el shell clasificacion_landsat.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* En ruta: /LUSTRE/MADMEX/eodata tenemos los datos originales y resultados del preprocesamiento copiados con el proceso de ingest.
+* En ruta: /LUSTRE/MADMEX/products/inegiusvpersii-v tenemos los datos de entrenamiento
+* En ruta: /LUSTRE/MADMEX/products/dem/inegi tenemos los datos auxiliares: dem, aspect, slope (de acuerdo al configuration.ini)
+* En ruta: /tmp/madmex_temporal se tendrá el folder temporal
+* Path: 021, row:048
+* Año: 2015
+* Conjunto de entrenamiento: training_areas_persistentes_32_clases_125m.tif
+* Máximo porcentaje de nubes para cada imagen: 10%
+* Eliminación de datos atípicos (1)
 
 Para registrar la leyenda en la base de datos:
 
@@ -605,17 +593,8 @@ insert into "products"."product" ("id", "uuid", "date_from", "date_to", "algorit
 Ejecutar el siguiente comando:
 
 ```
-$docker run --rm -v $(pwd)/products:/LUSTRE/MADMEX/products \
--v /LUSTRE/MADMEX/products/dem:/LUSTRE/MADMEX/products/dem \
--v /LUSTRE/MADMEX/products/inegiusvpersii-v:/LUSTRE/MADMEX/products/inegiusvpersii-v/ \
--v $(pwd)/datos/eodata:/LUSTRE/MADMEX/eodata -v /madmex-v2:/LUSTRE/MADMEX/code \
--v /resources/config:/LUSTRE/MADMEX/code/resources/config \
--v /madmex_processing_results:/LUSTRE/MADMEX/processes/madmex_processing_results/ \
--v $(pwd)/lsclassificationcommand:/LUSTRE/MADMEX/products/lsclassificationcommand/ \
--v /temporal:/services/localtemp/temp -v $(pwd):/results madmex/ws:latest \
-/results/clasificacion_landsat.sh 2014-01-01 2014-12-31 10 21048 \
+#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/clasificacion/clasificacion_landsat.sh 2015-01-01 2015-12-31 10 21048 \
 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
-
 
 ```
 
