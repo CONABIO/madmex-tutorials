@@ -136,20 +136,36 @@ rm -r $path/$newdir
 
 ```
 #!/bin/bash
-#$1 es la ruta con los datos en forma .tar.bz
+#Entrada: $1 es la ruta con los datos en forma .tar.bz, $2 es la ruta que queremos se copien los archivos, $3 es la ruta a la carpeta temporal
+source /LUSTRE/MADMEX/gridengine/nodo.txt
 filename=$(basename $1)
 newdir=$(echo $filename | sed -e "s/.tar.bz//g")
-path=$(echo $PWD)
+path=$MADMEX_TEMP
 new_filename=$path/$filename
 mkdir -p $path/$newdir
+cp $1 $path/$newdir
 cd $path/$newdir
-tar xvjf $new_filename
-gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L[C-O]8*_B[1-7,9].TIF
-gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img L[C-O]8*_B1[0,1].TIF
-fmask_usgsLandsatSaturationMask.py -i ref.img -m *_MTL.txt -o saturationmask.img
-fmask_usgsLandsatTOA.py -i ref.img -m *_MTL.txt -o toa.img
-fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
-gdal_translate -of ENVI cloud.img $(echo $newfilename)_MTLFmask
+tar xvjf $filename
+
+ssh docker@172.17.0.1 docker run --rm -v $3/$newdir:/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img $(ls $MADMEX_TEMP/$newdir|grep L[C-O]8.*_B[1-7,9].TIF)
+
+ssh docker@172.17.0.1 docker run --rm -v $3/$newdir:/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img $(ls $MADMEX_TEMP/$newdir|grep L[C-O].8*_B1[0,1].TIF)
+
+ssh docker@172.17.0.1 docker run --rm -v $3/$newdir:/data madmex/python-fmask fmask_usgsLandsatSaturationMask.py -i ref.img -m $(ls $MADMEX_TEMP/$newdir|grep .*_MTL.txt) -o saturationmask.img
+
+ssh docker@172.17.0.1 docker run --rm -v $3/$newdir:/data madmex/python-fmask fmask_usgsLandsatTOA.py -i ref.img -m $(ls $MADMEX_TEMP/$newdir|grep .*_MTL.txt) -o toa.img
+
+ssh docker@172.17.0.1 docker run --rm -v $3/$newdir:/data madmex/python-fmask fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m $(ls $MADMEX_TEMP/$newdir|grep .*_MTL.txt) -s saturationmask.img -o cloud.img
+
+cd $MADMEX_TEMP/$newdir && gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
+
+mkdir -p $MADMEX_TEMP/$newdir/maskfolder
+
+cd $MADMEX_TEMP/$newdir && cp *_MTL.txt maskfolder && mv *_MTLFmask* maskfolder
+
+cp -r $path/$newdir $2
+
+rm -r $path/$newdir
 ```
 
 ####Ingestión
