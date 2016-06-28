@@ -513,19 +513,19 @@ Ejecutamos la siguiente línea
 
 -Requerimientos:
 
-	* Shell preprocesamiento_e_ingestion_landsat_no_8_datos_despues_2012.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* Datos en formato .tar.bz
-	* Ancillary data para LEDAPS
-	* Archivo de configuración con el nombre "configuration.ini", ir a configuraciones.md de este respositorio.
-	* Crear carpeta "eodata" con permisos de escritura y owner "root" , aquí se copiaran las imágenes.
+* Shell preprocesamiento_e_ingestion_landsat_no_8_datos_despues_2012.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* Datos en formato .tar.bz
+* Ancillary data para LEDAPS
+* Archivo de configuración con el nombre "configuration.ini", ir a configuraciones.md de este respositorio.
+* Crear carpeta "eodata" con permisos de escritura y owner "root" , aquí se copiaran las imágenes.
 
 
 -Ejemplo para el archivo: LE70210492015071EDC00.tar.bz
 
-	* En el directorio /LUSTRE/MADMEX/descarga_landsat tenemos los datos .tar.bz
-	* En ruta: /LUSTRE/MADMEX/ancillary_data tenemos descomprimido el ancillary data
-	* En ruta: /LUSTRE/MADMEX/eodata queremos que se copien los archivos
-	* El folder temporal del host es: /tmp/madmex_temporal
+* En el directorio /LUSTRE/MADMEX/descarga_landsat tenemos los datos .tar.bz
+* En ruta: /LUSTRE/MADMEX/ancillary_data tenemos descomprimido el ancillary data
+* En ruta: /LUSTRE/MADMEX/eodata queremos que se copien los archivos
+* El folder temporal del host es: /tmp/madmex_temporal
 
 
 Ejecutamos la siguiente línea:
@@ -535,6 +535,31 @@ Ejecutamos la siguiente línea:
 /LUSTRE/MADMEX/descarga_landsat/LE70210492015071EDC00.tar.bz /LUSTRE/MADMEX/ancillary_data /tmp/madmex_temporal
 
 ```
+
+###Preprocesamiento e ingestión para landsat 8:
+
+* Shell preprocesamiento_e_ingestion_landsat_8.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* Datos en formato .tar.bz
+* Archivo de configuración con el nombre "configuration.ini", ir a configuraciones.md de este respositorio.
+* Crear carpeta "eodata" con permisos de escritura y owner "root" , aquí se copiaran las imágenes.
+
+
+-Ejemplo para el archivo: LC80210482013249LGN00.tar.bz
+
+* En el directorio /LUSTRE/MADMEX/descarga_landsat tenemos los datos .tar.bz
+* En ruta: /LUSTRE/MADMEX/eodata queremos que se copien los archivos
+* El folder temporal del host es: /tmp/madmex_temporal
+
+
+Ejecutamos la siguiente línea:
+
+```
+#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/preproc_and_ingest/preprocesamiento_e_ingestion_landsat_8.sh \
+/LUSTRE/MADMEX/descarga_landsat/LC80210482013249LGN00.tar.bz /tmp/madmex_temporal
+
+```
+
+
 
 ###Clasificación
 
