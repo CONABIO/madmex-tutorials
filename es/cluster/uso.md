@@ -440,13 +440,13 @@ Entonces ejecutamos el siguiente comando:
 
 ```
 
--Ejemplo para archivo de Landsat 8: LC80210482015015LGN00.tar.bz:
+-Ejemplo para archivo de Landsat 8: LC80210482013249LGN00.tar.bz:
 
 Ejecutar el siguiente comando en el directorio que contiene el *.tar.bz
 
 ```
-$docker run --rm -v $(pwd):/data madmex/python-fmask /data/fmask_ls8.sh \
-/data/LC80210482015303LGN00.tar.bzLC80210482015015LGN00.tar.bz
+#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/fmask/fmask_ls8.sh \
+/LUSTRE/MADMEX/descarga_landsat/LC80210482013249LGN00.tar.bz /LUSTRE/MADMEX/fmask /tmp/madmex_temporal
 ```
 
 Los resultados están en el directorio donde se ejecutó el comando.
