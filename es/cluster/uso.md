@@ -13,8 +13,16 @@ Consideraremos cuatro nodos:
 Especificaciones para los nodos:
 
 - Nodo maestro:
+* mínimo: 2-4 vCPUs
+* mínimo: 4 GB RAM
+* 50 GB Memory
+* ssh: 22/tcp
 
 - Nodos de procesamiento:
+* mínimo: 16 vCPUs
+* mínimo: 64GB RAM
+* memoria: 50GB
+* ssh: 22/tcp
 
 - Nodo para la base de datos:
 
