@@ -575,7 +575,9 @@ en el tag aux-data
 * El siguiente árbol de directorios:
 
 	/LUSTRE/MADMEX/products/
+
 	/LUSTRE/MADMEX/processes/madmex_processing_results
+	
 	/LUSTRE/MADMEX/products/lsclassificationcommand
 
 
