@@ -195,7 +195,7 @@ rm -r $folder/$newdir
 #!/bin/bash
 #$1 es la ruta del archivo a ingestar
 
-source /results/variables.txt
+source /LUSTRE/MADMEX/gridengine/nodo.txt
 /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $1
 
 ```
