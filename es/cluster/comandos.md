@@ -149,7 +149,7 @@ tar xvjf $filename
 
 ssh docker@172.17.0.1 docker run --rm -v $3/$newdir:/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img $(ls $MADMEX_TEMP/$newdir|grep L[C-O]8.*_B[1-7,9].TIF)
 
-ssh docker@172.17.0.1 docker run --rm -v $3/$newdir:/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img $(ls $MADMEX_TEMP/$newdir|grep L[C-O].8*_B1[0,1].TIF)
+ssh docker@172.17.0.1 docker run --rm -v $3/$newdir:/data madmex/python-fmask gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img $(ls $MADMEX_TEMP/$newdir|grep L[C-O]8.*_B1[0,1].TIF)
 
 ssh docker@172.17.0.1 docker run --rm -v $3/$newdir:/data madmex/python-fmask fmask_usgsLandsatSaturationMask.py -i ref.img -m $(ls $MADMEX_TEMP/$newdir|grep .*_MTL.txt) -o saturationmask.img
 
