@@ -505,7 +505,7 @@ Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el
 Ejecutamos la siguiente línea
 
 ```
-qsub -cwd -S /bin/bash /LUSTRE/MADMEX/ingestion_landsat/data_ingestion_folder.sh \ /LUSTRE/MADMEX/fmask/LE70210492015007EDC00/maskfolder/
+#qsub -cwd -S /bin/bash /LUSTRE/MADMEX/ingestion_landsat/data_ingestion_folder.sh \ /LUSTRE/MADMEX/fmask/LE70210492015007EDC00/maskfolder/
 ```
 
 
@@ -531,7 +531,7 @@ qsub -cwd -S /bin/bash /LUSTRE/MADMEX/ingestion_landsat/data_ingestion_folder.sh
 Ejecutamos la siguiente línea:
 
 ```
-qsub -S /bin/bash -cwd /LUSTRE/MADMEX/preproc_and_ingest/preprocesamiento_e_ingestion_landsat_no_8_datos_despues_2012.sh \
+#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/preproc_and_ingest/preprocesamiento_e_ingestion_landsat_no_8_datos_despues_2012.sh \
 /LUSTRE/MADMEX/descarga_landsat/LE70210492015071EDC00.tar.bz /LUSTRE/MADMEX/ancillary_data /tmp/madmex_temporal
 
 ```
