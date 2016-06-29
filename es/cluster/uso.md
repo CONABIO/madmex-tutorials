@@ -578,20 +578,6 @@ en el tag aux-data
 
 	/LUSTRE/MADMEX/products/lsclassificationcommand
 
-
--Ejemplo : 
-
-* En ruta: /LUSTRE/MADMEX/clasificacion tenemos el shell clasificacion_landsat.sh o clasificacion_landsat8.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-* En ruta: /LUSTRE/MADMEX/eodata tenemos los datos originales y resultados del preprocesamiento copiados con el proceso de ingest.
-* En ruta: /LUSTRE/MADMEX/products/inegiusvpersii-v tenemos los datos de entrenamiento
-* En ruta: /LUSTRE/MADMEX/products/dem/inegi tenemos los datos auxiliares: dem, aspect, slope (de acuerdo al configuration.ini)
-* En ruta: /tmp/madmex_temporal se tendrá el folder temporal
-* Path: 021, row:048
-* Año: 2015
-* Conjunto de entrenamiento: training_areas_persistentes_32_clases_125m.tif
-* Máximo porcentaje de nubes para cada imagen: 10%
-* Eliminación de datos atípicos (1)
-
 Para registrar la leyenda en la base de datos:
 
 ```
@@ -614,6 +600,21 @@ Para registrar los datos de entrenamiento en la base de datos:
 insert into "products"."product" ("id", "uuid", "date_from", "date_to", "algorithm", "legend", "provider", "file_url", "proc_date", "ingest_date", "the_geom", "rows", "columns", "bands", "resolution", "projection") values (1, '43ed65a9-8719-4bdc-a375-a987c49de19c', '2016-01-01', '2016-12-31', 1, 0, 'CONABIO', '/LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif', '2015-09-08 16:42:07', '2015-09-08 11:49:01', '0103000000010000000500000048B437AD505554C03F7E00ADC44A0BC075FE61FE9F9A53C09BF40773C0430BC0BCBE2357C99953C04850CF114DCF1AC0ECBC64616C5554C012F7D91A39D61AC048B437AD505554C03F7E00ADC44A0BC0', 1, 1, 1, 1.0, 'PROJCS["WGS 84 / UTM zone 17N",GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433],AUTHORITY["EPSG","4326"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",-81],PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",500000],PARAMETER["false_northing",0],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AUTHORITY["EPSG","32617"]]')
 
 ```
+
+
+
+-Ejemplo : 
+
+* En ruta: /LUSTRE/MADMEX/clasificacion tenemos el shell clasificacion_landsat.sh o clasificacion_landsat8.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* En ruta: /LUSTRE/MADMEX/eodata tenemos los datos originales y resultados del preprocesamiento copiados con el proceso de ingest.
+* En ruta: /LUSTRE/MADMEX/products/inegiusvpersii-v tenemos los datos de entrenamiento
+* En ruta: /LUSTRE/MADMEX/products/dem/inegi tenemos los datos auxiliares: dem, aspect, slope (de acuerdo al configuration.ini)
+* En ruta: /tmp/madmex_temporal se tendrá el folder temporal
+* Path: 021, row:048
+* Año: 2015
+* Conjunto de entrenamiento: training_areas_persistentes_32_clases_125m.tif
+* Máximo porcentaje de nubes para cada imagen: 10%
+* Eliminación de datos atípicos (1)
 
 ####Landsat tm o etm+
 
