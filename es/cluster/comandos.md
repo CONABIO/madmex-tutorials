@@ -331,10 +331,8 @@ source /LUSTRE/MADMEX/gridengine/nodo.txt
 
 ```
 #!/bin/bash
-#$1 es el folder que contiene los resultados de clasificación, $2 es el archivo ESRI que contiene los tiles de la región
-#$3 es el nombre de la columna del archivo ESRI $2, $4 es el folder donde estarán los resultados que ayudan al postprocesamiento
-#$5 es el nombre del archivo resultado del postprocesamiento
-source /results/variables.txt
+#Entrada: $1 es el folder que contiene los resultados de clasificación, $2 es el archivo ESRI que contiene los tiles de la región, $3 es el nombre de la columna del archivo ESRI $2, $4 es el folder donde estarán los resultados que ayudan al postprocesamiento, $5 es el nombre del archivo resultado del postprocesamiento
+source /LUSTRE/MADMEX/gridengine/nodo.txt
 /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py LandsatLccPostWorkflow --lccresultfolder $1 --footprintshape $2 --tileidcolumnname $3 --workingdir $4 --outfile $5
 ```
 
