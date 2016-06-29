@@ -632,7 +632,7 @@ Ejecutar el siguiente comando:
 Ejecutar el siguiente comando:
 
 ```
-qsub -S /bin/bash -cwd /LUSTRE/MADMEX/clasificacion/ls_classification_landsat8.sh 2015-01-01 2015-12-31 10 21048 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
+qsub -S /bin/bash -cwd /LUSTRE/MADMEX/clasificacion/ls_classification_landsat8.sh 2015-01-01 2015-12-31 10 21048 \ /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
 ```
 
 
