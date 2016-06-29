@@ -639,14 +639,14 @@ qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/clasificacion/clasificacion_l
 
 -Requerimientos:
 
-	*Archivo ESRI de los tiles de la región
-	*Nombre de columna del archivo ESRI que contiene los tiles de la región
+* Archivo ESRI de los tiles de la región
+* Nombre de columna del archivo ESRI que contiene los tiles de la región
 
 -Ejemplo:
 
-	* Dirección IP del host en el que está levantado el servidor de postgres es 172.16.9.145
-	* En la base de datos dentro del esquema vectordata tenemos registrada la tabla de tiles "landsat_footprints_mexico"
-	* El nombre del archivo ESRI será landsat_footprint_mexico y estará en /LUSTRE/MADMEX/eodata/footprints/
+* Dirección IP del host en el que está levantado el servidor de postgres es 172.16.9.145
+* En la base de datos dentro del esquema vectordata tenemos registrada la tabla de tiles "landsat_footprints_mexico"
+* El nombre del archivo ESRI será landsat_footprint_mexico y estará en /LUSTRE/MADMEX/eodata/footprints/
 
 En un nodo de procesamiento ejecutamos lo siguiente en la carpeta /LUSTRE/MADMEX/eodata/footprints/:
 
