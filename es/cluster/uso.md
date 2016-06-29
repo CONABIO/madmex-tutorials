@@ -387,7 +387,7 @@ En el directorio /LUSTRE/MADMEX/descarga_landsat tendremos el archivo descargado
 	* ancillary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
 	* shell de ledaps.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
--Ejemplo para datos después del año 2012-2013 con el archivo LE70210492015007EDC00.tar.bz:
+-Ejemplo para **datos después del año 2012-2013** con el archivo LE70210492015007EDC00.tar.bz:
 
 Creamos dentro de la carpeta compartida ledaps con permisos de escritura y owner "root":
 
@@ -410,7 +410,7 @@ Entonces ejecutamos el siguiente comando:
 
 ```
 
--Ejemplo para datos antes del año 2012-2013 con el archivo LE70210481999203AGS00.tar.bz: (advertencia, debemos utilizar para este ejemplo ancillary data antiguo)
+-Ejemplo para datos **antes del año 2012-2013** con el archivo LE70210481999203AGS00.tar.bz: (**advertencia**, debemos utilizar para este ejemplo ancillary data antiguo)
 
 	*En ruta: /LUSTRE/MADMEX/descarga_landsat tenemos el LE70210481999203AGS00.tar.bz
 	*En ruta: /LUSTRE/MADMEX/ledaps queremos los resultados del preprocesamiento
