@@ -287,9 +287,9 @@ ssh docker@172.17.0.1 docker run --rm -v $2/$newdir:/data madmex/python-fmask fm
 
 cd $MADMEX_TEMP/$newdir && gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
 
-mkdir -p $MADMEX_TEMP/$newdir/maskfolder
+#mkdir -p $MADMEX_TEMP/$newdir/maskfolder
 
-cd $MADMEX_TEMP/$newdir && cp *_MTL.txt maskfolder && mv *_MTLFmask* maskfolder
+#cd $MADMEX_TEMP/$newdir && cp *_MTL.txt maskfolder && mv *_MTLFmask* maskfolder
 
 /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $MADMEX_TEMP/$newdir
 
