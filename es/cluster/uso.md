@@ -300,10 +300,10 @@ $docker exec -it master-sge-container /bin/bash
 
 -Requerimientos:
 
-	* Path, row de tile de landsat.
-	* Año a descargar imágenes
-	* Instrumento a elegir entre tm, etm+, oli-tirs
-	* shell de descarga que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* Path, row de tile de landsat.
+* Año a descargar imágenes
+* Instrumento a elegir entre tm, etm+, oli-tirs
+* shell de descarga que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
 Creamos dentro de la carpeta compartida la carpeta descarga_landsat con permisos de escritura y owner "root":
 
@@ -313,9 +313,9 @@ En la carpeta descarga_landsat colocamos el shell de descarga: "descarga_landsat
 
 -Ejemplo: descarga todas las imágenes landsat del año 2015
 
-	* path: 021, row: 048
-	* año: 2015
-	* Instrumento: etm+ (L7)
+* path: 021, row: 048
+* año: 2015
+* Instrumento: etm+ (L7)
 
 Ejecutamos el siguiente comando:
 
@@ -384,8 +384,8 @@ En el directorio /LUSTRE/MADMEX/descarga_landsat tendremos el archivo descargado
 
 -Requerimientos:
 	
-	* ancillary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
-	* shell de ledaps.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* ancillary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
+* shell de ledaps.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
 -Ejemplo para **datos después del año 2012-2013** con el archivo LE70210492015007EDC00.tar.bz:
 
@@ -412,9 +412,9 @@ Entonces ejecutamos el siguiente comando:
 
 -Ejemplo para datos **antes del año 2012-2013** con el archivo LE70210481999203AGS00.tar.bz: (**advertencia**, debemos utilizar para este ejemplo ancillary data antiguo)
 
-	*En ruta: /LUSTRE/MADMEX/descarga_landsat tenemos el LE70210481999203AGS00.tar.bz
-	*En ruta: /LUSTRE/MADMEX/ledaps queremos los resultados del preprocesamiento
-	*En ruta: /LUSTRE/MADMEX/ancillary_data tenemos descomprimido el ancillary data
+* En ruta: /LUSTRE/MADMEX/descarga_landsat tenemos el LE70210481999203AGS00.tar.bz
+* En ruta: /LUSTRE/MADMEX/ledaps queremos los resultados del preprocesamiento
+* En ruta: /LUSTRE/MADMEX/ancillary_data tenemos descomprimido el ancillary data
 
 ```
 #qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps_antes_2012.sh /LUSTRE/MADMEX/descarga_landsat/LE70210481999203AGS00.tar.bz \
@@ -559,8 +559,6 @@ Ejecutamos la siguiente línea:
 
 ```
 
-
-
 ###Clasificación
 
 -Requerimientos:
@@ -632,7 +630,7 @@ Ejecutar el siguiente comando:
 Ejecutar el siguiente comando:
 
 ```
-qsub -S /bin/bash -cwd /LUSTRE/MADMEX/clasificacion/ls_classification_landsat8.sh 2015-01-01 2015-12-31 10 21048 \ 
+qsub -S /bin/bash -cwd /LUSTRE/MADMEX/clasificacion/clasificacion_landsat8.sh 2015-01-01 2015-12-31 10 21048 \
 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
 ```
 
