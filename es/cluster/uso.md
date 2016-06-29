@@ -583,7 +583,7 @@ en el tag aux-data
 
 -Ejemplo : 
 
-* En ruta: /LUSTRE/MADMEX/clasificacion tenemos el shell clasificacion_landsat.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* En ruta: /LUSTRE/MADMEX/clasificacion tenemos el shell clasificacion_landsat.sh o clasificacion_landsat8.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 * En ruta: /LUSTRE/MADMEX/eodata tenemos los datos originales y resultados del preprocesamiento copiados con el proceso de ingest.
 * En ruta: /LUSTRE/MADMEX/products/inegiusvpersii-v tenemos los datos de entrenamiento
 * En ruta: /LUSTRE/MADMEX/products/dem/inegi tenemos los datos auxiliares: dem, aspect, slope (de acuerdo al configuration.ini)
@@ -617,6 +617,8 @@ insert into "products"."product" ("id", "uuid", "date_from", "date_to", "algorit
 
 ```
 
+##Landsat tm o etm+
+
 Ejecutar el siguiente comando:
 
 ```
@@ -624,6 +626,15 @@ Ejecutar el siguiente comando:
 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
 
 ```
+
+##Landsat 8
+
+Ejecutar el siguiente comando:
+
+```
+qsub -S /bin/bash -cwd /LUSTRE/MADMEX/clasificacion/ls_classification_landsat8.sh 2015-01-01 2015-12-31 10 21048 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
+```
+
 
 ###Postprocesamiento de clasificación
 
