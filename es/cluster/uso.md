@@ -577,7 +577,7 @@ en el tag aux-data
 	/LUSTRE/MADMEX/products/
 
 	/LUSTRE/MADMEX/processes/madmex_processing_results
-	
+
 	/LUSTRE/MADMEX/products/lsclassificationcommand
 
 
@@ -605,7 +605,7 @@ insert into "products"."legend"("id", "name", "description", "sld") values(0, 'd
 Para registrar el algoritmo en la base de datos:
 
 ```
-insert into "products"."algorithm"("id", "description", "command", "supervised") values (1, 'MAD-MEX Landsat Landcover Classification Workflow', 'LSClassificationCommand', 'true');
+insert into "products"."algorithm"("id", "description", "name", "supervised") values (1, 'MAD-MEX Landsat Landcover Classification Workflow', 'LSClassificationCommand', 'true');
 
 ```
 
