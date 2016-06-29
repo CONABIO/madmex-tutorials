@@ -356,7 +356,7 @@ Para el postprocesamiento tenemos:
 	*Nuestro archivo ESRI se llama landsat_footprints_mexico.shp
 	*En el archivo ESRI tenemos la columna code que contiene los tiles de mexico
 	*En la carpeta /resultados_postprocesamiento tendremos los resultados que ayudan al postprocesamiento
-	*El archivo postprocesamiento.tif es el resultado del postprocesamiento y se guarda en la carpeta /resultado_postprocesamiento/
+	*El archivo postprocesamiento.tif es el resultado del postprocesamiento y se guarda en el directorio de trabajo
 
 ```
 docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
