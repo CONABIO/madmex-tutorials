@@ -605,7 +605,7 @@ insert into "products"."legend"("id", "name", "description", "sld") values(0, 'd
 Para registrar el algoritmo en la base de datos:
 
 ```
-insert into "products"."algorithm"("id", "description", "name", "supervised") values (1, 'MAD-MEX Landsat Landcover Classification Workflow', 'LSClassificationCommand', 'true');
+insert into "products"."algorithm"("id", "name", "description", "command", "supervised") values (1,'LSClassificationCommand', 'MAD-MEX Landsat Landcover Classification Workflow', 'LSClassificationCommand', 'true');
 
 ```
 
