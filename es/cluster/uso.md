@@ -646,9 +646,9 @@ qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/clasificacion/clasificacion_l
 
 	* Dirección IP del host en el que está levantado el servidor de postgres es 172.16.9.145
 	* En la base de datos dentro del esquema vectordata tenemos registrada la tabla de tiles "landsat_footprints_mexico"
-	* El nombre del archivo ESRI será landsat_footprint_mexico
+	* El nombre del archivo ESRI será landsat_footprint_mexico y estará en /LUSTRE/MADMEX/eodata/footprints/
 
-En un nodo de procesamiento ejecutamos lo siguiente:
+En un nodo de procesamiento ejecutamos lo siguiente en la carpeta /LUSTRE/MADMEX/eodata/footprints/:
 
 ```
 $docker run --rm -v $(pwd):/results -it madmex/postgres-client \
@@ -661,22 +661,16 @@ En el directorio de trabajo tendremos el archivo ESRI.
 
 Para el postprocesamiento tenemos:
 
-
-	*En la carpeta /LUSTRE/MADMEX/lsclassificationcommand/2015_2015/training_1 tenemos los resultados del proceso de clasificación anterior
-	*Nuestro archivo ESRI se llama landsat_footprints_mexico.shp y está en /LUSTRE/MADMEX/postprocesamiento_esri_file
-	*En el archivo ESRI tenemos la columna code que contiene los tiles de mexico
-	*En la carpeta /LUSTRE/MADMEX/carpeta_auxiliar_postprocesamiento tendremos los resultados que ayudan al postprocesamiento
-	*El archivo postprocesamiento.tif es el resultado del postprocesamiento y se guarda en la carpeta /LUSTRE/MADMEX/resultados_postprocesamiento_clasificacion
+* En la carpeta /LUSTRE/MADMEX/postprocesamiento tenemos el shell postprocesamiento_clasificacion_landsat.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* En la carpeta /LUSTRE/MADMEX/lsclassificationcommand/2015_2015/training_1 tenemos los resultados del proceso de clasificación anterior
+* Nuestro archivo ESRI se llama landsat_footprints_mexico.shp y está en /LUSTRE/MADMEX/eodata/footprints/
+* En el archivo ESRI tenemos la columna code que contiene los tiles de mexico
+* En la carpeta /LUSTRE/MADMEX/processes/madmex_processing_results/auxiliar_postprocesamiento_clasificacion/etm+/2015/ tendremos los resultados que ayudan al postprocesamiento
+* El archivo madmex_lc_2015.tif es el resultado del postprocesamiento y se guarda en la carpeta /LUSTRE/MADMEX/products/landcover/landsat/etm+/
 
 ```
-docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
--v /lsclassificationcommand/2015_2015/training_1:/results_classification
--v /resultados_postprocesamiento:/results_postprocessing
--v /resources/config:/LUSTRE/MADMEX/code/resources/config \
--v $(pwd):/results madmex/ws /results/postprocesamiento_clasificacion_landsat.sh \
-/results_classification/ /results/landsat_footprints_mexico.shp code /results_postprocessing/ /results/postprocesamiento.tif
 
-
+qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/postprocesamiento/postprocesamiento_clasificacion_landsat.sh /LUSTRE/MADMEX/products/lsclassificationcommand/2015_2015/training_1/ /LUSTRE/MADMEX/eodata/footprints/landsat_footprints_mexico.shp code /LUSTRE/MADMEX/processes/madmex_processing_results/auxiliar_postprocesamiento_clasificacion/etm+/2015/ /LUSTRE/MADMEX/products/landcover/landsat/etm+/madmex_lc_2015.tif
 
 ```
 
