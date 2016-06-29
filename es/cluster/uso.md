@@ -670,7 +670,11 @@ Para el postprocesamiento tenemos:
 
 ```
 
-qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/postprocesamiento/postprocesamiento_clasificacion_landsat.sh /LUSTRE/MADMEX/products/lsclassificationcommand/2015_2015/training_1/ /LUSTRE/MADMEX/eodata/footprints/landsat_footprints_mexico.shp code /LUSTRE/MADMEX/processes/madmex_processing_results/auxiliar_postprocesamiento_clasificacion/etm+/2015/ /LUSTRE/MADMEX/products/landcover/landsat/etm+/madmex_lc_2015.tif
+qsub -q miqueue.q -S /bin/bash -cwd \
+/LUSTRE/MADMEX/postprocesamiento/postprocesamiento_clasificacion_landsat.sh \
+/LUSTRE/MADMEX/products/lsclassificationcommand/2015_2015/training_1/ \
+/LUSTRE/MADMEX/eodata/footprints/landsat_footprints_mexico.shp code \
+/LUSTRE/MADMEX/processes/madmex_processing_results/auxiliar_postprocesamiento_clasificacion/etm+/2015/ /LUSTRE/MADMEX/products/landcover/landsat/etm+/madmex_lc_2015.tif
 
 ```
 
