@@ -656,7 +656,7 @@ pgsql2shp -f /results/landsat_footprint_mexico -h 172.16.9.145 -p 32851 \
 -u madmex_user madmex_database vectordata.landsat_footprints_mexico
 ```
 
-En el directorio de trabajo tendremos el archivo ESRI.
+En el directorio /LUSTRE/MADMEX/eodata/footprints/ tendremos el archivo ESRI.
 
 
 Para el postprocesamiento tenemos:
