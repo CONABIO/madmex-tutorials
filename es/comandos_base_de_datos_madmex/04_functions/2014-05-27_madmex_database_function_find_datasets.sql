@@ -13,7 +13,8 @@ for result in
 	from eodata.dataset ia--, eodata.image_footprint fp
 	where 
 		--ia.gridid = fp.code 
-		--and ia.product = productid and
+		--and 
+		ia.product = productid and
 		overlaps(ia.acq_date,ia.acq_date,acstart::date,acstop::date)
 		and ia.clouds <= cloud
 		and ia.sensor = sensorid order by ia.acq_date
