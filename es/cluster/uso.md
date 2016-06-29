@@ -602,7 +602,6 @@ insert into "products"."product" ("id", "uuid", "date_from", "date_to", "algorit
 ```
 
 
-
 -Ejemplo : 
 
 * En ruta: /LUSTRE/MADMEX/clasificacion tenemos el shell clasificacion_landsat.sh o clasificacion_landsat8.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
@@ -631,7 +630,7 @@ Ejecutar el siguiente comando:
 Ejecutar el siguiente comando:
 
 ```
-qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/clasificacion/clasificacion_landsat8.sh 2015-01-01 2015-12-31 10 21048 \
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/clasificacion/clasificacion_landsat8.sh 2015-01-01 2015-12-31 10 21048 \
 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
 ```
 
@@ -671,11 +670,12 @@ Para el postprocesamiento tenemos:
 
 ```
 
-qsub -q miqueue.q -S /bin/bash -cwd \
+#qsub -q miqueue.q -S /bin/bash -cwd \
 /LUSTRE/MADMEX/postprocesamiento/postprocesamiento_clasificacion_landsat.sh \
 /LUSTRE/MADMEX/products/lsclassificationcommand/2015_2015/training_1/ \
 /LUSTRE/MADMEX/eodata/footprints/landsat_footprints_mexico.shp code \
-/LUSTRE/MADMEX/processes/madmex_processing_results/auxiliar_postprocesamiento_clasificacion/etm+/2015/ /LUSTRE/MADMEX/products/landcover/landsat/etm+/madmex_lc_2015.tif
+/LUSTRE/MADMEX/processes/madmex_processing_results/auxiliar_postprocesamiento_clasificacion/etm+/2015/ \
+/LUSTRE/MADMEX/products/landcover/landsat/etm+/madmex_lc_2015.tif
 
 ```
 
