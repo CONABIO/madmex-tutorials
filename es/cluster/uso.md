@@ -405,7 +405,7 @@ Entonces ejecutamos el siguiente comando:
 
 
 ```
-#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz \
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz \
 /LUSTRE/MADMEX/ancillary_data /tmp/madmex_temporal /LUSTRE/MADMEX/ledaps
 
 ```
@@ -417,7 +417,7 @@ Entonces ejecutamos el siguiente comando:
 * En ruta: /LUSTRE/MADMEX/ancillary_data tenemos descomprimido el ancillary data
 
 ```
-#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps_antes_2012.sh /LUSTRE/MADMEX/descarga_landsat/LE70210481999203AGS00.tar.bz \
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps_antes_2012.sh /LUSTRE/MADMEX/descarga_landsat/LE70210481999203AGS00.tar.bz \
 /LUSTRE/MADMEX/ancillary_data /tmp/madmex_temporal /LUSTRE/MADMEX/ledaps
 
 ```
@@ -435,7 +435,7 @@ Entonces ejecutamos el siguiente comando:
 
 
 ```
-#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/fmask/fmask.sh \
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/fmask/fmask.sh \
 /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz /LUSTRE/MADMEX/fmask /tmp/madmex_temporal
 
 ```
@@ -445,7 +445,7 @@ Entonces ejecutamos el siguiente comando:
 Ejecutar el siguiente comando en el directorio que contiene el *.tar.bz
 
 ```
-#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/fmask/fmask_ls8.sh \
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/fmask/fmask_ls8.sh \
 /LUSTRE/MADMEX/descarga_landsat/LC80210482013249LGN00.tar.bz /LUSTRE/MADMEX/fmask /tmp/madmex_temporal
 ```
 
@@ -505,7 +505,7 @@ Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el
 Ejecutamos la siguiente línea
 
 ```
-#qsub -cwd -S /bin/bash /LUSTRE/MADMEX/ingestion_landsat/data_ingestion_folder.sh \ /LUSTRE/MADMEX/fmask/LE70210492015007EDC00/maskfolder/
+#qsub -q miqueue.q -cwd -S /bin/bash /LUSTRE/MADMEX/ingestion_landsat/data_ingestion_folder.sh \ /LUSTRE/MADMEX/fmask/LE70210492015007EDC00/maskfolder/
 ```
 
 
@@ -531,7 +531,7 @@ Ejecutamos la siguiente línea
 Ejecutamos la siguiente línea:
 
 ```
-#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/preproc_and_ingest/preprocesamiento_e_ingestion_landsat_no_8_datos_despues_2012.sh \
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/preproc_and_ingest/preprocesamiento_e_ingestion_landsat_no_8_datos_despues_2012.sh \
 /LUSTRE/MADMEX/descarga_landsat/LE70210492015071EDC00.tar.bz /LUSTRE/MADMEX/ancillary_data /tmp/madmex_temporal
 
 ```
@@ -554,7 +554,7 @@ Ejecutamos la siguiente línea:
 Ejecutamos la siguiente línea:
 
 ```
-#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/preproc_and_ingest/preprocesamiento_e_ingestion_landsat_8.sh \
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/preproc_and_ingest/preprocesamiento_e_ingestion_landsat_8.sh \
 /LUSTRE/MADMEX/descarga_landsat/LC80210482013249LGN00.tar.bz /tmp/madmex_temporal
 
 ```
@@ -620,7 +620,7 @@ insert into "products"."product" ("id", "uuid", "date_from", "date_to", "algorit
 Ejecutar el siguiente comando:
 
 ```
-#qsub -S /bin/bash -cwd /LUSTRE/MADMEX/clasificacion/clasificacion_landsat.sh 2015-01-01 2015-12-31 10 21048 \
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/clasificacion/clasificacion_landsat.sh 2015-01-01 2015-12-31 10 21048 \
 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
 
 ```
@@ -630,7 +630,7 @@ Ejecutar el siguiente comando:
 Ejecutar el siguiente comando:
 
 ```
-qsub -S /bin/bash -cwd /LUSTRE/MADMEX/clasificacion/clasificacion_landsat8.sh 2015-01-01 2015-12-31 10 21048 \
+qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/clasificacion/clasificacion_landsat8.sh 2015-01-01 2015-12-31 10 21048 \
 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
 ```
 
@@ -644,14 +644,15 @@ qsub -S /bin/bash -cwd /LUSTRE/MADMEX/clasificacion/clasificacion_landsat8.sh 20
 
 -Ejemplo:
 
-	* Dirección IP del host en el que está levantado el servidor de postgres es 192.168.99.100
+	* Dirección IP del host en el que está levantado el servidor de postgres es 172.16.9.145
 	* En la base de datos dentro del esquema vectordata tenemos registrada la tabla de tiles "landsat_footprints_mexico"
 	* El nombre del archivo ESRI será landsat_footprint_mexico
 
+En un nodo de procesamiento ejecutamos lo siguiente:
 
 ```
 $docker run --rm -v $(pwd):/results -it madmex/postgres-client \
-pgsql2shp -f /results/landsat_footprint_mexico -h 192.168.99.100 -p 32851 \
+pgsql2shp -f /results/landsat_footprint_mexico -h 172.16.9.145 -p 32851 \
 -u madmex_user madmex_database vectordata.landsat_footprints_mexico
 ```
 
@@ -661,11 +662,11 @@ En el directorio de trabajo tendremos el archivo ESRI.
 Para el postprocesamiento tenemos:
 
 
-	*En la carpeta /resultados_clasificacion tenemos los resultados del proceso de clasificación anterior
-	*Nuestro archivo ESRI se llama landsat_footprints_mexico.shp
+	*En la carpeta /LUSTRE/MADMEX/lsclassificationcommand/2015_2015/training_1 tenemos los resultados del proceso de clasificación anterior
+	*Nuestro archivo ESRI se llama landsat_footprints_mexico.shp y está en /LUSTRE/MADMEX/postprocesamiento_esri_file
 	*En el archivo ESRI tenemos la columna code que contiene los tiles de mexico
-	*En la carpeta /resultados_postprocesamiento tendremos los resultados que ayudan al postprocesamiento
-	*El archivo postprocesamiento.tif es el resultado del postprocesamiento y se guarda en la carpeta /resultado_postprocesamiento/
+	*En la carpeta /LUSTRE/MADMEX/carpeta_auxiliar_postprocesamiento tendremos los resultados que ayudan al postprocesamiento
+	*El archivo postprocesamiento.tif es el resultado del postprocesamiento y se guarda en la carpeta /LUSTRE/MADMEX/resultados_postprocesamiento_clasificacion
 
 ```
 docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
@@ -674,7 +675,6 @@ docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
 -v /resources/config:/LUSTRE/MADMEX/code/resources/config \
 -v $(pwd):/results madmex/ws /results/postprocesamiento_clasificacion_landsat.sh \
 /results_classification/ /results/landsat_footprints_mexico.shp code /results_postprocessing/ /results/postprocesamiento.tif
-
 
 
 
