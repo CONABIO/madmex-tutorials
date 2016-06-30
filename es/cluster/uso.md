@@ -19,7 +19,7 @@ Especificaciones para los nodos:
 
 
 ## Nodos de procesamiento: *
-* Mínimo 4 cores
+* Mínimo 8 cores
 * Mínimo 20-32 gb de RAM
 * Una partición o volumen con capacidad de mínimo 500gb - 1tb
 * Una partición o volumen con capacidad de mínimo 100gb
