@@ -603,12 +603,12 @@ Para registrar los datos de entrenamiento en la base de datos:
 insert into "products"."product" ("id", "uuid", "date_from", "date_to", "algorithm", "legend", "provider", "file_url", "proc_date", "ingest_date", "the_geom", "rows", "columns", "bands", "resolution", "projection") values (1, '43ed65a9-8719-4bdc-a375-a987c49de19c', '2016-01-01', '2016-12-31', 1, 0, 'CONABIO', '/LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif', '2015-09-08 16:42:07', '2015-09-08 11:49:01', '0103000000010000000500000048B437AD505554C03F7E00ADC44A0BC075FE61FE9F9A53C09BF40773C0430BC0BCBE2357C99953C04850CF114DCF1AC0ECBC64616C5554C012F7D91A39D61AC048B437AD505554C03F7E00ADC44A0BC0', 1, 1, 1, 1.0, 'PROJCS["WGS 84 / UTM zone 17N",GEOGCS["WGS 84",DATUM["WGS_1984",SPHEROID["WGS 84",6378137,298.257223563,AUTHORITY["EPSG","7030"]],AUTHORITY["EPSG","6326"]],PRIMEM["Greenwich",0],UNIT["degree",0.0174532925199433],AUTHORITY["EPSG","4326"]],PROJECTION["Transverse_Mercator"],PARAMETER["latitude_of_origin",0],PARAMETER["central_meridian",-81],PARAMETER["scale_factor",0.9996],PARAMETER["false_easting",500000],PARAMETER["false_northing",0],UNIT["metre",1,AUTHORITY["EPSG","9001"]],AUTHORITY["EPSG","32617"]]')
 
 ```
-Para registrar el archivo ESRI de la región a clasificar en la base de datos que se encuentra en la ruta /LUSTRE/MADMEX/clasificacion :
+Para registrar el archivo ESRI de la región a clasificar en la base de datos dentro del esquema vectordata que se encuentra en la ruta /LUSTRE/MADMEX/clasificacion con nombre miregion:
 
 ```
-$docker run --rm -v /LUSTRE/MADMEX/clasificacion:/results -it madmex/postgres-client shp2pgsql -I -s 4326 /results/region.shp region | psql -d madmex_database -U madmex_user -h 172.16.9.145 -p 32851
+$docker run --rm -v /LUSTRE/MADMEX/clasificacion:/results -it madmex/postgres-client shp2pgsql -I -s 4326 /results/miregion.shp vectordata.miregion | psql -d madmex_database -U madmex_user -h 172.16.9.145 -p 32851
 
-```
+``
 
 -Ejemplo : 
 
