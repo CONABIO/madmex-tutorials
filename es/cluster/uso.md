@@ -28,7 +28,7 @@ Especificaciones para los nodos:
 ## Nodo para la base de datos: *
 * Mínimo 1 core
 * Mínimo 8-16 gb de RAM
-* Volumen con capacidad mínima de 20 gb
+* Una partición o volumen con capacidad mínima de 20 gb
 
 *NOTAS:*
 
@@ -36,7 +36,7 @@ Especificaciones para los nodos:
 
 - En cada nodo de procesamiento montaremos una carpeta "madmex_temporal" en la partición mencionada de capacidad 100 gb en la que almacenaremos resultados de procesos.
 
-*Estos requerimientos de la capacidad en las carpetas varían para el caso de uso.
+*Estos requerimientos de la capacidad en las particiones o volúmenes varían para el caso de uso.
 
 ##Base de datos
 
