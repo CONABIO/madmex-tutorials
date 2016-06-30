@@ -12,33 +12,31 @@ Consideraremos cuatro nodos:
 
 Especificaciones para los nodos:
 
-## Nodo maestro:
+## Nodo maestro: *
 * 2-4 cores
 * Mínimo 4 gb de RAM
 * Una partición o volumen con capacidad de mínimo 500gb - 1tb
 
 
-## Nodos de procesamiento:
+## Nodos de procesamiento: *
 * Mínimo 4 cores
 * Mínimo 20-32 gb de RAM
 * Una partición o volumen con capacidad de mínimo 500gb - 1tb
 * Una partición o volumen con capacidad de mínimo 100gb
 
 
-## Nodo para la base de datos:
+## Nodo para la base de datos: *
 Mínimo 1 core
 Mínimo 8-16 gb de RAM
 Volumen con capacidad mínima de 20 gb
 
+*NOTAS:*
 
-Entre los nodos de procesamiento y el nodo maestro montaremos una carpeta compartida en la partición mencionada de capacidad de 500gb - 1tb y en ella se hará un árbol de directorios para almacenar las imágenes, así como otros usos.
+- Entre los nodos de procesamiento y el nodo maestro montaremos una carpeta compartida en la partición mencionada de capacidad de 500gb - 1tb y en ella se hará un árbol de directorios para almacenar las imágenes, así como otros usos.
 
-En cada nodo de procesamiento montaremos una carpeta "madmex_temporal" en la partición mencionada de capacidad 100 gb en la que almacenaremos resultados de procesos.
+- En cada nodo de procesamiento montaremos una carpeta "madmex_temporal" en la partición mencionada de capacidad 100 gb en la que almacenaremos resultados de procesos.
 
-
-*NOTA:*
-
-Estos requerimientos de la capacidad en las carpetas varían para el caso de uso.
+*Estos requerimientos de la capacidad en las carpetas varían para el caso de uso.
 
 ##Base de datos
 
