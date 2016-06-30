@@ -13,16 +13,16 @@ Consideraremos cuatro nodos:
 Especificaciones para los nodos:
 
 - Nodo maestro:
-2-4 cores
-Mínimo 4 gb de RAM
-Una partición o volumen con capacidad de mínimo 500gb - 1tb
+* 2-4 cores
+* Mínimo 4 gb de RAM
+* Una partición o volumen con capacidad de mínimo 500gb - 1tb
 
 
 - Nodos de procesamiento:
-Mínimo 4 cores
-Mínimo 20-32 gb de RAM
-Una partición o volumen con capacidad de mínimo 500gb - 1tb
-Una partición o volumen con capacidad de mínimo 100gb
+* Mínimo 4 cores
+* Mínimo 20-32 gb de RAM
+* Una partición o volumen con capacidad de mínimo 500gb - 1tb
+* Una partición o volumen con capacidad de mínimo 100gb
 
 
 - Nodo para la base de datos:
