@@ -606,9 +606,11 @@ insert into "products"."product" ("id", "uuid", "date_from", "date_to", "algorit
 Para registrar el archivo ESRI de la región a clasificar en la base de datos dentro del esquema vectordata que se encuentra en la ruta /LUSTRE/MADMEX/clasificacion con nombre miregion:
 
 ```
-$docker run --rm -v /LUSTRE/MADMEX/clasificacion:/results -it madmex/postgres-client shp2pgsql -I -s 4326 /results/miregion.shp vectordata.miregion | psql -d madmex_database -U madmex_user -h 172.16.9.145 -p 32851
+$docker run --rm -v /LUSTRE/MADMEX/clasificacion:/results -it madmex/postgres-client \
+shp2pgsql -I -s 4326 /results/miregion.shp vectordata.miregion | psql -d madmex_database -U \
+madmex_user -h 172.16.9.145 -p 32851
 
-``
+```
 
 -Ejemplo : 
 
