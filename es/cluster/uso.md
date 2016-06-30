@@ -26,9 +26,9 @@ Especificaciones para los nodos:
 
 
 ## Nodo para la base de datos: *
-Mínimo 1 core
-Mínimo 8-16 gb de RAM
-Volumen con capacidad mínima de 20 gb
+* Mínimo 1 core
+* Mínimo 8-16 gb de RAM
+* Volumen con capacidad mínima de 20 gb
 
 *NOTAS:*
 
