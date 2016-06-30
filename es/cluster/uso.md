@@ -570,7 +570,7 @@ Ejecutamos la siguiente línea:
 * Datos de entrenamiento y registrarlos en la base de datos dentro del esquema products tabla product.
 * Datos auxiliares: dem, aspect, slope en la ruta especificada en el archivo de configuración configuration.ini
 en el tag aux-data
-* Archivo ESRI de la región a clasificar, se debe registrar en la base de datos bajo el esquema de vectordata y en el archivo de configuración configuration.ini tag database-madmex en table_landmask escribir el nombre de la tabla.
+* Archivo ESRI de la región a clasificar, se debe registrar en la base de datos bajo el esquema de vectordata y en el archivo de configuración configuration.ini tag, database-madmex en table_landmask escribir el nombre de la tabla.
 * Shell clasificacion_landsat.sh o clasificacion_landsat8.sh que deben tener permisos de ejecución, ir a comandos.md de este repositorio
 * Folder temporal donde se guardarán archivos de procesamiento.
 * El siguiente árbol de directorios:
@@ -605,7 +605,10 @@ insert into "products"."product" ("id", "uuid", "date_from", "date_to", "algorit
 ```
 Para registrar el archivo ESRI de la región a clasificar en la base de datos que se encuentra en la ruta /LUSTRE/MADMEX/clasificacion :
 
+```
 $docker run --rm -v /LUSTRE/MADMEX/clasificacion:/results -it madmex/postgres-client shp2pgsql -I -s 4326 /results/region.shp region | psql -d madmex_database -U madmex_user -h 172.16.9.145 -p 32851
+
+```
 
 -Ejemplo : 
 
