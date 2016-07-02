@@ -407,7 +407,8 @@ Entonces ejecutamos el siguiente comando:
 
 
 ```
-#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz \
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps.sh \
+/LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz \
 /LUSTRE/MADMEX/ancillary_data /tmp/madmex_temporal /LUSTRE/MADMEX/ledaps
 
 ```
@@ -491,7 +492,8 @@ Necesitamos el siguiente árbol de directorios:
 Ejecutamos la siguiente línea en el contenedor del servicio maestro de sun grid engine:
 
 ```
-#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/data_ingestion/data_ingestion.sh /LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/data_ingestion/data_ingestion.sh \
+/LUSTRE/MADMEX/descarga_landsat/LE70210492015007EDC00.tar.bz
 ```
 
 Los imágenes están debajo del nivel /carpeta_compartida/eodata y el registro de este folder está en la base de datos dentro del esquema "eodata" y tabla "dataset".
@@ -507,7 +509,8 @@ Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el
 Ejecutamos la siguiente línea
 
 ```
-#qsub -q miqueue.q -cwd -S /bin/bash /LUSTRE/MADMEX/ingestion_landsat/data_ingestion_folder.sh \ /LUSTRE/MADMEX/fmask/LE70210492015007EDC00/maskfolder/
+#qsub -q miqueue.q -cwd -S /bin/bash /LUSTRE/MADMEX/ingestion_landsat/data_ingestion_folder.sh \ 
+/LUSTRE/MADMEX/fmask/LE70210492015007EDC00/maskfolder/
 ```
 
 
