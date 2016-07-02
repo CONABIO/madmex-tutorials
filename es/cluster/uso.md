@@ -28,7 +28,7 @@ Especificaciones para los nodos:
 ## Nodo para la base de datos: *
 * Mínimo 1 core
 * Mínimo 8-16 gb de RAM
-* Un volumen o tener una partición con un formato de sistema de archivos de tipo ext4 con capacidad mínima de 20 gb
+* Un volumen con una capacidad mínima de 20 gb
 
 *NOTAS:*
 
