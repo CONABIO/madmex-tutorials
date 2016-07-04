@@ -29,7 +29,7 @@ debug=False
 [database-madmex]
 schema_landmask = vectordata
 table_landmask = country_mexico
-landsat_footprint_table = vectordata.landsat_footprints_mexico
+#landsat_footprint_table = vectordata.landsat_footprints_mexico
 hostname =172.16.9.147
 port = 32851
 dbname = madmex_database
@@ -43,9 +43,9 @@ producttable = product
 
 [database-classification]
 schema_landmask = vectordata
-table_landmask = mexcontinental_buffer
-landsat_footprint_table = vectordata.landsat_footprints_mexico
-landsat_overlap_table = vectordata.landsat_etm_mx_footprints_overlaps
+#table_landmask = mexcontinental_buffer
+#landsat_footprint_table = vectordata.landsat_footprints_mexico
+#landsat_overlap_table = vectordata.landsat_etm_mx_footprints_overlaps
 hostname =172.16.9.147
 port = 32851
 dbname = madmex_classification
