@@ -34,16 +34,16 @@ $docker exec -u=postgres -it postgres-server-madmex /bin/bash /results/madmex_da
 
 -Requerimientos:
 
-	* Path, row de tile de landsat
-	* Año a descargar imágenes
-	* Instrumento a elegir entre tm, etm+, oli-tirs
-	* shell de descarga que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* Path, row de tile de landsat
+* Año a descargar imágenes
+* Instrumento a elegir entre tm, etm+, oli-tirs
+* shell de descarga que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
 -Ejemplo: descarga todas las imágenes landsat del año 2015
 
-	* path: 021, row: 048
-	* año: 2015
-	* Instrumento: etm+ (L7)
+* path: 021, row: 048
+* año: 2015
+* Instrumento: etm+ (L7)
 
 Para la siguiente línea usar el shell *descarga_landsat.sh*
 
@@ -82,15 +82,15 @@ En el directorio en el que se ejecutó el comando tendremos el archivo descargad
 
 -Requerimientos:
 	
-	* ancillary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
-	* shell de ledaps.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* ancillary data:  http://espa.cr.usgs.gov/downloads/auxiliaries/ledaps_auxiliary/ledaps_aux.1978-2014.tar.gz
+* shell de ledaps.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 
 -Ejemplo para datos después del año 2012-2013 con el archivo LE70210492015007EDC00.tar.bz:
 
-	*En ruta: /datos_landsat tenemos el LE70210492015007EDC00.tar.bz
-	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
-	*En ruta: /ancillary_data tenemos descomprimido el ancillary data
-	*Usamos la imagen: ledaps/ledaps:latest
+* En ruta: /datos_landsat tenemos el LE70210492015007EDC00.tar.bz
+* En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
+* En ruta: /ancillary_data tenemos descomprimido el ancillary data
+* Usamos la imagen: ledaps/ledaps:latest
 
 Entonces ejecutamos el siguiente comando:
 
@@ -105,10 +105,10 @@ Los resultados están en el path: /resultados_ledaps
 
 -Ejemplo para datos antes del año 2012-2013 con el archivo LE70210481999203AGS00.tar.bz: (**advertencia**, debemos utilizar para este ejemplo ancillary data antiguo)
 
-	*En ruta: /datos_landsat tenemos el LE70210481999203AGS00.tar.bz
-	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento y tenemos el shell ledaps_antes_2012.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	*En ruta: /ancillary_data tenemos descomprimido el ancillary data
-	*Usamos la imagen: madmex/ledaps-legacy:latest
+* En ruta: /datos_landsat tenemos el LE70210481999203AGS00.tar.bz
+* En ruta: /resultados_ledaps queremos los resultados del preprocesamiento y tenemos el shell ledaps_antes_2012.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* En ruta: /ancillary_data tenemos descomprimido el ancillary data
+* Usamos la imagen: madmex/ledaps-legacy:latest
 
 
 ```
@@ -123,9 +123,9 @@ Los resultados están en el path: /resultados_ledaps
 
 -Requerimientos:
 
-	* Para un archivo de Landsat tm o etm+: shell de fmask.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* Para un archivo de Landsat 8: shell de fmask_ls8.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* El sistema en el que se ejecutan los comandos debe tener más de 4096Mb.
+* Para un archivo de Landsat tm o etm+: shell de fmask.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* Para un archivo de Landsat 8: shell de fmask_ls8.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* El sistema en el que se ejecutan los comandos debe tener más de 4096Mb.
 
 -Ejemplo para Landsat 7: LE70210492015007EDC00.tar.bz
 
@@ -154,14 +154,13 @@ El proceso de ingestión de imágenes se realiza con el shell *data_ingestion.sh
 
 -Requerimientos:
 
-	* Imagen de docker para procesos: madmex/ws
-	* Shell de data_ingestion.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* Clonar repositorio de CONABIO/madmex-v2
-	* Archivo de configuración con el nombre "configuration.ini" ir a configuraciones.md de este respositorio
-	* Crear carpetas "resources/config" y colocar ahí el archivo de configuración
-	* Crear carpeta "eodata", aquí se copiaran las imágenes.
-	* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt" \
-	 en el directorio en donde está el shell:
+* Imagen de docker para procesos: madmex/ws
+* Shell de data_ingestion.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* Clonar repositorio de CONABIO/madmex-v2
+* Archivo de configuración con el nombre "configuration.ini" ir a configuraciones.md de este respositorio
+* Crear carpetas "resources/config" y colocar ahí el archivo de configuración
+* Crear carpeta "eodata", aquí se copiaran las imágenes.
+* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt" en el directorio en donde está el shell:
 
 ```
 export MADMEX=/LUSTRE/MADMEX/code/
