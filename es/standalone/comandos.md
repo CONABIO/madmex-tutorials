@@ -68,6 +68,9 @@ cd $dir && tar xvf $filename
 #LEDAPS
 year=$(echo $filename|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
 cp $2/CMGDEM.hdf $dir
+cp $2/L5_TM/gold.dat $dir
+cp $2/L5_TM/gnew.dat $dir
+cp $2/L5_TM/gold_2003.dat $dir
 mkdir $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
 mkdir $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
 metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
