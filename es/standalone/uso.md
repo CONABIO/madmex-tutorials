@@ -134,7 +134,7 @@ Ejecutar el siguiente comando en el directorio que contiene el *.tar.bz
 
 ```
 $docker run --rm -v $(pwd):/data madmex/python-fmask /data/fmask_ls.sh \
-/data/LC80210482015303LGN00.tar.bzLE70210492015007EDC00.tar.bz
+/data/LE70210492015007EDC00.tar.bz
 ```
 
 -Ejemplo para archivo de Landsat 8: LC80210482015015LGN00.tar.bz:
@@ -143,7 +143,7 @@ Ejecutar el siguiente comando en el directorio que contiene el *.tar.bz
 
 ```
 $docker run --rm -v $(pwd):/data madmex/python-fmask /data/fmask_ls8.sh \
-/data/LC80210482015303LGN00.tar.bzLC80210482015015LGN00.tar.bz
+/data/LC80210482015015LGN00.tar.bz
 ```
 
 Los resultados están en el directorio donde se ejecutó el comando.
