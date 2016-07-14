@@ -360,10 +360,6 @@ docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
 -v /resources/config:/LUSTRE/MADMEX/code/resources/config \
 -v $(pwd):/results madmex/ws /results/postprocesamiento_clasificacion_landsat.sh \
 /results_classification/ /results/landsat_footprints_mexico.shp code /results_postprocessing/ /results/postprocesamiento.tif
-
-
-
-
 ```
 
 ###Detección de cambios
