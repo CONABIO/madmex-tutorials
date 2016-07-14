@@ -317,8 +317,6 @@ $docker run --rm -v $(pwd)/products:/LUSTRE/MADMEX/products \
 -v /temporal:/services/localtemp/temp -v $(pwd):/results madmex/ws:latest \
 /results/clasificacion_landsat.sh 2014-01-01 2014-12-31 10 21048 \
 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1
-
-
 ```
 
 ###Postprocesamiento de clasificación
