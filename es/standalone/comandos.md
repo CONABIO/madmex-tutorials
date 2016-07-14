@@ -30,12 +30,12 @@ destiny=/results
 name=$(basename $1)
 basename=$(echo $name|sed -n 's/\(L*.*\).tar.bz/\1/;p')
 dir=$destiny/$basename
-mkdir $dir
+mkdir -p $dir
 cp $1 $dir
 year=$(echo $name|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*.tar.bz/\1/p')
 cp $2/CMGDEM.hdf $dir
-mkdir $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
-mkdir $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
+mkdir -p $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
+mkdir -p $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
 cd $dir && tar xvf $name 
 metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
 metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
@@ -52,6 +52,36 @@ rm -r $dir/EP_TOMS/
 rm -r $dir/REANALYSIS/
 
 ```
+
+*ledaps_antes_2012.sh*
+
+```
+#!/bin/bash
+#Entrada: $1 es la ruta al archivo tar, $2 es la ruta al ancillary data en el comando de docker
+destiny=/results
+filename=$(basename $1)
+newdir=$(echo $filename | sed -n 's/\(L*.*\).tar.bz/\1/;p')
+dir=$destiny/$newdir
+mkdir -p $dir
+cp $1 $dir
+cd $dir && tar xvf $filename
+#LEDAPS
+year=$(echo $filename|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
+cp $2/CMGDEM.hdf $dir
+mkdir $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
+mkdir $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
+metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
+#cd $dir && /usr/local/bin/ledapsSrc/bin/do_ledaps.csh $metadata
+cd $dir && $BIN/do_ledaps.csh $metadata
+rm $filename
+rm -rf CMGDEM.hdf
+rm -rf EP_TOMS
+rm -rf REANALYSIS
+cp -r $dir $4
+rm -r $dir
+
+```
+
 
 *fmask.sh*
 
