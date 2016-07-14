@@ -91,7 +91,7 @@ rm -r $dir
 #!/bin/bash
 #$1 es la ruta con los datos en forma .tar.bz
 filename=$(basename $1)
-newdir=$(echo $filename | sed -e "s/.tar.bz//g")
+newdir=$(echo $filename | sed -n 's/\(L*.*\).tar.bz/\1/;p')
 path=$(echo $PWD)
 new_filename=$path/$filename
 mkdir -p $path/$newdir
@@ -111,7 +111,7 @@ gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
 #!/bin/bash
 #$1 es la ruta con los datos en forma .tar.bz
 filename=$(basename $1)
-newdir=$(echo $filename | sed -e "s/.tar.bz//g")
+newdir=$(echo $filename | sed -n 's/\(L*.*\).tar.bz/\1/;p')
 path=$(echo $PWD)
 new_filename=$path/$filename
 mkdir -p $path/$newdir
@@ -133,7 +133,7 @@ gdal_translate -of ENVI cloud.img $(echo $newfilename)_MTLFmask
 #!/bin/bash
 #$1 es la ruta del archivo .tar.bz a ingestar
 filename=$(basename $1)
-newdir=$(echo $filename | sed -e "s/.tar.bz//g")
+newdir=$(echo $filename | sed -n 's/\(L*.*\).tar.bz/\1/;p')
 folder=/results
 new_filename=$folder/$filename
 mkdir -p $folder/$newdir
