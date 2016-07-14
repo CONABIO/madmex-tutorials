@@ -73,11 +73,10 @@ mkdir $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
 metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
 #cd $dir && /usr/local/bin/ledapsSrc/bin/do_ledaps.csh $metadata
 cd $dir && $BIN/do_ledaps.csh $metadata
-rm $filename
-rm -rf CMGDEM.hdf
-rm -rf EP_TOMS
-rm -rf REANALYSIS
-cp -r $dir $4
+rm $dir/$filename
+rm -rf $dir/CMGDEM.hdf
+rm -rf $dir/EP_TOMS
+rm -rf $dir/REANALYSIS
 rm -r $dir
 
 ```
