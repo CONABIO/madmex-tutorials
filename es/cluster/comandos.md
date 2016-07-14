@@ -106,7 +106,7 @@ rm -r $dir
 #Entrada: $1 es la ruta con los datos en forma .tar.bz, $2 es la ruta que queremos se copien los archivos, $3 es la ruta a la carpeta temporal
 source /LUSTRE/MADMEX/gridengine/nodo.txt
 filename=$(basename $1)
-newdir=$(echo $filename | sed -e "s/.tar.bz//g")
+newdir=$(echo $filename | sed -n 's/\(L*.*\).tar.bz/\1/;p')
 path=$MADMEX_TEMP
 new_filename=$path/$filename
 mkdir -p $path/$newdir
@@ -142,7 +142,7 @@ rm -r $path/$newdir
 #Entrada: $1 es la ruta con los datos en forma .tar.bz, $2 es la ruta que queremos se copien los archivos, $3 es la ruta a la carpeta temporal
 source /LUSTRE/MADMEX/gridengine/nodo.txt
 filename=$(basename $1)
-newdir=$(echo $filename | sed -e "s/.tar.bz//g")
+newdir=$(echo $filename | sed -n 's/\(L*.*\).tar.bz/\1/;p')
 path=$MADMEX_TEMP
 new_filename=$path/$filename
 mkdir -p $path/$newdir
@@ -179,7 +179,7 @@ rm -r $path/$newdir
 #!/bin/bash
 source /LUSTRE/MADMEX/gridengine/nodo.txt
 filename=$(basename $1)
-newdir=$(echo $filename | sed -e "s/.tar.bz//g")
+newdir=$(echo $filename | sed -n 's/\(L*.*\).tar.bz/\1/;p')
 folder=$MADMEX_TEMP
 new_filename=$folder/$filename
 mkdir -p $folder/$newdir
@@ -270,7 +270,7 @@ rm -r $MADMEX_TEMP/$newdir/
 #Entrada: $1 es la ruta con los datos en forma .tar.bz, $2 es la ruta a la carpeta temporal
 source /LUSTRE/MADMEX/gridengine/nodo.txt
 filename=$(basename $1)
-newdir=$(echo $filename | sed -e "s/.tar.bz//g")
+newdir=$(echo $filename | sed -n 's/\(L*.*\).tar.bz/\1/;p')
 path=$MADMEX_TEMP
 new_filename=$path/$filename
 mkdir -p $path/$newdir
