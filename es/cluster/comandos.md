@@ -10,7 +10,7 @@
 
 ```
 #!/bin/bash
-#$1 es el sensor, $2 es el path, $3 es el row, $4 es el año
+#Entrada: $1 es el sensor, $2 es el path, $3 es el row, $4 es el año
 gsutil ls gs://earthengine-public/landsat/$1/$2/$3/|grep $4 > lista_landsat_tile_$2$3.txt
 mkdir -p /$(pwd)/landsat_tile_$2$3
 for file in $(cat lista_landsat_tile_$2$3.txt);do
