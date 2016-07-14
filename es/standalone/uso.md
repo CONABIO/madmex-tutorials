@@ -173,12 +173,12 @@ export MADMEX_TEMP=/services/localtemp/temp
 
 -Ejemplo para el archivo: LC80210482015015LGN00.tar.bz. En este ejemplo:
 
-	* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
-	* En ruta: /resources/config tenemos el archivo configuration.ini
-	* En el directorio de trabajo tenemos el archivo a ingestar: LC80210482015015LGN00.tar.bz
-	* En el directorio de trabajo tenemos el archivo de variables.txt
-	* En ruta: /datos/eodata queremos que se copien los archivos
+* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
+* En ruta: /resources/config tenemos el archivo configuration.ini
+* En el directorio de trabajo tenemos el archivo a ingestar: LC80210482015015LGN00.tar.bz
+* En el directorio de trabajo tenemos el archivo de variables.txt
+* En ruta: /datos/eodata queremos que se copien los archivos
 
 Ejecutamos la siguiente línea
 
@@ -196,12 +196,12 @@ Si quisiéramos ingestar los resultados del proceso de fmask o de ledaps usar el
 -Ejemplo para el folder: LC80210482015015LGN00. En este ejemplo:
 
 
-	* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
-	* En ruta: /resources/config tenemos el archivo configuration.ini
-	* En el directorio de trabajo tenemos el folder a ingestar: LC80210482015015LGN00
-	* En el directorio de trabajo tenemos el archivo de variables.txt
-	* En ruta: /datos/eodata queremos que se copien los archivos
+* Dentro del directorio de trabajo tenemos el shell de data_ingestion.sh, que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
+* En ruta: /resources/config tenemos el archivo configuration.ini
+* En el directorio de trabajo tenemos el folder a ingestar: LC80210482015015LGN00
+* En el directorio de trabajo tenemos el archivo de variables.txt
+* En ruta: /datos/eodata queremos que se copien los archivos
 
 Ejecutamos la siguiente línea
 
@@ -217,22 +217,22 @@ docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
 
 -Requerimientos:
 
-	* Shell preprocesamiento_e_ingestion_no_landsat_8.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* Datos en formato .tar.bz
-	* Ancillary data para LEDAPS
-	* Archivo de configuración con el nombre "configuration.ini", ir a configuraciones.md de este respositorio.
-	* Crear carpetas "resources/config" y colocar ahí el archivo de configuración
-	* Clonar repositorio de CONABIO/madmex-v2
-	* Crear carpeta "eodata", aquí se copiaran las imágenes.
+* Shell preprocesamiento_e_ingestion_no_landsat_8.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* Datos en formato .tar.bz
+* Ancillary data para LEDAPS
+* Archivo de configuración con el nombre "configuration.ini", ir a configuraciones.md de este respositorio.
+* Crear carpetas "resources/config" y colocar ahí el archivo de configuración
+* Clonar repositorio de CONABIO/madmex-v2
+* Crear carpeta "eodata", aquí se copiaran las imágenes.
 
 
 -Ejemplo para el archivo: LE70210482015055EDC00.tar.bz
 
-	* En el directorio de trabajo tenemos los datos .tar.bz
-	* En ruta: /ancillary_data tenemos descomprimido el ancillary data
-	* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
-	* En ruta: /resources/config tenemos el archivo configuration.ini
-	* En ruta: /datos/eodata queremos que se copien los archivos
+* En el directorio de trabajo tenemos los datos .tar.bz
+* En ruta: /ancillary_data tenemos descomprimido el ancillary data
+* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
+* En ruta: /resources/config tenemos el archivo configuration.ini
+* En ruta: /datos/eodata queremos que se copien los archivos
 
 
 Ejecutamos la siguiente línea:
@@ -246,17 +246,15 @@ $preprocesamiento_e_ingestion_landsat_no_8.sh LE70210482015055EDC00.tar.bz /anci
 
 -Requerimientos:
 
-	* Imagen de docker para procesos
-	* Al menos 3 imágenes descargadas de un tile, preprocesadas y registradas en la base de datos.
-	* Registrar algoritmo y leyenda en la base de datos.
-	* Datos de entrenamiento y registrarlos en la base de datos dentro del esquema products tabla product.
-	* Datos auxiliares: dem, aspect, slope en la ruta especificada en el archivo de configuración configuration.ini
-		en el tag aux-data
-	* Shell clasificacion_landsat.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
-	* Folder temporal donde se guardarán archivos de procesamiento.
-	* Folders madmex_processing_result, lsclassificationcommand, products donde se guardarán resultados de clasificación.
-	* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt" \
-	 en el directorio en donde está el shell:
+* Imagen de docker para procesos
+* Al menos 3 imágenes descargadas de un tile, preprocesadas y registradas en la base de datos.
+* Registrar algoritmo y leyenda en la base de datos.
+* Datos de entrenamiento y registrarlos en la base de datos dentro del esquema products tabla product.
+* Datos auxiliares: dem, aspect, slope en la ruta especificada en el archivo de configuración configuration.ini en el tag aux-data
+* Shell clasificacion_landsat.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* Folder temporal donde se guardarán archivos de procesamiento.
+* Folders madmex_processing_result, lsclassificationcommand, products donde se guardarán resultados de clasificación.
+* Archivo de variables de entorno que se usarán, se guardan en el archivo llamado "variables.txt" en el directorio en donde está el shell:
 
 ```
 export MADMEX=/LUSTRE/MADMEX/code/
@@ -267,23 +265,21 @@ export MADMEX_TEMP=/services/localtemp/temp
 
 ```
 
-
-
 -Ejemplo : 
 
-	* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
-	* En ruta: /resources/config tenemos el archivo configuration.ini
-	* En ruta: /datos/eodata tenemos los datos originales y resultados del preprocesamiento copiados con el proceso de ingest.
-	* En ruta: /products/inegiusvpersii-v tenemos los datos de entrenamiento
-	* En ruta: /products/dem/inegi tenemos los datos auxiliares: dem, aspect, slope (de acuerdo al configuration.ini)
-	* En ruta: /temporal se tendrá el folder temporal
-	* En rutas: /madmex_processing_results, /products y /lsclassificationcommand se tendrán resultados de clasificación
-	* En el directorio de trabajo tenemos el archivo de variables.txt
-	* Path: 021, row:048
-	* Año: 2014
-	* Conjunto de entrenamiento: training_areas_persistentes_32_clases_125m.tif
-	* Máximo porcentaje de nubes para cada imagen: 10%
-	* Eliminación de datos atípicos (1)
+* En ruta: /madmex-v2 tenemos clonado el repositorio de CONABIO/madmex-v2
+* En ruta: /resources/config tenemos el archivo configuration.ini
+* En ruta: /datos/eodata tenemos los datos originales y resultados del preprocesamiento copiados con el proceso de ingest.
+* En ruta: /products/inegiusvpersii-v tenemos los datos de entrenamiento
+* En ruta: /products/dem/inegi tenemos los datos auxiliares: dem, aspect, slope (de acuerdo al configuration.ini)
+* En ruta: /temporal se tendrá el folder temporal
+* En rutas: /madmex_processing_results, /products y /lsclassificationcommand se tendrán resultados de clasificación
+* En el directorio de trabajo tenemos el archivo de variables.txt
+* Path: 021, row:048
+* Año: 2014
+* Conjunto de entrenamiento: training_areas_persistentes_32_clases_125m.tif
+* Máximo porcentaje de nubes para cada imagen: 10%
+* Eliminación de datos atípicos (1)
 
 Para registrar la leyenda en la base de datos:
 
@@ -329,14 +325,14 @@ $docker run --rm -v $(pwd)/products:/LUSTRE/MADMEX/products \
 
 -Requerimientos:
 
-	*Archivo ESRI de los tiles de la región
-	*Nombre de columna del archivo ESRI que contiene los tiles de la región
+* Archivo ESRI de los tiles de la región
+* Nombre de columna del archivo ESRI que contiene los tiles de la región
 
 -Ejemplo:
 
-	* Dirección IP del host en el que está levantado el servidor de postgres es 192.168.99.100
-	* En la base de datos dentro del esquema vectordata tenemos registrada la tabla de tiles "landsat_footprints_mexico"
-	* El nombre del archivo ESRI será landsat_footprint_mexico
+* Dirección IP del host en el que está levantado el servidor de postgres es 192.168.99.100
+* En la base de datos dentro del esquema vectordata tenemos registrada la tabla de tiles "landsat_footprints_mexico"
+* El nombre del archivo ESRI será landsat_footprint_mexico
 
 
 ```
@@ -351,11 +347,11 @@ En el directorio de trabajo tendremos el archivo ESRI.
 Para el postprocesamiento tenemos:
 
 
-	*En la carpeta /resultados_clasificacion tenemos los resultados del proceso de clasificación anterior
-	*Nuestro archivo ESRI se llama landsat_footprints_mexico.shp
-	*En el archivo ESRI tenemos la columna code que contiene los tiles de mexico
-	*En la carpeta /resultados_postprocesamiento tendremos los resultados que ayudan al postprocesamiento
-	*El archivo postprocesamiento.tif es el resultado del postprocesamiento y se guarda en el directorio de trabajo
+* En la carpeta /resultados_clasificacion tenemos los resultados del proceso de clasificación anterior
+* Nuestro archivo ESRI se llama landsat_footprints_mexico.shp
+* En el archivo ESRI tenemos la columna code que contiene los tiles de mexico
+* En la carpeta /resultados_postprocesamiento tendremos los resultados que ayudan al postprocesamiento
+* El archivo postprocesamiento.tif es el resultado del postprocesamiento y se guarda en el directorio de trabajo
 
 ```
 docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
@@ -375,8 +371,6 @@ docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
 
 
 ##Rapideye
-
-###Descarga de imágenes
 
 ###Ingestión de imágenes y preprocesamiento
 
