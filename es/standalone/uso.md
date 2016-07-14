@@ -103,10 +103,10 @@ madmex/ledaps:latest /results/ledaps.sh /data/LE70210492015007EDC00.tar.bz /opt/
 
 Los resultados están en el path: /resultados_ledaps
 
--Ejemplo para datos antes del año 2012-2013 con el archivo LE70210481999203AGS00.tar.bz: (advertencia, debemos utilizar para este ejemplo ancillary data antiguo)
+-Ejemplo para datos antes del año 2012-2013 con el archivo LE70210481999203AGS00.tar.bz: (**advertencia**, debemos utilizar para este ejemplo ancillary data antiguo)
 
 	*En ruta: /datos_landsat tenemos el LE70210481999203AGS00.tar.bz
-	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento
+	*En ruta: /resultados_ledaps queremos los resultados del preprocesamiento y tenemos el shell ledaps_antes_2012.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 	*En ruta: /ancillary_data tenemos descomprimido el ancillary data
 	*Usamos la imagen: madmex/ledaps-legacy:latest
 
@@ -114,7 +114,7 @@ Los resultados están en el path: /resultados_ledaps
 ```
 docker run --rm -v /ancillary_data:/opt/ledaps \
 -v /datos_landsat:/data -v /resultados_ledaps:/results \
-madmex/ledaps-legacy:latest /opt/ledaps /data/LE70210481999203AGS00.tar.bz /results
+madmex/ledaps-legacy:latest /results/ledaps_antes_2012.sh /data/LE70210481999203AGS00.tar.bz /opt/ledaps
 ```
 
 Los resultados están en el path: /resultados_ledaps
