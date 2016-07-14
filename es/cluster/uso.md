@@ -698,7 +698,6 @@ Para el postprocesamiento tenemos:
 
 ##Rapideye
 
-###Descarga de imágenes
 
 ###Ingestión de imágenes y preprocesamiento
 
