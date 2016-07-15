@@ -104,6 +104,44 @@ fmask_usgsLandsatTOA.py -i ref.img -m *_MTL.txt -o toa.img
 fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
 gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
 ```
+*fmask_L8754_dir.sh*
+
+```
+#!/bin/bash
+#$1 es la ruta con los datos en forma .tar.bz
+filename=$(basename $1)
+newdir=$(echo $filename | sed -n 's/\(L*.*\)/\1/;p')
+path=$(echo $PWD)
+new_filename=$path/$filename
+
+sat=${newdir:0:3}
+cd $path/$newdir
+
+if [ $sat == "LE7" ]
+then
+  echo "Landsat 7"
+  gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L*_B[1,2,3,4,5,7].TIF
+  gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img L*_B6_VCID_?.TIF
+elif [ $sat == "LT5" ]
+then
+  echo "Landsat 5 or 4"
+  gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L*_B[1,2,3,4,5,7].TIF
+  gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img L*_B6.TIF
+elif [ $sat == "LC8" ]
+then
+  echo "Landsat 8"
+  gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img LC8*_B[1-7,9].TIF
+  gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img LC8*_B1[0,1].TIF
+else 
+  echo "unknown satellite"
+  exit
+fi
+
+fmask_usgsLandsatSaturationMask.py -i ref.img -m *_MTL.txt -o saturationmask.img
+fmask_usgsLandsatTOA.py -i ref.img -m *_MTL.txt -o toa.img
+fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
+gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
+```
 
 *fmask_ls8.sh*
 
