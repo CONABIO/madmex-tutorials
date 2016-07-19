@@ -104,18 +104,27 @@ fmask_usgsLandsatTOA.py -i ref.img -m *_MTL.txt -o toa.img
 fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
 gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
 ```
-*fmask_L8754_dir.sh*
+*fmask_L8754.sh*
 
 ```
 #!/bin/bash
-#$1 es la ruta con los datos en forma .tar.bz
+#$1 es la ruta con los datos
 filename=$(basename $1)
-newdir=$(echo $filename | sed -n 's/\(L*.*\)/\1/;p')
 path=$(echo $PWD)
-new_filename=$path/$filename
 
-sat=${newdir:0:3}
-cd $path/$newdir
+if [[ -d $filename ]]; then
+    cd $path/$filename
+    sat=${filename:0:3}
+elif [[ -f $filename ]]; then
+    newdir_tar=$(echo $filename | sed -n 's/\(L*.*\).tar.bz/\1/;p')
+    mkdir -p $path/$newdir_tar
+    cd $path/$newdir_tar
+    tar xvjf $path/$filename
+    sat=${newdir_tar:0:3}
+else
+    echo "Input file is not valid"
+    exit 1
+fi
 
 if [ $sat == "LE7" ]
 then
