@@ -137,7 +137,9 @@ Los resultados están en el path: /resultados_ledaps
 * Usamos la imagen: madmex/ledaps-landsat8
 
 ```
-docker run --rm -v /datos_landsat/:/data -v /ancillary_data:/opt/ledaps -v $(pwd):/results -it madmex/ledaps-landsat8 /results/ledaps_landsat8.sh /data/LC80210482015047LGN00.tar.bz /opt/ledaps
+docker run --rm -v /datos_landsat/:/data -v /ancillary_data:/opt/ledaps \
+-v $(pwd):/results -it madmex/ledaps-landsat8 /results/ledaps_landsat8.sh \
+/data/LC80210482015047LGN00.tar.bz /opt/ledaps
 ```
 
 
