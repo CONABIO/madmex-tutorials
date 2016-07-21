@@ -84,6 +84,97 @@ rm -r $dir
 
 ```
 
+*ledaps_landsat8.sh*
+
+```
+#!/bin/bash
+#Entrada: $1 es la ruta con los datos en forma .tar.bz, $2 es la ruta a los datos auxiliares en docker
+#Para el servidor http://e4ftl01.cr.usgs.gov $3 es el usuario y $4 es su password
+#Para el servidor ladssci.nascom.nasa.gov $5 es el usuario y $6 es su password
+destiny=/results
+name=$(basename $1)
+basename=$(echo $name|sed -n 's/\(L*.*\).tar.bz/\1/;p')
+dir=$destiny/$basename
+mkdir -p $dir
+cp $1 $dir
+cd $dir
+year=$(echo $name|sed -nE 's/L[A-Z]?[5-8][0-9]{3}[0-9]{3}([0-9]{4}).*.tar.bz/\1/p')
+day_of_year=$(echo $name|sed -nE 's/L[A-Z]?[5-8][0-9]{3}[0-9]{3}[0-9]{4}([0-9]{1,3}).*.tar.bz/\1/p')
+year_month_day=$(date -d "$year-01-01 +$day_of_year days -1 day" "+%Y.%m.%d")
+if [ ! -e $2/LADS/$year/L8ANC$year$day_of_year.hdf_fused ];
+then
+  #download cmg products
+  echo "download cmg products"
+  root=http://e4ftl01.cr.usgs.gov
+  mod09=MOLT/MOD09CMG.006
+  myd09=MOLA/MYD09CMG.006
+  #date_acquired=$(cat $metadata|grep 'DATE_ACQUIRED'|cut -d'=' -f2|sed -n -e "s/-/./g" -e "s/ //p")
+  date_acquired=$year_month_day
+  echo $date_acquired
+  echo "$root/$mod09/$date_acquired"
+  if [ $(wget -L --user=$3 --password=$4 -qO - $root/$mod09/$date_acquired/|grep "MOD.*.hdf\""|wc -l) -gt 1 ]; then echo "Too many files for MOD09CMG"; else
+    wget -L --user=$3 --password=$4 --load-cookies ~/.cookies --save-cookies ~/.cookies -A hdf,xml,jpg -nd -r -l1 --no-parent "$root/$mod09/$date_acquired/"
+  fi
+  if [ $(wget -L --user=$3 --password=$4 -qO - $root/$myd09/$date_acquired/|grep "MYD.*.hdf\""|wc -l) -gt 1 ]; then echo "Too many files for MYD09CMG"; else
+    wget -L --user=$3 --password=$4 --load-cookies ~/.cookies --save-cookies ~/.cookies -A hdf,xml,jpg -nd -r -l1 --no-parent "$root/$myd09/$date_acquired/"
+  fi
+  #download cma products
+  echo "download cma products"
+  root=ftp://$5:$6@ladssci.nascom.nasa.gov
+  mod09cma=6/MOD09CMA
+  myd09cma=6/MYD09CMA
+  if [ $(wget -qO - $root/$mod09cma/$year/$day_of_year/|grep "MOD09CMA.*.hdf\""|wc -l) -gt 1 ]; then echo "Too many files for MOD09CMA"; else
+    wget -A hdf -nd -r -l1 --no-parent "$root/$mod09cma/$year/$day_of_year/"
+  fi
+  if [ $(wget -qO - $root/$mod09cma/$year/$day_of_year/|grep "MOD09CMA.*.hdf\""|wc -l) -gt 1 ]; then echo "Too many files for MYD09CMA"; else
+    wget -A hdf -nd -r -l1 --no-parent "$root/$myd09cma/$year/$day_of_year/"
+  fi
+  #combine aux data
+  terra_cmg=$(ls .|grep MOD09CMG.*.hdf$)
+  echo $terra_cmg
+  terra_cma=$(ls .|grep MOD09CMA.*.hdf$)
+  echo $terra_cma
+  aqua_cma=$(ls .|grep MYD09CMA.*.hdf$)
+  aqua_cmg=$(ls .|grep MYD09CMG.*.hdf$)
+  echo $aqua_cma
+  echo $aqua_cmg
+  $BIN/combine_l8_aux_data --terra_cmg=$terra_cmg --terra_cma=$terra_cma --aqua_cmg=$aqua_cmg --aqua_cma=$aqua_cma --output_dir=$PWD
+  #copy the combine aux data for future processes
+  anc=$(ls .|grep ANC)
+  mkdir -p $2/LADS/$year
+  cp $anc $2/LADS/$year
+  #move the combine aux data
+  mkdir -p LADS/$year
+  mv $anc LADS/$year
+  #else
+else
+  echo "found fused file, not downloading"
+  mkdir -p LADS/$year
+  anc=$(ls $2/LADS/$year|grep ".*$year$day_of_year")
+  cp $2/LADS/$year/$anc LADS/$year/
+fi
+
+#surface reflectances:
+echo "Beginning untar"
+#untar file
+tar xvf $name
+echo "finish untar"
+metadata=$(ls .|grep -E ^L[A-Z]?[5-8][0-9]{3}[0-9]{3}.*_MTL.txt)
+metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
+echo $metadata
+echo $metadataxml
+echo "finish identification of metadata"
+$BIN/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml
+#check if the next line is important for the analysis
+#$BIN/create_land_water_mask --xml=$metadataxml
+cp -r $2/LDCMLUT .
+cp $2/ratiomapndwiexp.hdf .
+cp $2/CMGDEM.hdf .
+echo "Surface reflectance process"
+$BIN/lasrc --xml=$metadataxml --aux=$anc --verbose --write_toa
+$BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf --del_src_files
+
+```
 
 *fmask.sh*
 
