@@ -110,7 +110,7 @@ rm -r $dir
 #three,four: $3, $4 is the username and password for the http://e4ftl01.cr.usgs.gov server
 #five, six: $5, $6 is the username and password for the ladssci.nascom.nasa.gov server
 #seven : $7 is the path in the host for the temporal folder
-source /LUSTRE/MADMEX/code/madmex/resources/gridengine/nodo_conabio.txt
+source /LUSTRE/MADMEX/gridengine/nodo.txt
 name=$(basename $1)
 newdir=$(echo $name | sed -n 's/\(L*.*\).tar.bz/\1/;p')
 dir=$MADMEX_TEMP/$newdir
@@ -417,7 +417,7 @@ rm -r $MADMEX_TEMP/$newdir/
 #three,four: $3, $4 is the username and password for the http://e4ftl01.cr.usgs.gov server
 #five, six: $5, $6 is the username and password for the ladssci.nascom.nasa.gov server
 #seven : $7 is the path in the host for the temporal folder
-source /LUSTRE/MADMEX/code/madmex/resources/gridengine/nodo_conabio.txt
+source /LUSTRE/MADMEX/gridengine/nodo.txt
 name=$(basename $1)
 newdir=$(echo $name | sed -n 's/\(L*.*\).tar.bz/\1/;p')
 dir=$MADMEX_TEMP/$newdir
