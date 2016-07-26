@@ -121,7 +121,7 @@ Los resultados están en el path: /resultados_ledaps
 
 ####LEDAPS, landsat 8####
 
-- Requerimientos:
+-Requerimientos:
 
 * ancillary data: http://espa.cr.usgs.gov/downloads/auxiliaries/l8sr_auxiliary/l8sr_auxiliary.tar.gz
 * shell de ledaps_landsat8.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
