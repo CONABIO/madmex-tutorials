@@ -32,12 +32,14 @@ basename=$(echo $name|sed -n 's/\(L*.*\).tar.bz/\1/;p')
 dir=$destiny/$basename
 mkdir -p $dir
 cp $1 $dir
-year=$(echo $name|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*.tar.bz/\1/p')
+year=$(echo $name|sed -nE 's/L[A-Z][4-7][0-9]{3}[0-9]{3}([0-9]{4}).*.tar.bz/\1/p')
 cp $2/CMGDEM.hdf $dir
-mkdir -p $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
+cp $2/L5_TM/gold.dat $dir
+cp $2/L5_TM/gnew.dat $dir
+cp $2/L5_TM/gold_2003.dat $dirmkdir -p $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
 mkdir -p $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
 cd $dir && tar xvf $name 
-metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
+metadata=$(ls $dir|grep -E ^L[A-Z]?[4-7][0-9]{3}[0-9]{3}.*_MTL.txt)
 metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
 export LEDAPS_AUX_DIR=$(pwd)
 cd $dir && $BIN/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml
@@ -66,14 +68,14 @@ mkdir -p $dir
 cp $1 $dir
 cd $dir && tar xvf $filename
 #LEDAPS
-year=$(echo $filename|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
+year=$(echo $filename|sed -nE 's/L[A-Z][4-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
 cp $2/CMGDEM.hdf $dir
 cp $2/L5_TM/gold.dat $dir
 cp $2/L5_TM/gnew.dat $dir
 cp $2/L5_TM/gold_2003.dat $dir
 mkdir $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
 mkdir $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
-metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
+metadata=$(ls $dir|grep -E ^L[A-Z]?[4-7][0-9]{3}[0-9]{3}.*_MTL.txt)
 #cd $dir && /usr/local/bin/ledapsSrc/bin/do_ledaps.csh $metadata
 cd $dir && $BIN/do_ledaps.csh $metadata
 rm $dir/$filename
@@ -314,12 +316,14 @@ mkdir -p $dir
 cp $1 $dir
 cd $dir && tar xvf $name
 #LEDAPS:
-year=$(echo $name|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
+year=$(echo $name|sed -nE 's/L[A-Z][4-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
 
 cp $2/CMGDEM.hdf $dir
-mkdir $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
+cp $2/L5_TM/gold.dat $dir
+cp $2/L5_TM/gnew.dat $dir
+cp $2/L5_TM/gold_2003.dat $dirmkdir $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
 mkdir $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
-metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
+metadata=$(ls $dir|grep -E ^L[A-Z]?[4-7][0-9]{3}[0-9]{3}.*_MTL.txt)
 metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
 echo "Working directory:"
 echo $(pwd)
