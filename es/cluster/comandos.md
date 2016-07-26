@@ -45,11 +45,13 @@ cp $1 $dir
 #new_filename=$MADMEX_TEMP/$filename
 cd $dir && tar xvf $filename
 #LEDAPS
-year=$(echo $filename|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
+year=$(echo $filename|sed -nE 's/L[A-Z][4-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
 cp $2/CMGDEM.hdf $dir
-mkdir $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
+cp $2/L5_TM/gold.dat $dir
+cp $2/L5_TM/gnew.dat $dir
+cp $2/L5_TM/gold_2003.dat $dirmkdir $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
 mkdir $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
-metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
+metadata=$(ls $dir|grep -E ^L[A-Z]?[4-7][0-9]{3}[0-9]{3}.*_MTL.txt)
 metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
 ssh docker@172.17.0.1 docker run -w=/data --rm -e LEDAPS_AUX_DIR=/data -e metadata=$metadata -e metadataxml=$metadataxml -v $3/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml
 ssh docker@172.17.0.1 docker run -w=/data --rm -e LEDAPS_AUX_DIR=/data -e metadataxml=$metadataxml -v $3/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/do_ledaps.csh $metadataxml
@@ -80,14 +82,14 @@ cp $1 $dir
 #new_filename=$MADMEX_TEMP/$filename
 cd $dir && tar xvf $filename
 #LEDAPS
-year=$(echo $filename|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
+year=$(echo $filename|sed -nE 's/L[A-Z][4-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
 cp $2/CMGDEM.hdf $dir
 cp $2/L5_TM/gold.dat $dir
 cp $2/L5_TM/gnew.dat $dir
 cp $2/L5_TM/gold_2003.dat $dir
 mkdir $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
 mkdir $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
-metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
+metadata=$(ls $dir|grep -E ^L[A-Z]?[4-7][0-9]{3}[0-9]{3}.*_MTL.txt)
 ssh docker@172.17.0.1  docker run -w=/data --rm -e metadata=$metadata -v $2:/opt/ledaps -v $3/$newdir:/data madmex/ledaps-legacy:latest /usr/local/bin/ledapsSrc/bin/do_ledaps.csh $metadata
 
 rm $filename
@@ -219,11 +221,13 @@ cp $1 $dir
 #new_filename=$MADMEX_TEMP/$filename
 cd $dir && tar xvf $filename
 #LEDAPS
-year=$(echo $filename|sed -nE 's/L[A-Z][5-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
+year=$(echo $filename|sed -nE 's/L[A-Z][4-7][0-9]{3}[0-9]{3}([0-9]{4}).*/\1/p')
 cp $2/CMGDEM.hdf $dir
-mkdir $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
+cp $2/L5_TM/gold.dat $dir
+cp $2/L5_TM/gnew.dat $dir
+cp $2/L5_TM/gold_2003.dat $dirmkdir $dir/EP_TOMS && cp -r $2/EP_TOMS/ozone_$year $dir/EP_TOMS
 mkdir $dir/REANALYSIS && cp -r $2/REANALYSIS/RE_$year $dir/REANALYSIS
-metadata=$(ls $dir|grep -E ^L[A-Z]?[5-7][0-9]{3}[0-9]{3}.*_MTL.txt)
+metadata=$(ls $dir|grep -E ^L[A-Z]?[4-7][0-9]{3}[0-9]{3}.*_MTL.txt)
 metadataxml=$(echo $metadata|sed -nE 's/(L.*).txt/\1.xml/p')
 ssh docker@172.17.0.1 docker run -w=/data --rm -e LEDAPS_AUX_DIR=/data -e metadata=$metadata -e metadataxml=$metadataxml -v $3/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/convert_lpgs_to_espa --mtl=$metadata --xml=$metadataxml
 ssh docker@172.17.0.1 docker run -w=/data --rm -e LEDAPS_AUX_DIR=/data -e metadataxml=$metadataxml -v $3/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/do_ledaps.csh $metadataxml
