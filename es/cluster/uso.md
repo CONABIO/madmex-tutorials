@@ -548,9 +548,8 @@ Ejecutamos la siguiente línea:
 * Archivo de configuración con el nombre "configuration.ini", ir a configuraciones.md de este respositorio.
 * Crear carpeta "eodata" con permisos de escritura y owner "root" , aquí se copiaran las imágenes.
 * Descargar datos auxiliares de: http://espa.cr.usgs.gov/downloads/auxiliaries/l8sr_auxiliary/l8sr_auxiliary.tar.gz
-* Usuario y password del servidor: http://e4ftl01.cr.usgs.gov
-* Usuario y password del servidor: ladssci.nascom.nasa.gov
-
+* Tener usuario y password para descargar datos del servidor: http://e4ftl01.cr.usgs.gov, ir a: https://urs.earthdata.nasa.gov/home y seguir las instrucciones de: https://lpdaac.usgs.gov/faq-page#t104n1058 en la parte de Miscellaneous, How do I authorize the Data Pool application in my Earthdata login account?
+* Tener usuario y password para descargar datos del servidor: ladssci.nascom.nasa.gov, para más información ir a: https://github.com/USGS-EROS/espa-surface-reflectance/tree/master/not-validated-prototype-lasrc
 
 -Ejemplo para el archivo: LC80210482013249LGN00.tar.bz
 
