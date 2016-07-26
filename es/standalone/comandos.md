@@ -210,9 +210,11 @@ path=$(echo $PWD)
 
 if [[ -d $filename ]]; then
     cd $path/$filename
+    f_name=$filename
     sat=${filename:0:3}
 elif [[ -f $filename ]]; then
     newdir_tar=$(echo $filename | sed -n 's/\(L*.*\).tar.bz/\1/;p')
+    f_name=$newdir_tar
     mkdir -p $path/$newdir_tar
     cd $path/$newdir_tar
     tar xvjf $path/$filename
@@ -245,7 +247,7 @@ fi
 fmask_usgsLandsatSaturationMask.py -i ref.img -m *_MTL.txt -o saturationmask.img
 fmask_usgsLandsatTOA.py -i ref.img -m *_MTL.txt -o toa.img
 fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
-gdal_translate -of ENVI cloud.img $(echo $newdir)_MTLFmask
+gdal_translate -of ENVI cloud.img $(echo $f_name)_MTLFmask
 ```
 
 *fmask_ls8.sh*
