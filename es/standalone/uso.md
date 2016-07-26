@@ -139,7 +139,8 @@ Los resultados están en el path: /resultados_ledaps
 ```
 docker run --rm -v /datos_landsat/:/data -v /ancillary_data:/opt/ledaps \
 -v $(pwd):/results -it madmex/ledaps-landsat8 /results/ledaps_landsat8.sh \
-/data/LC80210482015047LGN00.tar.bz /opt/ledaps
+/data/LC80210482015047LGN00.tar.bz /opt/ledaps user_e4ftl01.cr.usgs.gov \
+password_e4ftl01.cr.usgs.gov user_ladssci.nascom.nasa.gov password_ladssci.nascom.nasa.gov
 ```
 
 
