@@ -47,7 +47,9 @@ cd $dir && $BIN/do_ledaps.csh $metadataxml
 #cd $dir && $BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif 
 cd $dir && $BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf --del_src_files
 mv lndsr.$(echo $basename)_MTL.txt lndsr.$(echo $basename)_metadata.txt 
-mv lndcal.$(echo $basename)_MTL.txt lndcal.$(echo $basename)_metadata.txt 
+#mv lndcal.$(echo $basename)_MTL.txt lndcal.$(echo $basename)_metadata.txt 
+cp lndsr.$(echo $basename).hdf lndcal.$(echo $basename).hdf
+cp lndsr.$(echo $basename)_hdf.xml lndcal.$(echo $basename)_hdf.xml
 rm $dir/$name
 rm -r $dir/CMGDEM.hdf
 rm -r $dir/EP_TOMS/
@@ -175,7 +177,8 @@ cp $2/CMGDEM.hdf .
 echo "Surface reflectance process"
 $BIN/lasrc --xml=$metadataxml --aux=$anc --verbose --write_toa
 $BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf --del_src_files
-
+cp lndsr.$(echo $basename).hdf lndcal.$(echo $basename).hdf
+cp lndsr.$(echo $basename)_hdf.xml lndcal.$(echo $basename)_hdf.xml
 ```
 
 *fmask.sh*
@@ -332,7 +335,9 @@ docker $(docker-machine config default) run --rm -e metadataxml=$metadataxml -v 
 #docker $(docker-machine config default) run --rm -e metadataxml=$metadataxml -e basename=$basename -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/convert_espa_to_gtif --xml=$metadataxml --gtif=lndsr.$basename.tif'
 docker $(docker-machine config default) run --rm -e metadataxml=$metadataxml -e basename=$basename -v $(pwd):/opt/ledaps -v $(pwd):/data -v $(pwd)/:/results madmex/ledaps:latest /bin/sh -c '$BIN/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$basename.hdf --del_src_files'
 mv lndsr.$(echo $basename)_MTL.txt lndsr.$(echo $basename)_metadata.txt 
-mv lndcal.$(echo $basename)_MTL.txt lndcal.$(echo $basename)_metadata.txt 
+#mv lndcal.$(echo $basename)_MTL.txt lndcal.$(echo $basename)_metadata.txt 
+cp lndsr.$(echo $basename).hdf lndcal.$(echo $basename).hdf
+cp lndsr.$(echo $basename)_hdf.xml lndcal.$(echo $basename)_hdf.xml
 rm $name
 rm -rf CMGDEM.hdf
 rm -rf EP_TOMS
