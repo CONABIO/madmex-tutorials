@@ -123,7 +123,7 @@ Los resultados están en el path: /resultados_ledaps
 
 -Requerimientos:
 
-* ancillary data: http://espa.cr.usgs.gov/downloads/auxiliaries/l8sr_auxiliary/l8sr_auxiliary.tar.gz
+* Descargar datos auxiliares de: http://espa.cr.usgs.gov/downloads/auxiliaries/l8sr_auxiliary/l8sr_auxiliary.tar.gz
 * shell de ledaps_landsat8.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 * Tener usuario y password para descargar datos del servidor: http://e4ftl01.cr.usgs.gov, ir a: https://urs.earthdata.nasa.gov/home y seguir las instrucciones de: https://lpdaac.usgs.gov/faq-page#t104n1058 en la parte de Miscellaneous, How do I authorize the Data Pool application in my Earthdata login account?
 * Tener usuario y password para descargar datos del servidor: ladssci.nascom.nasa.gov
@@ -133,7 +133,7 @@ Los resultados están en el path: /resultados_ledaps
 * En ruta: /datos_landsat tenemos el LC80210482015047LGN00.tar.bz
 * En directorio de trabajo queremos los resultados de ledaps
 * En directorio de trabajo tenemos el shell de ledaps_landsat8.sh
-* En ruta: /ancillary_data tenemos descomprimido el ancillary data
+* En ruta: /ls8_auxiliary_data tenemos descomprimido el auxiliary data
 * Usamos la imagen: madmex/ledaps-landsat8
 
 ```
