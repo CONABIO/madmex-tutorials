@@ -126,7 +126,7 @@ Los resultados están en el path: /resultados_ledaps
 * Descargar datos auxiliares de: http://espa.cr.usgs.gov/downloads/auxiliaries/l8sr_auxiliary/l8sr_auxiliary.tar.gz
 * shell de ledaps_landsat8.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
 * Tener usuario y password para descargar datos del servidor: http://e4ftl01.cr.usgs.gov, ir a: https://urs.earthdata.nasa.gov/home y seguir las instrucciones de: https://lpdaac.usgs.gov/faq-page#t104n1058 en la parte de Miscellaneous, How do I authorize the Data Pool application in my Earthdata login account?
-* Tener usuario y password para descargar datos del servidor: ladssci.nascom.nasa.gov
+* Tener usuario y password para descargar datos del servidor: ladssci.nascom.nasa.gov, para más información ir a: https://github.com/USGS-EROS/espa-surface-reflectance/tree/master/not-validated-prototype-lasrc
 
 -Ejemplo para datos: LC80210482015047LGN00.tar.bz
 
