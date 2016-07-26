@@ -247,7 +247,7 @@ fi
 fmask_usgsLandsatSaturationMask.py -i ref.img -m *_MTL.txt -o saturationmask.img
 fmask_usgsLandsatTOA.py -i ref.img -m *_MTL.txt -o toa.img
 fmask_usgsLandsatStacked.py -t thermal.img -a toa.img -m *_MTL.txt -s saturationmask.img -o cloud.img
-gdal_translate -of ENVI cloud.img $(echo $fname)_MTLFmask
+gdal_translate -of ENVI cloud.img $(echo $f_name)_MTLFmask
 ```
 
 *fmask_ls8.sh*
