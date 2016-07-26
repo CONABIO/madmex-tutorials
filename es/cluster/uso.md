@@ -423,6 +423,28 @@ Entonces ejecutamos el siguiente comando:
 #qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/ledaps/ledaps_antes_2012.sh /LUSTRE/MADMEX/descarga_landsat/LE70210481999203AGS00.tar.bz \
 /LUSTRE/MADMEX/ancillary_data /tmp/madmex_temporal /LUSTRE/MADMEX/ledaps
 
+####LEDAPS, landsat 8####
+
+-Requerimientos:
+
+* Descargar datos auxiliares de: http://espa.cr.usgs.gov/downloads/auxiliaries/l8sr_auxiliary/l8sr_auxiliary.tar.gz
+* shell de ledaps_landsat8.sh que debe tener permisos de ejecución, ir a comandos.md de este repositorio
+* Tener usuario y password para descargar datos del servidor: http://e4ftl01.cr.usgs.gov, ir a: https://urs.earthdata.nasa.gov/home y seguir las instrucciones de: https://lpdaac.usgs.gov/faq-page#t104n1058 en la parte de Miscellaneous, $
+* Tener usuario y password para descargar datos del servidor: ladssci.nascom.nasa.gov, para más información ir a: https://github.com/USGS-EROS/espa-surface-reflectance/tree/master/not-validated-prototype-lasrc
+
+-Ejemplo para datos: LC80210482015047LGN00.tar.bz
+
+* En el directorio /LUSTRE/MADMEX/descarga_landsat tenemos los datos .tar.bz
+* En ruta: /LUSTRE/MADMEX/eodata queremos que se copien los archivos
+* El folder temporal del host es: /tmp/madmex_temporal
+* En el directorio /LUSTRE/MADMEX/l8sr_auxiliary tenemos los datos auxiliares
+* user1 y password1 son las credenciales para el servidor: http://e4ftl01.cr.usgs.gov
+* user2 y password2 son las credenciales para el servidor: ladssci.nascom.nasa.gov 
+
+```
+#qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/preproc_and_ingest/preprocesamiento_e_ingestion_landsat_8.sh \
+/LUSTRE/MADMEX/descarga_landsat/LC80210482015047LGN00.tar.bz /LUSTRE/MADMEX/l8sr_auxiliary/ \
+user1 password1 user2 password2 /tmp/madmex_temporal
 ```
 
 ####FMASK
