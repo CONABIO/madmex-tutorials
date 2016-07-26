@@ -547,6 +547,8 @@ Ejecutamos la siguiente línea:
 * Datos en formato .tar.bz
 * Archivo de configuración con el nombre "configuration.ini", ir a configuraciones.md de este respositorio.
 * Crear carpeta "eodata" con permisos de escritura y owner "root" , aquí se copiaran las imágenes.
+* Usuario y password del servidor: http://e4ftl01.cr.usgs.gov
+* Usuario y password del servidor: ladssci.nascom.nasa.gov
 
 
 -Ejemplo para el archivo: LC80210482013249LGN00.tar.bz
@@ -554,13 +556,15 @@ Ejecutamos la siguiente línea:
 * En el directorio /LUSTRE/MADMEX/descarga_landsat tenemos los datos .tar.bz
 * En ruta: /LUSTRE/MADMEX/eodata queremos que se copien los archivos
 * El folder temporal del host es: /tmp/madmex_temporal
+* user1 y password1 son las credenciales para el servidor: http://e4ftl01.cr.usgs.gov
+* user2 y password2 son las credenciales para el servidor: ladssci.nascom.nasa.gov 
 
 
 Ejecutamos la siguiente línea:
 
 ```
 #qsub -q miqueue.q -S /bin/bash -cwd /LUSTRE/MADMEX/preproc_and_ingest/preprocesamiento_e_ingestion_landsat_8.sh \
-/LUSTRE/MADMEX/descarga_landsat/LC80210482013249LGN00.tar.bz /tmp/madmex_temporal
+/LUSTRE/MADMEX/descarga_landsat/LC80210482013249LGN00.tar.bz /LUSTRE/MADMEX/l8sr_auxiliary/ user1 password1 user2 password2 /tmp/madmex_temporal
 
 ```
 
