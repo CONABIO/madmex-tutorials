@@ -229,7 +229,7 @@ then
   echo "Landsat 7"
   gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L*_B[1,2,3,4,5,7].TIF
   gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o thermal.img L*_B6_VCID_?.TIF
-elif [ $sat == "LT5" ]
+elif [ $sat == "LT5" ] || [ $sat=="LT4" ]
 then
   echo "Landsat 5 or 4"
   gdal_merge.py -separate -of HFA -co COMPRESSED=YES -o ref.img L*_B[1,2,3,4,5,7].TIF
