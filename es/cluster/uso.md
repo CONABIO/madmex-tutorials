@@ -7,7 +7,7 @@ En esta versión de madmex utilizamos sun grid engine un "open-source grid compu
 Consideraremos cuatro nodos:
 
 - Nodo maestro que tendrá el servicio maestro de sun grid engine en un contenedor de docker.
-- Dos nodos de procesamiento que tendrán un contenedor de docker encargado de ejecución de procesos y el cliente del servicio master de sun grid engine.
+- Dos nodos de procesamiento que tendrán un contenedor de docker encargado de ejecución de procesos y el cliente del servicio maestro de sun grid engine.
 - Nodo para la base de datos.
 
 Especificaciones para los nodos:
@@ -111,7 +111,7 @@ Añadimos la línea en el archivo /etc/fstab:
 $sudo mount -a
 ```
 
-##Levantamiento del servicio master de sun grid engine
+##Levantamiento del servicio maestro de sun grid engine
 
 En el nodo maestro ejecutar el siguiente comando:
 
@@ -283,7 +283,7 @@ $root@nodoproc1# /etc/init.d/gridengine-exec restart
 
 Lo anterior se realiza para los otros nodos de procesamiento.
 
-Una vez levantados estos tres requerimientos: base de datos, master service y cliente de sun grid engine podemos realizar los siguientes procesos.
+Una vez levantados estos tres requerimientos: base de datos, servicio maestro y cliente de sun grid engine, podemos realizar los siguientes procesos.
 
 En la siguiente explicación utilizaremos "$" para especificar que ejecutamos el comando en el host y "#" para especificar que se ejecuta en el contenedor respectivo.
 
