@@ -57,7 +57,7 @@ ssh docker@172.17.0.1 docker run -w=/data --rm -e LEDAPS_AUX_DIR=/data -e metada
 ssh docker@172.17.0.1 docker run -w=/data --rm -e LEDAPS_AUX_DIR=/data -e metadataxml=$metadataxml -v $3/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/do_ledaps.csh $metadataxml
 ssh docker@172.17.0.1 docker run -w=/data --rm -e LEDAPS_AUX_DIR=/data -e newdir=$newdir -e metadataxml=$metadataxml -v $3/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$(echo $newdir).hdf --del_src_files
 cd $dir && mv lndsr.$(echo $newdir)_MTL.txt lndsr.$(echo $newdir)_metadata.txt
-#cd $dir && mv lndcal.$(echo $newdir)_MTL.txt lndcal.$(echo $newdir)_metadata.txt
+cd $dir && mv lndcal.$(echo $newdir)_MTL.txt lndcal.$(echo $newdir)_metadata.txt
 cp lndsr.$(echo $newdir).hdf lndcal.$(echo $newdir).hdf
 cp lndsr.$(echo $newdir)_hdf.xml lndcal.$(echo $newdir)_hdf.xml
 rm $filename
@@ -333,7 +333,7 @@ ssh docker@172.17.0.1 docker run -w=/data --rm -e LEDAPS_AUX_DIR=/data -e metada
 ssh docker@172.17.0.1 docker run -w=/data --rm -e LEDAPS_AUX_DIR=/data -e metadataxml=$metadataxml -v $3/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/do_ledaps.csh $metadataxml
 ssh docker@172.17.0.1 docker run -w=/data --rm -e LEDAPS_AUX_DIR=/data -e newdir=$newdir -e metadataxml=$metadataxml -v $3/$newdir:/data  madmex/ledaps:latest /usr/local/espa-tools/bin/convert_espa_to_hdf --xml=$metadataxml --hdf=lndsr.$(echo $newdir).hdf --del_src_files
 cd $dir && mv lndsr.$(echo $newdir)_MTL.txt lndsr.$(echo $newdir)_metadata.txt
-#cd $dir && mv lndcal.$(echo $newdir)_MTL.txt lndcal.$(echo $newdir)_metadata.txt
+cd $dir && mv lndcal.$(echo $newdir)_MTL.txt lndcal.$(echo $newdir)_metadata.txt
 cp lndsr.$(echo $newdir).hdf lndcal.$(echo $newdir).hdf
 cp lndsr.$(echo $newdir)_hdf.xml lndcal.$(echo $newdir)_hdf.xml
 rm $filename
@@ -523,10 +523,54 @@ cd $MADMEX_TEMP/$newdir && gdal_translate -of ENVI cloud.img $(echo $newdir)_MTL
 
 #INGEST:
 
-/usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $MADMEX_TEMP/$newdir
+#Check if the processes generate at least the number of files expected in order to register the appropiate path in the DB,
+#if not echo a message of error
+
+mkdir raw_data
+
+mv L*_B[1-9].TIF raw_data
+mv L*_B1[0-1].TIF raw_data
+mv L*_BQA.TIF raw_data
+cp *_MTL.txt raw_data
+
+raw_data_number=$(ls raw_data|wc -l)
+
+if [ $raw_data_number -ge 12 ]; then /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $MADMEX_TEMP/$newdir/raw_data; else echo "error in tar: raw data";fi
+
+mkdir srfolder
+
+mv lndsr.*hdf* srfolder/
+cp *_MTL.txt srfolder
+mv L*_sr_* srfolder/
+
+ledaps_sr_number=$(ls srfolder|wc -l)
+
+if [ $ledaps_sr_number -ge 10 ]; then /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $MADMEX_TEMP/$newdir/srfolder; else echo "error in surfaces reflectances process";fi
+
+mkdir toafolder
+
+mv lndcal.*hdf* toafolder/
+cp *_MTL.txt toafolder
+mv L*_toa_* toafolder/
+
+ledaps_toa_number=$(ls toafolder|wc -l)
+
+if [ $ledaps_toa_number -eq 13 ]; then /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $MADMEX_TEMP/$newdir/toafolder; else echo "error in toa process";fi
+
+mkdir fmaskfolder
+
+cp *_MTL.txt fmaskfolder
+
+mv *_MTLFmask* fmaskfolder
+
+fmask_number=$(ls fmaskfolder|wc -l)
+
+if [ $ledaps_toa_number -ge 3 ]; then /usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $MADMEX_TEMP/$newdir/fmaskfolder; else echo "error in fmask process";fi
+
+
+#/usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py Ingestion --input_directory $MADMEX_TEMP/$newdir
 
 rm -r $MADMEX_TEMP/$newdir/
-
 
 ```
 
