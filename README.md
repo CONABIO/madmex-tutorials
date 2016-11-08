@@ -1,18 +1,15 @@
 # madmex-tutorial
-Repository to contain information and tutorials about the madmex system.
+Repository to contain information and tutorials about the requirements to install and use the MAD-Mex system. The folder "es" contains the documentation in spanish about how to install the system in two different ways:
 
-Este repositorio contiene información acerca de los requerimientos necesarios para la instalación del sistema MAD-MEX. La carpeta "es" tiene la documentación en español sobre cómo instarlar el sistema de dos maneras diferentes: 
+1) cluster
+2) standalone
 
-1) versión cluster
-2) versión standalone
+The first one is the deployment over a cluster of computers. It uses Sun Grid Engine, a job scheduler designed to optimize the use of computational resources or distributed processes in heterogeneous environments in order to use the resources in the most efficient way. In this type of architectures, SGE accepts, schedules and dispaches remote jobs, these jobs can be sequential, parallel or interactive.
 
-La primera es una instalación en un sistema distribuido. Utiliza Sun Grid Engine, un gestinador del manejo de recursos computacionales o procesos distribuidos en ambientes heterogéneos, de modo que se utilicen dichos recursos de la manera más eficiente posible. En este tipo de estructuras, SGE se encarga principalmente de funciones como la aceptación, programación, envío y ejecución remota y distribuida de un gran número de tareas en el espacio de usuario, ya sean estas secuenciales, paralelas o interactivas. 
+The system can also be installed in standalone mode. This version uses a single machine in offline mode. This means the system does not need to be connected to a network.
 
-La segunda versión disponible es la "standalone". Esta versión es para uso en una sóla máquina en modo "offline", es decir, no requiere necesariamente una conexión permanente a la red para funcionar. 
+In the database MAD-Mex commands directory thre is shell scropt that will install and configure the database used by the system. This step plays a main role in order to for the sytem to work correctly. The whole functionality relies on a correct configuration of the database, without it it will not be possible to run the different commands to ingest, classify and detect changes.
 
-En la carpeta "comandos_base_de_datos_madmex" encontrarás un shell script o archivo de comandos que al ejecutarse se encargará de la instalación de la base de datos MAD-MEX. Este paso es de vital importancia ya que el funcionamiento del sistema radica en una correcta configuración de su base de datos para poder ejecutar diversas tareas como control de calidad, elaboración de productos de clasificación de cobertura de suelo y detección de cambios.  
+We suggest that before installing and running any command, to get through the documentation in order to understand what does the system does and does not.
 
-Se recomienda antes de realizar cualquier ejecución de comandos de instalación, leer primero los archivos con extendión .md para tener una idea general del proyecto MAD-MEX, sus alcances, antecedentes y trabajo futuro. 
-
-
-Equipo MAD-MEX.
+The MAD-Mex team.
