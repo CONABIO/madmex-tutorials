@@ -18,19 +18,24 @@ Change detection is to identify differences in the state of a feature or phenome
 
 ## Workflow classification process (LANDSAT)
 
-![Flujo de trabajo MAD-Mex](../images/work_flow.png)
+![MAD-Mex workflow](../images/work_flow.png)
 
 
 ##MAD Transform
 
+The MAD transform (Multivariate Alteration Detection) is based on a multivariate analysis which establishes the canonical correlation of changes between bands. This scheme transforms two sets of multivariate observations in a difference between two linear combinations of the original varibales, these differences quantify the maximum change in all variables simultaneously. The MAD transformation is invariant to linear scale and can be used iteratively. In the first instance, it can be used to detect outliers or noise and in a second iteration, can be used for detecting real change after the appropriate action in atypical or noise values.
+Due to the capacity to detect changes in the channels simultaneously, processing and post-processing MAD/MAF is even more useful when applies to a larger number of bands in which the changes are noted.
 
 
 ##MAF Transform
 
-
+In order to improve the spatial coherence of the change components, MAF transform (Maximum Autocorrelation Factor) is applied to MAD components. Assuming that the image noise is calculated as the difference between the intensities of the neighboring pixels, the MAF transform is equivalent to a minimum noise fraction transform (MNF), generating image components with a maximum signal to noise ratio. Also MAF transform is invariant to linear scale.
 
 ## Fmask algorithm
 
+The fmask algorithm relates clouds with their shadows based on similarity measurements. This algorithm iterates from a minimal height possible to a maximum height and calculates the similarity between the cloud and cloud shadow, this makes for clouds at different heights.
+The original Fmask algorithm, test cloud height continues if the similarity continues increasing or not decrease below 98% of maximum similarity measure; otherwise, the cloud height search stops and cloud shadow is associated with the maximum similarity. However,
+sometimes the iteration may stop before it should, such as the similarity does not reach its maximum value; this may be because there are local maximum which are 2% larger than the similarity measure for the height of neighboring clouds. In the improved fMask algorithm, the relationship between the cloud's shadow and the cloud will not stop unless the similarity value is reduced to 95% of maximum similarity value.
 
 
 

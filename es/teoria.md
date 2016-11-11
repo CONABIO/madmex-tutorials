@@ -27,7 +27,7 @@ Debido a su capacidad para detectar cambios en los canales de manera simultánea
 
 ##Transformada MAF
 
-A fin de mejorar la coherencia espacial de los componentes de cambio, se aplica la transfirmada MAF (Maximum Autocorrelation Factor) a los componentes MAD. Suponiendo que el ruido de la imagen se calcula como la diferencia entre las intensidades de los píxeles vecinos, La transformada MAF es equivalente a una transformación de fracción de ruido mínimo (MNF), lo que genera componentes de imágenes con una relación señal a ruido máxima. También la transformación MAF es invariante a escala lineal.  
+A fin de mejorar la coherencia espacial de los componentes de cambio, se aplica la transformada MAF (Maximum Autocorrelation Factor) a los componentes MAD. Suponiendo que el ruido de la imagen se calcula como la diferencia entre las intensidades de los píxeles vecinos, la transformada MAF es equivalente a una transformación de fracción de ruido mínimo (MNF), lo que genera componentes de imágenes con una relación señal a ruido máxima. También la transformación MAF es invariante a escala lineal.  
 
 ## Algortimo fmask
 
