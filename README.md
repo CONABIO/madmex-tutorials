@@ -1,4 +1,8 @@
 # madmex-tutorial
+
+MAD-MEX (Monitoring Activity Data for the Mexican REDD+ program) is a system to provide standardized annual wall-to-wall land cover information by automatic image classification for the Mexican territory in a cost-beneficial manner.  It is one aim of the system to automatically produce a national land cover dataset in a standardized, transparent and transferable way to ensure operative activity data monitoring.
+
+
 Repository to contain information and tutorials about the requirements to install and use the MAD-Mex system. The folder "es" contains the documentation in spanish about how to install the system in two different ways:
 
 1) cluster
