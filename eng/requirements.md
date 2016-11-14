@@ -25,13 +25,13 @@ Below is a diagram showing the system architecture in cluster mode:
 
 For proper operation of the system, a set of minimum requirements are necessary. Below is a brief description.
 
-###Hardware Master Nodo
+###Hardware Master Node
 - minimum: 2-4 vCPUs
 - minimum: 4 GB RAM
 - Memory: 50 GB 
 - ssh: 22/tcp
 
-###Hardware Slave Nodo
+###Hardware Slave Node
 - minimum: 16 vCPUs
 - minimum: 64GB RAM
 - Memory: 50GB
