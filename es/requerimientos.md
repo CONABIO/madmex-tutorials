@@ -98,7 +98,7 @@ Así mismo, se recomienda el uso de los métodos más comunes para aislar un amb
 
 ####Docker
 
-El sistema MAD-Mex hace uso de contenedores Docker para virtualizar ambientes y hacerlos disponibles en las distintas plataformas sin las dificultades usuales. Algunos de los procesos dentro de MAD-Mex solo pueden ser ejecutados en sistemas operativos específicos. Con el fin de no requerir que los usuarios cuenten con dichas distribuciones, esos procesos corren dentro de los contenedores Docker. Esta guia no prende enseñar al usuario el uso y desarrollo de dichos contenedores, para una guia de como instalar y usar Docker, se pueden consultar las siguientes ligas:
+El sistema MAD-Mex hace uso de contenedores Docker para virtualizar ambientes y hacerlos disponibles en las distintas plataformas sin las dificultades usuales. Algunos de los procesos dentro de MAD-Mex solo pueden ser ejecutados en sistemas operativos específicos. Con el fin de no requerir que los usuarios cuenten con dichas distribuciones, esos procesos corren dentro de los contenedores Docker. Esta guia no pretende enseñar al usuario el uso y desarrollo de dichos contenedores, para una guia de como instalar y usar Docker, se pueden consultar las siguientes ligas:
 
 - [Instalación](https://docs.docker.com/engine/installation/)
 - [Uso](https://docs.docker.com/mac/)
