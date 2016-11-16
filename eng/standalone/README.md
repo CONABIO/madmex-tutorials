@@ -1,4 +1,4 @@
-#The documentation found in this directory is targeted to a stand-alone version of the MAD-MEX system.
+#The documentation found on this directory is targeted to a stand-alone version of MAD-MEX system.
 
 Is crucial to have an installation of docker in your system: https://www.docker.com/
 
@@ -6,10 +6,10 @@ Is necessary to set up the database of MAD-MEX before any image satellite proces
 
 Description of the archives in this directory:
 
-* data_base.md : contains the commands for setting up the database of MAD-MEX system.
+* database.md : contains the commands for setting up the database of MAD-MEX system.
 
 * landsat_processing.md : contains the commands for downloading, register, classify and change detection of landsat data.
 
 * rapideye_processing.md :  contains the commands to register, classify and change detection of rapideye data.
 
-* configurations.md : contains the configuration archives for the MAD-MEX system.
+* configurations.md : contains the configuration archives for MAD-MEX system.
