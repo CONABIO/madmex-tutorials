@@ -51,13 +51,18 @@ We execute the following command line:
 
 ```
 docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
--v /data/rapideye/data_ingestion_folder.sh:/results/data_ingestion.sh \
+-v /data/rapideye/data_ingestion_folder.sh:/results/data_ingestion_folder.sh \
 -v /resources/config:/LUSTRE/MADMEX/code/resources/config \
--v /data/rapideye/example:/results \
+-v /data/rapideye/example:/data/folder \
 -v /export/variables.txt:/results/variables.txt \
 -v /data/eodata:/LUSTRE/MADMEX/eodata madmex/ws \
-/results/data_ingestion.sh /results/2044024_2015-01-02_RE1_3A_301519
+/results/data_ingestion.sh /data/folder/2044024_2015-01-02_RE1_3A_301519
 ```
+
+
+
+
+
 
 
 
