@@ -4,7 +4,7 @@ MAD-MEX (Monitoring Activity Data for the Mexican REDD+ program) is a system to 
 
 At this moment, MAD-MEX processes data from two satellite: Landsat and Rapideye, and we will provide support for other satellite in the future.
 
-This repository contains information and tutorials about the requirements to install and use the MAD-Mex system. The folder "es" contains the documentation in spanish about how to install the system in two different architectures:
+This repository contains information and tutorials about the requirements to install and use the MAD-Mex system. The folder "es" and "eng" contains the documentation in spanish and english respectively about how to install the system in two different architectures:
 
  * cluster
 
