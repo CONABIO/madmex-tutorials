@@ -39,22 +39,24 @@ export MADMEX_TEMP=/services/localtemp/temp
 
 For this example:
 
-* Inside the directory: "/data/rapideye" we have the shell "data_ingestion_folder.sh" which needs to have execution permissions. Go to rapideye_commands.md of this repository.
 * In the path: /madmex-v2 we have cloned the CONABIO/madmex-v2 repository
+* Inside the directory: "/data/rapideye" we have the shell "data_ingestion_folder.sh" which needs to have execution permissions. Go to rapideye_commands.md of this repository.
 * In the path: /resources/config we have the configuration archive "configuration.ini"
 * In the path: "/data/rapideye/example" we have the folder to be ingested: 2044024_2015-01-02_RE1_3A_301519
 * In the path: /export we have the archive "variables.txt"
-* We want that the data of the folder example be copied to: /datos/eodata and be registered in the database
+* We want that the data of the folder example be copied to: /data/eodata and be registered in the database
 
 We execute the following command line:
 
 
 ```
 docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
+-v /data/rapideye/data_ingestion_folder.sh:/results/data_ingestion.sh \
 -v /resources/config:/LUSTRE/MADMEX/code/resources/config \
--v /datos/eodata:/LUSTRE/MADMEX/eodata \
--v /export/variables.txt:/results/variables.txt -v /data/rapideye/example:/results madmex/ws \
-/results/data_ingestion.sh /results/LC80210482015015LGN00.tar.bz
+-v /data/rapideye/example:/results \
+-v /export/variables.txt:/results/variables.txt \
+-v /data/eodata:/LUSTRE/MADMEX/eodata madmex/ws \
+/results/data_ingestion.sh /results/2044024_2015-01-02_RE1_3A_301519
 ```
 
 
