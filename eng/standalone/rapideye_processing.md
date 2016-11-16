@@ -25,7 +25,7 @@ export MADMEX_TEMP=/services/localtemp/temp
 
 ```
 
--Example for the folder: 2044024_2015-01-02_RE1_3A_301519, which has this archives:
+-Example for the folder: 2044024_2015-01-02_RE1_3A_301519, which has the archives:
 
 * 2044024_2015-01-02_RE1_3A_301519.tif
 * 2044024_2015-01-02_RE1_3A_301519.tif.aux.xml
