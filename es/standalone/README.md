@@ -8,6 +8,8 @@ Descripción de los archivos contenidos en este directorio:
 
 * base_de_datos.md : contiene los comandos para levantar la base de datos de MAD-MEX.
 
+* comandos_landsat.md: contiene los comandos para realizar los procesos de procesamiento_para_landsat.md
+
 * procesamiento_para_landsat.md : contiene los comandos para descarga, registro, clasificación y detección de cambios de imágenes landsat.
 
 * procesamiento_para_rapideye.md: contiene los comandos para registro, clasificación y detección de cambios de imágenes rapideye.
