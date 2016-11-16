@@ -6,8 +6,9 @@ At this moment, MAD-MEX processes data from two satellite: Landsat and Rapideye,
 
 This repository contains information and tutorials about the requirements to install and use the MAD-Mex system. The folder "es" contains the documentation in spanish about how to install the system in two different architectures:
 
- *) cluster
- *) standalone
+ * cluster
+
+ * standalone
 
 The first one is the deployment over a cluster of computers. It uses Sun Grid Engine, a job scheduler designed to optimize the use of computational resources or distributed processes in heterogeneous environments in order to use the resources in the most efficient way. In this type of architectures, SGE accepts, schedules and dispaches remote jobs, these jobs can be sequential, parallel or interactive.
 
