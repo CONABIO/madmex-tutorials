@@ -1,5 +1,4 @@
-Archivo de configuración: "configuration.ini":
-
+Configuration archive: "configuration.ini":
 
 ```
 [aux-data]
