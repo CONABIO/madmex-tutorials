@@ -10,6 +10,8 @@ Description of the archives in this directory:
 
 * landsat_processing.md : contains the commands for downloading, register, classify and change detection of landsat data.
 
+* rapideye_commands.md: contains the commands for the processes found in rapideye_processing.md
+
 * rapideye_processing.md :  contains the commands to register, classify and change detection of rapideye data.
 
 * configurations.md : contains the configuration archives for MAD-MEX system.
