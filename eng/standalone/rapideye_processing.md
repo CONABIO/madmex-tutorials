@@ -10,7 +10,7 @@ An image of rapideye comes in a folder with several other archives, for example 
 
 * Image for MAD-MEX processes: madmex/ws
 * Shell: data_ingestion_folder.sh with execution permissions. Go to rapideye_commands.md in this repository.
-* Configuration archive: `configuration.ini`. Go to configurations.md of this repository.
+* Configuration archive: `configuration.ini`. Go to [configurations.md](configurations.md) of this repository.
 * Create `resources/config` directories in your filesystem. Copy configuration.ini to this path
 * Create directory `eodata` in your filesystem, here the process of ingest will copy the folder to be ingested.
 * Archive containing the environment variables that will be used by the ingest process: `variables.txt`. The contents of `variables.txt` are:
