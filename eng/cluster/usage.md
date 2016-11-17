@@ -10,7 +10,7 @@ We will consider four nodes:
 
 - Master node that will have the sun grid engine master service in a docker container.
 - Two processing nodes that will have a container of docker in charge of execution of processes and the client of the service master of sun grid engine.
-- Node for the database.
+- Database node.
 
 
 Specifications for nodes:
@@ -18,14 +18,14 @@ Specifications for nodes:
 ##Master node: *
 * 2-4 cores
 * Minimum 4 gb de RAM
-* A volume or have a partition with an ext4 file system format with a minimum capacity of 500 Gb - 1Tb.
+* A volume or partition with an ext4 file system format with a minimum capacity of 500 Gb - 1Tb.
 
 
 ##Processing nodes: *
 * Minimum 8 cores
 * Minimum 20-32 Gb RAM
 * A partition or volume with capacity of at least 500gb - 1tb
-* A volume or have a partition with an ext4 file system format with a minimum capacity of 100GB .
+* A volume or partition with an ext4 file system format with a minimum capacity of 100GB .
 
 
 ## Database node: *
@@ -51,7 +51,7 @@ Run the following command after cloning this repository into the "eng/madmex_dat
 $docker run --name postgres-server-madmex -v $(pwd):/results -p 32852:22 -p 32851:5432 -dt madmex/postgres-server
 ```
 
-###Creating the madmex database
+###Creating madmex database
 
 -Requirements:
 
