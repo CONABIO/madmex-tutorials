@@ -18,14 +18,14 @@ Specifications for nodes:
 ##Master node: *
 * 2-4 cores
 * Minimum 4 gb de RAM
-* A volume or have a partition with an ext4 file system format with a minimum capacity of 500 Gb - 1Tb.
+* A volume or partition with an ext4 file system format with a minimum capacity of 500 Gb - 1Tb.
 
 
 ##Processing nodes: *
 * Minimum 8 cores
 * Minimum 20-32 Gb RAM
 * A partition or volume with capacity of at least 500gb - 1tb
-* A volume or have a partition with an ext4 file system format with a minimum capacity of 100GB .
+* A volume or partition with an ext4 file system format with a minimum capacity of 100GB .
 
 
 ## Database node: *
