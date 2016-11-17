@@ -1,8 +1,8 @@
 #The documentation found on this directory is targeted to a stand-alone version of MAD-MEX system.
 
-Is crucial to have an installation of docker in your system: https://www.docker.com/
+It is crucial to have an installation of docker in your system: https://www.docker.com/
 
-Is necessary to set up the database of MAD-MEX before any image satellite processing.
+It is necessary to set up the database of MAD-MEX before any image satellite processing.
 
 Description of the archives in this directory:
 
