@@ -28,7 +28,7 @@ Specifications for nodes:
 * A volume or have a partition with an ext4 file system format with a minimum capacity of 100GB .
 
 
-## Data base nodo: *
+## Database node: *
 * Minimum 1 core
 * Minimum 8-16 gb de RAM
 * A volume with a capacity of at least 20 gb
@@ -41,7 +41,7 @@ Specifications for nodes:
 
 *These capacity requirements in the partitions or volumes vary for the use case.
 
-##Dtabase
+##Database
 
 ###Configuring postgresSQL server
 
