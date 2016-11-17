@@ -51,7 +51,7 @@ Run the following command after cloning this repository into the "eng/madmex_dat
 $docker run --name postgres-server-madmex -v $(pwd):/results -p 32852:22 -p 32851:5432 -dt madmex/postgres-server
 ```
 
-###Creating the madmex database
+###Creating madmex database
 
 -Requirements:
 
