@@ -1,6 +1,6 @@
 #Rapideye
 
-For the following processes, is mandatory to clone CONABIO/madmex-v2 repository in your filesystem for having the MAD-MEX code.
+For the following processes, it is mandatory to clone CONABIO/madmex-v2 repository in your filesystem for having the MAD-MEX code.
 
 
 ##Ingestion
@@ -11,10 +11,10 @@ An image of rapideye comes in a folder with several other archives, for example 
 
 * Image for MAD-MEX processes: madmex/ws
 * Shell: data_ingestion_folder.sh with execution permissions. Go to rapideye_commands.md in this repository.
-* Configuration archive: "configuration.ini". Go to configurations.md of this repository.
-* Create "resources/config" directories in your filesystem. Copy configuration.ini to this path
-* Create directory "eodata" in your filesystem, here the process of ingest will copy the folder to be ingested.
-* Archive containing the environment variables that will be used by the ingest process: "variables.txt". The contents of "variables.txt" are:
+* Configuration archive: 'configuration.ini'. Go to configurations.md of this repository.
+* Create 'resources/config' directories in your filesystem. Copy configuration.ini to this path
+* Create directory 'eodata' in your filesystem, here the process of ingest will copy the folder to be ingested.
+* Archive containing the environment variables that will be used by the ingest process: 'variables.txt'. The contents of 'variables.txt' are:
 
 ```
 export MADMEX=/LUSTRE/MADMEX/code/
@@ -37,10 +37,10 @@ export MADMEX_TEMP=/services/localtemp/temp
 For this example:
 
 * In the path: /madmex-v2 we have cloned the CONABIO/madmex-v2 repository
-* Inside the directory: "/data/ingest/rapideye" we have the shell "data_ingestion_folder.sh" which needs to have execution permissions. Go to rapideye_commands.md of this repository.
-* In the path: /resources/config we have the configuration archive "configuration.ini"
-* In the path: "/data/rapideye/example" we have the folder to be ingested: 1546624_2015-02-08_RE3_3A_302750
-* In the path: /export we have the archive "variables.txt"
+* Inside the directory: '/data/ingest/rapideye' we have the shell 'data_ingestion_folder.sh' which needs to have execution permissions. Go to rapideye_commands.md of this repository.
+* In the path: /resources/config we have the configuration archive 'configuration.ini'
+* In the path: '/data/rapideye/example' we have the folder to be ingested: 1546624_2015-02-08_RE3_3A_302750
+* In the path: /export we have the archive 'variables.txt'
 * We want that the data of the folder example be copied to: /data/eodata and be registered in the database
 
 We execute the following command line:
@@ -66,14 +66,14 @@ After executing this line, we will have under /data/eodata the folder of the exa
 
 ##Classification
 
-The approach in the process of classification of rapideye images uses images that have similar regional and temporal characteristics. We use an ESRI shapefile "mapgrid" to define several regions that consists of rapideye tiles sharing common regional properties. As each rapideye image in a different time has different reflectances for each phase of vegetation, we use a seasonality window defined by a date and a buffer of days. This buffer also depends on the amount of images that we have for the given date.
+The approach in the process of classification of rapideye images uses images that have similar regional and temporal characteristics. We use an ESRI shapefile 'mapgrid' to define several regions that consists of rapideye tiles sharing common regional properties. As each rapideye image in a different time has different reflectances for each phase of vegetation, we use a seasonality window defined by a date and a buffer of days. This buffer also depends on the amount of images that we have for the given date.
 
 
 -Requirements:
 
 * Image for MAD-MEX processes: madmex/ws
 * Shell: rapideye_classification_by_mapgrid.sh with execution permissions. Go to rapideye_commands.md in this repository.
-* An ESRI shapefile that defines the regions to be classified registered in the database under the schema vectoradata. We can use the following command to register our ESRI shapefile "rapideye_mapgrid_region" in the database. If we have this ESRI shapefile under /data/esri_shapefiles/ then:
+* An ESRI shapefile that defines the regions to be classified registered in the database under the schema vectoradata. We can use the following command to register our ESRI shapefile 'rapideye_mapgrid_region' in the database. If we have this ESRI shapefile under /data/esri_shapefiles/ then:
 
 
 ```
@@ -97,7 +97,7 @@ In this command we have assumed that our server of the database has the ip 192.1
 
 * Directories: madmex_processing_results, reclassificationcomand, products for copying the classification results
 
-* Archive containing the environment variables that will be used by the classification process: "variables.txt":
+* Archive containing the environment variables that will be used by the classification process: 'variables.txt':
 
 ```
 export MADMEX=/LUSTRE/MADMEX/code/
