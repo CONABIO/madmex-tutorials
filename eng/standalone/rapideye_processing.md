@@ -156,7 +156,11 @@ $docker run --rm -v /products:/LUSTRE/MADMEX/products \
 -v /madmex_processing_results:/LUSTRE/MADMEX/processes/madmex_processing_results/ \
 -v /reclassificationcommand:/LUSTRE/MADMEX/products/reclassificationcommand/ \
 -v /temporal:/services/localtemp/temp \
- -v /export/variables.txt:/results/variables.txt  madmex/ws:latest /results/rapideye_classification_by_mapgrid.sh 2015-05-15 17 5 /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif 1 /LUSTRE/MADMEX/processes/madmex_processing_results/ 
+ -v /export/variables.txt:/results/variables.txt \
+ madmex/ws:latest /results/rapideye_classification_by_mapgrid.sh \
+ 2015-05-15 17 5 \
+ /LUSTRE/MADMEX/products/inegiusvpersii-v/training_areas_persistentes_32_clases_125m.tif \
+ 1 /LUSTRE/MADMEX/processes/madmex_processing_results/ 
 ```
 
 
