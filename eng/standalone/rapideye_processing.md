@@ -88,7 +88,7 @@ In this command we have assumed that our server of the database has the ip 192.1
 
 * Images of each region of the ESRI shapefile registered in the database that fulfill the requisite of the defined buffer
 
-* Register the algorithm and leyend in the database.
+* Register the algorithm and legend in the database.
 
 * Training data in the filesystem and also needs to be registered in the database.
 
