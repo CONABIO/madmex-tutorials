@@ -59,6 +59,17 @@ docker run --rm -v /madmex-v2:/LUSTRE/MADMEX/code \
 /results/data_ingestion_folder.sh /data/folder/2044024_2015-01-02_RE1_3A_301519
 ```
 
+After executing this line, we will have under /data/eodata the folder of the example copied and one register in the database.
+
+##Preprocessing
+
+-Requirements:
+
+
+
+##Classification
+
+The approach in the process of classification of rapideye images uses images that have similar regional and temporal characteristics. We use an ESRI shapefile "mapgrid" to define several regions that consists of rapideye tiles sharing common regional properties. As each rapideye image in a different time has different reflectances for each phase of vegetation, we use a seasonality window defined by a starting date and a buffer of days. 
 
 
 
