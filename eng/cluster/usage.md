@@ -10,7 +10,7 @@ We will consider four nodes:
 
 - Master node that will have the sun grid engine master service in a docker container.
 - Two processing nodes that will have a container of docker in charge of execution of processes and the client of the service master of sun grid engine.
-- Node for the database.
+- Database node.
 
 
 Specifications for nodes:
