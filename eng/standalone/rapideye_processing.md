@@ -77,7 +77,9 @@ The approach in the process of classification of rapideye images uses images tha
 
 ```
 $docker run --rm -v /data/esri_shapefiles/:/results -it madmex/postgres-client \
-shp2pgsql -I -s 4326 /results/rapideye_mapgrid_region.shp vectordata.rapideye_mapgrid_region|psql -d madmex_database -U madmex_user -h 192.168.99.100 -p 32851
+shp2pgsql -I -s 4326 /results/rapideye_mapgrid_region.shp \
+vectordata.rapideye_mapgrid_region|psql -d madmex_database -U madmex_user \
+-h 192.168.99.100 -p 32851
 
 ```
 
