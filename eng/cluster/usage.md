@@ -111,5 +111,90 @@ Add the following line in the file /etc/fstab:
 ```
 $sudo mount -a
 ```
+##Sun grid engine master service configuration
+
+On the master node run the following command:
+
+```
+$docker run --name master-sge-container -h $(hostname -f) -v /carpeta_compartida:/LUSTRE/MADMEX -p 6444:6444 \ 
+-p 2224:22 -p 8083:80 -p 6445:6445 -dt madmex/sge_dependencies /bin/bash
+
+```
+
+Enter the docker container that we just started with the previous command by executing the following line:
+```
+$docker exec -it master-sge-container /bin/bash
+
+```
+
+Inside the docker execute the following commands, in these commands we assume that the hostname of the master node is "nodomaestro":
+
+```
+$root@nodomaestro:/# service apache2 start
+
+$root@nodomaestro:/# service ssh restart
+
+$root@nodomaestro:/#apt-get install -y gridengine-client gridengine-exec gridengine-master
+
+```
+
+The last command will take us to a series of configurations for the sun grid engine master service. Select the defaults and in the screen where asking for "SGE master hostname" write "nodomaestro".
+
+Restart sun grid engine master service:
+
+```
+$root@nodomaestro:/# /etc/init.d/gridengine-master restart
+
+```
+
+When executing the following command there should be no errors:
+
+```
+$root@nodomaestro:/# qhost
+
+```
+
+Configure the nodomaestro as submit host:
+
+```
+$root@nodomaestro:/# qconf -as nodomaestro
+```
+
+Create the group @allhost:
+
+```
+$root@nodomaestro:/# qconf -ahgrp @allhosts
+```
+Do not modify anything in this file, type ESC and then: x!
+
+Create the queue miqueue.q:
+
+```
+$root@nodomaestro:/# qconf -aq miqueue.q
+
+```
+Do not modify anything in this file, type ESC and then: x!
+
+Add the @allhosts group to the queue:
+
+```
+$root@nodomaestro:/# qconf -aattr queue hostlist @allhosts miqueue.q
+
+```
+
+Configure the number of cores to be used by processing nodes, for example 2:
+
+```
+$root@nodomaestro:/# qconf -aattr queue slots "2" miqueue.q
+```
+
+Exit the docker to complete the sun grid engine master service configuration:
+
+```
+$root@nodomaestro:/# exit
+
+```
+
+Now we can view in a browser the page: nodomaestro: 8083 / qstat which is a web service for "queue monitoring of sun grid engine"
 
 
