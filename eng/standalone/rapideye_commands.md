@@ -14,6 +14,11 @@ source /results/variables.txt
 ```
 
 *rapideye_classification_by_mapgrid.sh*
+```
+#!/bin/bash
+source /results/variables.txt
+/usr/bin/python $MADMEX/interfaces/cli/madmex_processing.py RapidEyeLccMapgrid --date $1 --daybuffer $2 --mapgrid $3 --training_url $4 --outlier $5 --outdir $6
 
+```
 
 
