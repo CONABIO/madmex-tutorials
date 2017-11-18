@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Preparing Mad-MEX data</title>
+
+        <meta name="description" content="Mad-mex data preparation">
+        <meta name="author" content="Amaury Gutiérrez">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="../css/reveal.css">
+        <link rel="stylesheet" href="../css/theme/night.css" id="theme">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="../lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h2>Preparing Mad-MEX ancillary data</h2>
+                </section>
+
+                <section>
+                    <h2>Introduction</h2>
+                    <p>In addition to surface reflectance data (Landsat, Sentinel2, RapidEye) the madmex system requires ancillary data to generate its outputs.</p>
+                    <ul>
+                        <li>Terrain metrics</li>
+                        <ul>
+                            <li>Digital elevation model (DEM)</li>
+                            <li>Slope</li>
+                            <li>Aspect</li>
+                        </ul>
+                        <li>Shapefile of administrative boundaries</li>
+                        <li>Shapefile of scenes or tiles footprints</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Terrain metrics</h2>
+                        
+                        <ul>
+                            <li>DEM</li>
+                            <li>Slope</li>
+                            <li>Aspect</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2>Digital Elevation Model</h2>
+
+                        <p>If you have a high quality local/national DEM available, use it. If not SRTM is a freely available 90m resolution (nearly) global DEM.</p>
+                        <p><a href="http://dwtkns.com/srtm/">SRTM tile grabber</a> makes identifying and downloading SRTM tiles for a given area easy.</p>
+
+                        <img src="../img/tile_grabber.png" width="50%">
+                    </section>
+
+                    <section>
+                        <h2>Mosaic SRTM tiles</h2>
+                        <p>Several tiles may be required to cover the entire study area; they have to be mosaicked</p>
+
+                        <p>Navigate to the folder where SRTM tiles were downloaded and run the command below.</p>
+                        <pre><code>
+file_list=$(ls *zip|sed -n 's/\(.*\).zip/\/vsizip\/\1.zip\/\1.tif/g;p'|tr -s '\n' ' ')
+gdal_merge.py -o srtm_mosaic.tif $file_list
+                        </code></pre>
+
+                        <p>A new file (<tt>srtm_mosaic.tif</tt>) should have been created. You can open it in QGIS for inspection.</p>
+                    </section>
+
+                    <section>
+                        <h2>Slope and aspect layer</h2>
+                        <p>Slope and aspect can be easily generated using the <tt>gdaldem</tt> command line utility.</p>
+                        <pre><code>
+gdaldem slope srtm_mosaic.tif slope_mosaic.tif -s 111120
+gdaldem aspect srtm_mosaic.tif aspect_mosaic.tif
+                        </code></pre>
+
+                        <p>The <tt>-s 111120</tt> parameter is used to correct for the unit difference between horizontal distance (in degrees in the case of SRTM) and the vertical distance (in meters)</p>
+                        <p>These files can also be inspected in qgis</p>
+                    </section>
+
+                    <section>
+                        <h2>MAd-MEX registration</h2>
+
+                        <p>Once generated these products need to be placed in the appropriate madmex project directory (e.g.: <tt>$madmex_root/data/aux/dem</tt>) and registered in the configuration file.</p>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Shapefile of administrative boundaries</h2>
+                    <p>GADM provides administrative boundary data for every countries of the world.</p>
+                    <p>One simply needs to know the ISO code of the country of interest, and the data can be downloaded and extracted with the following commands</p>
+
+                    <pre><code>
+# DOwnload and extract the administrative boundary data of Mexico
+ISO=MEX
+wget http://data.biogeo.ucdavis.edu/data/gadm2.8/shp/${ISO}_adm_shp.zip
+unzip -j "${ISO}_adm_shp.zip" "${ISO}_adm1.*" -d "/home/madmex_user/madmex/data/aux/borders"
+                    </code></pre>
+
+                    <p>Register the data</p>
+                </section>
+
+                <section>
+                    <h2>Shapefile of Landsat scenes footprints</h2>
+                    <p>Download the global shapefile with the following command</p>
+                    <pre><code>
+wget https://landsat.usgs.gov/sites/default/files/documents/wrs2_descending.zip
+                    </code></pre>
+                    <p>Use the previously downloaded shapefile of administrative boundaries to keep only the footprint that intersect with the study area. This can be done in QGIS or R.</p>
+                </section>
+
+                <section>
+                    <p>Don't forget to register the files generated in the Mad-MEX configuration file</p>
+                </section>
+                    
+
+
+
+
+            </div>
+
+        </div>
+
+        <script src="..//lib/js/head.min.js"></script>
+        <script src="..//js/reveal.js"></script>
+
+        <script>
+
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: '../lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: '../plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: '../plugin/zoom-js/zoom.js', async: true },
+                    { src: '../plugin/notes/notes.js', async: true }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
