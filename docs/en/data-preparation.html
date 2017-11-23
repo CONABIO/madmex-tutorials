@@ -131,7 +131,7 @@ unzip -j "${ISO}_adm_shp.zip" "${ISO}_adm1.*" -d "/home/madmex_user/madmex/data/
                     <pre><code>
 ISO=JAM
 ip_container=$(docker inspect postgres-server-madmex|grep IPAddress\"|head -n 1 | cut -d":" -f2 | cut -d"\"" -f2)
-docker run -e ip_container=$ip_container --rm -v /home/madmex_user:/home/madmex_user madmex /bin/bash -c 'shp2pgsql -I -s 4326  /home/madmex_user/madmex/data/aux/borders/${ISO}_adm1.shp vectordata.country_jamaica|psql -d madmex_database -U madmex_user -h $ip_container'
+docker run -e ip_container=$ip_container -e ISO=$ISO --rm -v /home/madmex_user:/home/madmex_user madmex /bin/bash -c 'shp2pgsql -I -s 4326  /home/madmex_user/madmex/data/aux/borders/${ISO}_adm1.shp vectordata.country_jamaica|psql -d madmex_database -U madmex_user -h $ip_container'
                     </code></pre>
                     </section>
                 </section>
