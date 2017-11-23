@@ -112,18 +112,28 @@ gdaldem aspect srtm_mosaic.tif aspect_mosaic.tif
                 </section>
 
                 <section>
-                    <h2>Shapefile of administrative boundaries</h2>
-                    <p>GADM provides administrative boundary data for every countries of the world.</p>
-                    <p>One simply needs to know the ISO code of the country of interest, and the data can be downloaded and extracted with the following commands</p>
+                    <section>
+                        <h2>Shapefile of administrative boundaries</h2>
+                        <p>GADM provides administrative boundary data for every countries of the world.</p>
+                        <p>One simply needs to know the ISO code of the country of interest, and the data can be downloaded and extracted with the following commands</p>
 
-                    <pre><code>
+                        <pre><code>
 # DOwnload and extract the administrative boundary data of Mexico
-ISO=MEX
+ISO=JAM
 wget http://data.biogeo.ucdavis.edu/data/gadm2.8/shp/${ISO}_adm_shp.zip
 unzip -j "${ISO}_adm_shp.zip" "${ISO}_adm1.*" -d "/home/madmex_user/madmex/data/aux/borders"
-                    </code></pre>
+                        </code></pre>
+                    </section>
 
-                    <p>Register the data</p>
+                    <section>
+                        
+                    <h2>Register the data in the database</h2>
+                    <pre><code>
+ISO=JAM
+ip_container=$(docker inspect postgres-server-madmex|grep IPAddress\"|head -n 1 | cut -d":" -f2 | cut -d"\"" -f2)
+docker run -e ip_container=$ip_container --rm -v /home/madmex_user:/home/madmex_user madmex /bin/bash -c 'shp2pgsql -I -s 4326  /home/madmex_user/madmex/data/aux/borders/${ISO}_adm1.shp vectordata.country_jamaica|psql -d madmex_database -U madmex_user -h $ip_container'
+                    </code></pre>
+                    </section>
                 </section>
 
                 <section>
